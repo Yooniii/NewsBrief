@@ -1,0 +1,5 @@
+lxml_html_clean
+torch
+transformers
+djangorestframework
+newspaper4k
