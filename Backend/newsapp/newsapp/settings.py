@@ -38,8 +38,12 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'corsheaders',
-    'retrieve_headlines'
+    'retrieve_headlines',
+    'adrf'
     ]
+
+ASGI_APPLICATION = "newsapp.asgi:application"
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
