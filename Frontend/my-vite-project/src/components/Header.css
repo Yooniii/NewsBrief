@@ -1,43 +1,74 @@
+* {
+  font-family: 'Helvetica';
+  background-color: #FFFF;
+  letter-spacing: 1.5px;
+  margin: 6px 15px;
+}
 
-.header {
+.navbar, .links {
+  background-color: #FFFF;
   display: flex;
-  margin: 30px 90px;
+  gap: 1.5rem;
   align-items: center;
-  flex-direction: row;
   justify-content: space-between;
-  text-transform: uppercase;
 }
 
-.left-container {
-  display: flex;
-  align-items: center;
-  font-family: 'Lato';
+li {
+  list-style-type: none;
+}
+
+a, .logo {
+  text-decoration: none;
+  color: black;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.logo {
   font-weight: bold;
-  font-size: 2.5em;
-  letter-spacing: 5px;
+  font-size: 2.3em;
 }
 
+a {
+  font-size: 1.3em;
+}
 
-button {
-  background-color: transparent;
+.links {
+  margin-top: 16px;
+}
+
+.search-bar {
   border: none;
-  width: 30px;
-  height: 27px;
+  outline: none;
+  background-color: transparent;
+  font-size: 1.3em;
 }
 
-.moon-icon {
-  width: 30px;
+form {
+  height: 30px;
+  display: flex;
+  cursor: pointer;
+  align-items: center;
 }
 
-.nightmode-btn {
-  margin-right: 30px;
-  padding-bottom: 73px;
+form:hover input {
+  width: 280px;
 }
 
-.favourites-icon {
-  width: 40px;
+form input {
+  width: 0;
+  background: transparent;
+  transition: 0.8s;
 }
 
-.favourites-btn {
-  padding-bottom: 48px;
+img {
+  height: 28px;
+  width: 28px;
+}
+
+.horizontal-line {
+  height: 1px;
+  width: 100%;
+  background-color: #949494;
+  margin-top: -6px;
 }

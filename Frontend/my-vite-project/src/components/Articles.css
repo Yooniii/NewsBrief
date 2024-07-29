@@ -1,0 +1,52 @@
+
+.article-container{
+  display: flex;
+  flex-direction: center;
+  align-items: center;
+  margin: auto;
+  text-align: center;
+  box-sizing: border-box;
+  margin-top: 70px;
+}
+
+.article-img {
+  width: 30rem;
+  height: 26rem;
+  border-radius: 15px;
+  margin-left: auto;
+  margin-right: 6rem;
+  margin-top: -1rem;
+  object-fit: cover;
+}
+
+.text {
+  max-width: 60rem;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 1.5em;
+  text-align: left;
+  margin-left: 0;
+  margin-right: auto;
+}
+
+.article-title {
+  font-size: 2.8rem;
+  line-height: 65px;
+}
+
+.article-info, .summary {
+  font-size: 1.3rem;
+}
+
+.read-more-btn {
+  height: 50px;
+  width: 190px;
+  border-radius: 25px;
+  font-size: 1rem;
+}
+
+.divider{
+  width: 80%;
+  height: 100px;
+}

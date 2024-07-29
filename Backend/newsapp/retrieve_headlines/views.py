@@ -52,7 +52,7 @@ async def scrape_content(session, url):
 async def retrieve_headlines(request):
   start = time.time()
 
-  url = f'https://api.newscatcherapi.com/v2/latest_headlines?countries=US&lang=en&page_size=1&not_sources=The Daily Mail'
+  url = f'https://api.newscatcherapi.com/v2/latest_headlines?countries=US&lang=en&page_size=4&not_sources=The Daily Mail'
   headers = {
   'x-api-key': 'wVzi0kzFbYITxUWFWoEH-fTdxdQ7UARpdoQqXlEtf9k'  
   }
@@ -79,8 +79,8 @@ async def retrieve_headlines(request):
             'date': article.get('published_date'),
             'url': article.get('link'),
             'image_url': article.get('media'),
-            'content': content,
-            'summary': summary
+            # 'content': content,
+            # 'summary': summary
           }
           news_list.append(news_item)
 

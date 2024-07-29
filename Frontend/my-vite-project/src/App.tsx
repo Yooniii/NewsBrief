@@ -1,9 +1,13 @@
-import RetrieveHeadlines from './Headlines'
+import Header from "./components/Header";
+import Articles from "./components/Articles"
 
 function App() {
   return (
       <div className="App">
-        <RetrieveHeadlines></RetrieveHeadlines>
+        <Header></Header>
+        <Articles></Articles>
+        <Articles></Articles>
+
       </div>
   );
 };
