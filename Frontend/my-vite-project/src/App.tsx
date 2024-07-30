@@ -6,8 +6,6 @@ function App() {
       <div className="App">
         <Header></Header>
         <Articles></Articles>
-        <Articles></Articles>
-
       </div>
   );
 };

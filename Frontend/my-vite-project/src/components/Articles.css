@@ -1,7 +1,7 @@
 
 .article-container{
   display: flex;
-  flex-direction: center;
+  justify-content: center;
   align-items: center;
   margin: auto;
   text-align: center;
@@ -10,12 +10,11 @@
 }
 
 .article-img {
-  width: 30rem;
-  height: 26rem;
+  width: 28rem;
+  height: 24rem;
   border-radius: 15px;
   margin-left: auto;
   margin-right: 6rem;
-  margin-top: -1rem;
   object-fit: cover;
 }
 

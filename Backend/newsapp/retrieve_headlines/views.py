@@ -2,6 +2,7 @@ import requests
 from adrf.decorators import api_view
 from rest_framework.response import Response
 from newspaper import Article
+import scrapy
 from bs4 import BeautifulSoup
 import aiohttp
 import asyncio
@@ -91,5 +92,4 @@ async def retrieve_headlines(request):
   else:
     return Response({'error': 'Failed to retrieve articles.'}, 
                       status=response.status_code)
-
 

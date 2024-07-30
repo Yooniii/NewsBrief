@@ -1,0 +1,43 @@
+.skeleton {
+  border-radius: 2px;
+  display: inline-block;
+  line-height: 100%;
+  width: 100%;
+  background-color: #e2e2e2;
+  background: linear-gradient(
+    100deg,
+    rgba(232, 232, 232, 1) 20%,
+    rgba(250, 250, 250, 1) 50%,
+    rgba(232, 232, 232, 1) 60%,
+  );
+  background-position: 1000px 1000px;
+  animation: placeholderShimmer 3s linear infinite forwards;
+
+}
+
+@keyframes placeholderShimmer {
+  0% {
+    background-position: -500px 0;
+  }
+
+  100% {
+    background-position: 500px 0;
+  }
+}
+
+.skeletonBlock {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
+  text-align: center;
+  box-sizing: border-box;
+  margin-top: 70px;
+  border-radius: 15px;
+}
+
+.contentBlock {
+  display: flex;
+  flex-direction: column;
+}
+
