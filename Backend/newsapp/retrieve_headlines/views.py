@@ -1,8 +1,9 @@
 import requests
+import os
+from dotenv import load_dotenv
 from adrf.decorators import api_view
 from rest_framework.response import Response
 from newspaper import Article
-import scrapy
 from bs4 import BeautifulSoup
 import aiohttp
 import asyncio
@@ -11,11 +12,9 @@ from .button_views import get_selection
 from .summarizer import summarize
 from asgiref.sync import sync_to_async
 
-async def scrape_content(session, url):
-  invalid_urls = ['pixstory']
+API_KEY = os.getenv('API_KEY')
 
-  # if any(invalid_url in url for invalid_url in invalid_urls):
-  #   return 'null'
+async def scrape_content(session, url):
   """
   Extracts content from a given URL. If the URL requires redirection,
   this function finds the final domain link before extracting content.
@@ -55,7 +54,7 @@ async def retrieve_headlines(request):
 
   url = f'https://api.newscatcherapi.com/v2/latest_headlines?countries=US&lang=en&page_size=4&not_sources=The Daily Mail'
   headers = {
-  'x-api-key': 'wVzi0kzFbYITxUWFWoEH-fTdxdQ7UARpdoQqXlEtf9k'  
+  'x-api-key': API_KEY
   }
   response = requests.get(url, headers=headers)
 

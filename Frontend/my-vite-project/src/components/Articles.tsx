@@ -1,7 +1,7 @@
-import './Articles.css';
 import axios from 'axios';
-import React, { useState, useEffect, Fragment } from 'react';
+import { useState, useEffect, Fragment } from 'react';
 import CustomSkeleton from '../Skeleton/Skeleton';
+import './Articles.css';
 
 function Articles() {
   const [title, setTitle] = useState('');
@@ -34,7 +34,7 @@ function Articles() {
     return (
       <Fragment>
         <div className="skeletonBlock">
-          <CustomSkeleton width={448} height={384} variant="rounded" sx={{ bgcolor: 'black' }}/>
+          <CustomSkeleton width={448} height={368} variant="rounded" sx={{ bgcolor: 'black' }}/>
           <div className="contentBlock">
             <CustomSkeleton width={930} height={130} variant="rounded" sx={{ bgcolor: 'black' }}/>
             <CustomSkeleton width={930} height={31} variant="rounded" sx={{ bgcolor: 'black' }}/>
