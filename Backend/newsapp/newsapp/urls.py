@@ -16,9 +16,9 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from retrieve_headlines import views
+from articles import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('headlines/', views.retrieve_headlines),
+    path('articles/', include("articles.urls"))
 ]
