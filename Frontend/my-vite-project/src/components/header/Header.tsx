@@ -1,5 +1,5 @@
 import './Header.css'
-import search from '../assets/Search.png'
+import search from '../../assets/Search.png'
 import { Fragment } from 'react/jsx-runtime'
 // import axios from 'axios';
 

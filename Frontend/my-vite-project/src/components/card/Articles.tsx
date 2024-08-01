@@ -1,11 +1,11 @@
 import axios from 'axios';
 import { useState, useEffect, Fragment } from 'react';
-import CustomSkeleton from '../Skeleton/Skeleton';
+import CustomSkeleton from '../loading/Skeleton';
 import './Articles.css';
 
 function Articles() {
   const [title, setTitle] = useState('');
-  const [author, setAuthor] = useState('');
+  const [source, setSource] = useState('');
   const [date, setDate] = useState('');
   const [img, setImg] = useState('');
   const [summary, setSummary] = useState('');
@@ -14,12 +14,12 @@ function Articles() {
   useEffect(() => {
     async function fetchData() {
       try {
-        const response = await axios.get('http://127.0.0.1:8000/headlines/')
-        const article = response.data.news[0];
+        const response = await axios.get('http://127.0.0.1:8000/articles/')
+        const article = response.data[0];
         setTitle(article.title);
-        setAuthor(article.author);
+        setSource(article.source);
         setDate(article.date);
-        setImg(article.image_url);
+        setImg(article.img_url);
         setSummary(article.summary);
         setLoading(false);
     } catch (error) {
@@ -52,7 +52,7 @@ function Articles() {
         <img className="article-img" src={img} alt="Article" />
         <div className="text">
           <h2 className="article-title">{title}</h2>
-          <p className="article-info">{author} | {date}</p>
+          <p className="article-info">{source} | {date}</p>
           <p className="summary">{summary}</p>
           <div className="btn-wrap">
             <button className="read-more-btn">Continue Reading</button>

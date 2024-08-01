@@ -72,5 +72,6 @@ img {
   height: 1px;
   width: 100%;
   background-color: #949494;
-  margin-top: -6px;
+  margin-top: -4px;
+  margin-bottom: 100px;
 }

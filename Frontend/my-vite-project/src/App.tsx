@@ -1,10 +1,11 @@
-import Header from "./components/Header";
-import Articles from "./components/Articles"
+import Header from "./components/header/Header";
+import Articles from "./components/card/Articles"
 
 function App() {
   return (
       <div className="App">
         <Header></Header>
+        <Articles></Articles>
         <Articles></Articles>
       </div>
   );

@@ -8,6 +8,7 @@ class Article(models.Model):
   article_link = models.URLField()
   img_url = models.URLField()
   content = models.TextField()
+  summary = models.TextField()
 
   def __str__(self):
     return self.title

@@ -40,25 +40,9 @@ INSTALLED_APPS = [
     'rest_framework',
     'corsheaders',
     'articles',
-    'celery',
     ]
 
 ASGI_APPLICATION = "newsapp.asgi:application"
-
-CELERY_BEAT_SCHEDULE = {
-    'fetch-articles-every-hour': {
-        'task': 'articles.management.commands.fetch_articles',
-        'schedule': 3600,  # Run every hour
-    },
-}
-
-CELERY_BROKER_CONNECTION_RETRY_ON_STARTUP = True
-CELERY_BROKER_URL = 'redis://localhost:6379/0'
-CELERY_RESULT_BACKEND = 'redis://localhost:6379/0'
-CELERY_ACCEPT_CONTENT = ['json']
-CELERY_TASK_SERIALIZER = 'json'
-CELERY_RESULT_SERIALIZER = 'json'
-CELERY_TIMEZONE = 'UTC'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -129,7 +113,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'EST'
+TIME_ZONE = 'America/New_York'
 
 USE_I18N = True
 
