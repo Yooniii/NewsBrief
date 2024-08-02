@@ -10,6 +10,7 @@ def summarize(text):
   summary = tokenizer.decode(summary_ids[0], skip_special_tokens=True)
   return summary
 
+
 def scrape(url):
   page = newspaper.article(url)
   content = page.text.replace('\n', '')
