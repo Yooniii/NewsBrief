@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { useState, useEffect, Fragment } from 'react';
-import CustomSkeleton from '../loading/Skeleton';
-import './Articles.css';
+import CustomSkeleton from '../Loading/Skeleton';
+import './Card.css';
 
 function Articles() {
   const [title, setTitle] = useState('');
@@ -13,6 +13,8 @@ function Articles() {
 
   useEffect(() => {
     async function fetchData() {
+      setLoading(true);
+      
       try {
         const response = await axios.get('http://127.0.0.1:8000/articles/')
         const article = response.data[0];
