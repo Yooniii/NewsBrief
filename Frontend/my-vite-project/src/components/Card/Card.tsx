@@ -1,38 +1,19 @@
-import axios from 'axios';
-import { useState, useEffect, Fragment } from 'react';
+import { Fragment } from 'react';
 import CustomSkeleton from '../Loading/Skeleton';
 import './Card.css';
 
-function Articles() {
-  const [title, setTitle] = useState('');
-  const [source, setSource] = useState('');
-  const [date, setDate] = useState('');
-  const [img, setImg] = useState('');
-  const [summary, setSummary] = useState('');
-  const [loading, setLoading] = useState(true);
+interface Article {
+  title: string;
+  img: string;
+  source: string;
+  date: string;
+  summary: string;
+  isLoading: boolean;
+}
 
-  useEffect(() => {
-    async function fetchData() {
-      setLoading(true);
-      
-      try {
-        const response = await axios.get('http://127.0.0.1:8000/articles/')
-        const article = response.data[0];
-        setTitle(article.title);
-        setSource(article.source);
-        setDate(article.date);
-        setImg(article.img_url);
-        setSummary(article.summary);
-        setLoading(false);
-    } catch (error) {
-        console.log(error);
-        setLoading(false);
-      }
-    }
-    fetchData();
-  }, []);
+const ArticleCard: React.FC<Article> = ({ title, img, source, date, summary, isLoading }) => {
 
-  if (loading) {
+  if (isLoading) {
     return (
       <Fragment>
         <div className="skeletonBlock">
@@ -53,8 +34,9 @@ function Articles() {
       <div className="article-container">
         <img className="article-img" src={img} alt="Article" />
         <div className="text">
+          <p className="source">{source}</p>
           <h2 className="article-title">{title}</h2>
-          <p className="article-info">{source} | {date}</p>
+          <p className="date">{date}</p>
           <p className="summary">{summary}</p>
           <div className="btn-wrap">
             <button className="read-more-btn">Continue Reading</button>
@@ -66,4 +48,4 @@ function Articles() {
   );
 }
 
-export default Articles;
+export default ArticleCard;
