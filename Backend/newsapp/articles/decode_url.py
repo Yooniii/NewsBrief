@@ -1,27 +1,3 @@
-# import base64
-# from urllib.parse import urlparse, urlunparse
-
-# def decode_google_news_url(source_url):
-#     path = source_url.replace('https://news.google.com/rss/articles/', '').split('?')[0]
-
-#     while (len(path) % 4 != 0):
-#         path += '='
-#     decoded = base64.b64decode(path)
-    
-#     try:
-#         decoded_str = decoded.decode('utf-8')
-#     except UnicodeDecodeError:
-#         decoded_str = decoded.decode('latin1')
-#         url = decoded_str.split(" ")[0]
-#     return url
- 
-# # Example usage:
-# def main():
-#     source_url = 'https://news.google.com/rss/articles/CBMiX2h0dHBzOi8vd3d3LmNiYy5jYS9zcG9ydHMvb2x5bXBpY3Mvc3VtbWVyL3Jvd2luZy9vbHltcGljcy1wYXJpcy1kYXktMi1yb3VuZHVwLWp1bHktMjktMS43Mjc4NDA50gEgaHR0cHM6Ly93d3cuY2JjLmNhL2FtcC8xLjcyNzg0MDk?oc=5'
-#     url = decode_google_news_url(source_url)
-
-# main()
-
 import requests
 import base64
 

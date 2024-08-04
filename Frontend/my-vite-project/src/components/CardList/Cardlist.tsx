@@ -3,22 +3,12 @@ import { useState, useEffect } from 'react';
 import Card from '../Card/Card';
 import { Article } from '../Card/Card'
 
-// interface Article {
-//   title: string;
-//   source: string;
-//   date: string;
-//   imgUrl: string;
-//   summary: string;
-//   isLoading: boolean;
-// }
+interface ArticleListProps {
+  category: string;
+}
 
-function ArticleList() {
-  // const [title, setTitle] = useState('');
-  // const [source, setSource] = useState('');
-  // const [date, setDate] = useState('');
-  // const [img, setImg] = useState('');
-  // const [summary, setSummary] = useState('');
-  const [articles, setArticles] = useState<Article[]>([]);
+function ArticleList({ category }: ArticleListProps) {
+  const [filteredArticles, setFilteredArticles] = useState<Article[]>([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -27,28 +17,29 @@ function ArticleList() {
       
       try {
         const response = await axios.get('http://127.0.0.1:8000/articles/')
-        setArticles(response.data);
+        const articles = response.data
+        setFilteredArticles(articles.filter((article: Article) => article.category === category))
         setLoading(false);
     } catch (error) {
         console.log(error);
       }
     }
     fetchData();
-  }, []);
+  }, [category]);
 
-  const displayArticles = articles.slice(0,3);
+  const displayArticles = filteredArticles.slice(0,3);
 
   return (
     <div className='card-list'>
-      {displayArticles.map(article => (
+      {displayArticles.map((article: Article) => (
         <Card
           title={article.title}
           img={article.img_url}
           source={article.source}
           date={article.date}
           summary={article.summary}
-          isLoading={loading}
-        />
+          isLoading={loading}> 
+        </Card>
       ))}
     </div>
   );

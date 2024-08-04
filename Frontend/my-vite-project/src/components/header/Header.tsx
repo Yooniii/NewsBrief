@@ -1,37 +1,22 @@
 import './Header.css'
 import search from '../../assets/Search.png'
-import { Fragment } from 'react/jsx-runtime'
-// import axios from 'axios';
-
-// const handleClick = async (category: String) => {
-//   axios.post('http://127.0.0.1:8000/headlines/headlines/', category)
-//   .then((response) => {
-//     console.log(response)
-//   })
-//   .catch((error) => {
-//      if (error.response) {
-//           console.log(error.response);
-//           console.log("server responded");
-//         } else if (error.request) {
-//           console.log("network error");
-//         } else {
-//           console.log(error);
-//         }
-//       });
-//   };
+import { Fragment, useState } from 'react'
+import ArticleList from '../CardList/Cardlist'
 
 function Header() {
+  const [category, setCategory] = useState('top_stories');
+
   return (
     <Fragment>
       <div className="navbar"> 
       <a href="http://localhost:5173/" className="logo">NewsBrief</a>
       <ul className="links">
-        <li><a>Latest</a></li>
-        <li><a>Business</a></li>
-        <li><a>Entertainment</a></li>
-        <li><a>Science</a></li>
-        <li><a>Sports</a></li>
-        <li><a>Tech</a></li>
+        <li><a onClick={() => setCategory('top_stories')}>Top Stories</a></li>
+        <li><a onClick={() => setCategory('business')}>Business</a></li>
+        <li><a onClick={() => setCategory('entertainment')}>Entertainment</a></li>
+        <li><a onClick={() => setCategory('science')}>Science</a></li>
+        <li><a onClick={() => setCategory('sports')}>Sports</a></li>
+        <li><a onClick={() => setCategory('tech')}>Tech</a></li>
       </ul>
       <form>
         <input className="search-bar" type="search" placeholder="Search..."/>
@@ -41,9 +26,8 @@ function Header() {
       </form>
     </div>
     <div className="horizontal-line"></div>
-    </Fragment>
-    
-    // onClick={handleClick('latest')}
+    <ArticleList category={category}></ArticleList>
+    </Fragment>    
   )
 }
 

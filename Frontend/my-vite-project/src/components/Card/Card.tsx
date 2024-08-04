@@ -2,13 +2,14 @@ import { Fragment } from 'react';
 import CustomSkeleton from '../Loading/Skeleton';
 import './Card.css';
 
-interface Article {
+export interface Article {
   title: string;
-  img: string;
-  source: string;
   date: string;
+  source: string;
+  img: string;
   summary: string;
-  isLoading: boolean;
+  category: string;
+  isLoading: Boolean
 }
 
 const ArticleCard: React.FC<Article> = ({ title, img, source, date, summary, isLoading }) => {
