@@ -5,11 +5,16 @@ from .scrape import scrape
 from datetime import datetime
 
 class BackgroundClass:
+
   @staticmethod
-  def fetch_articles(url, category):
+  def fetch_articles(category, url):
     feed = feedparser.parse(url)
+    count = 0
 
     for entry in feed.entries:
+      if count >= 10:
+        break
+
       try: 
         decoded_url = decode_google_news_url(entry.link)
         image, content, summary = scrape(decoded_url)
@@ -31,30 +36,33 @@ class BackgroundClass:
             'category': category 
           }
         )
-        print('Successfully added new articles')
+        print('Successfully added new article')
+        count+=1
       
-      except:
-        print('error')
-      
+      except Exception as e:
+        print(f'error{e}')
+
   @staticmethod
-  def main():
+  def upload_data():
+    print('uploading..')
     top_url = 'https://news.google.com/rss/topics/CAAqKggKIiRDQkFTRlFvSUwyMHZNRFZxYUdjU0JXVnVMVWRDR2dKRFFTZ0FQAQ?hl=en-CA&gl=CA&ceid=CA%3Aen'
     business_url = 'https://news.google.com/rss/topics/CAAqKggKIiRDQkFTRlFvSUwyMHZNRGx6TVdZU0JXVnVMVWRDR2dKRFFTZ0FQAQ?hl=en-CA&gl=CA&ceid=CA%3Aen'
     tech_url = 'https://news.google.com/rss/topics/CAAqKggKIiRDQkFTRlFvSUwyMHZNRGRqTVhZU0JXVnVMVWRDR2dKRFFTZ0FQAQ?hl=en-CA&gl=CA&ceid=CA%3Aen'
     entertainment_url = 'https://news.google.com/rss/topics/CAAqKggKIiRDQkFTRlFvSUwyMHZNREpxYW5RU0JXVnVMVWRDR2dKRFFTZ0FQAQ?hl=en-CA&gl=CA&ceid=CA%3Aen'
-    sports_url = 'https://news.google.com/topics/rss/CAAqKggKIiRDQkFTRlFvSUwyMHZNRFp1ZEdvU0JXVnVMVWRDR2dKRFFTZ0FQAQ?hl=en-CA&gl=CA&ceid=CA%3Aen'
+    sports_url = 'https://news.google.com/rss/topics/CAAqKggKIiRDQkFTRlFvSUwyMHZNRFp1ZEdvU0JXVnVMVWRDR2dKRFFTZ0FQAQ?hl=en-CA&gl=CA&ceid=CA%3Aen'
     sci_url = 'https://news.google.com/rss/topics/CAAqKggKIiRDQkFTRlFvSUwyMHZNRFp0Y1RjU0JXVnVMVWRDR2dKRFFTZ0FQAQ?hl=en-CA&gl=CA&ceid=CA%3Aen'
     health_url = 'https://news.google.com/rss/topics/CAAqJQgKIh9DQkFTRVFvSUwyMHZNR3QwTlRFU0JXVnVMVWRDS0FBUAE?hl=en-CA&gl=CA&ceid=CA%3Aen'
 
     links = {'top_stories': top_url,
-                  'business': business_url,
-                  'tech': tech_url,
-                  'entertainment': entertainment_url,
-                  'sports': sports_url,
-                  'science': sci_url,
-                  'health': health_url
-                  }
-    
+              'business': business_url,
+              'tech': tech_url,
+              'entertainment': entertainment_url,
+              'sports': sports_url,
+              'science': sci_url,
+              'health': health_url
+            }
+        
     for category in links:
+      print(category, links[category])
       BackgroundClass.fetch_articles(category, links[category])
 
