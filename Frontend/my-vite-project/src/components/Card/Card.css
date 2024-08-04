@@ -11,7 +11,7 @@
   border-radius: 1.4rem;
   margin-top: 2rem;
   margin-left: auto;
-  margin-right: 6rem;
+  margin-right: 3rem;
   object-fit: cover;
 }
 
@@ -20,19 +20,19 @@
   display: flex;
   flex-direction: column;
   align-items: stretch;
-  gap: 1rem;
+  gap: 0.5rem;
   text-align: left;
   margin-left: 0;
   margin-right: auto;
 }
 
 .article-title {
-  font-size: 2.8rem;
-  line-height: 65px;
+  font-size: 2rem;
+  line-height: 3.2rem;
 }
 
 .source, .date, .summary {
-  font-size: 1.3rem;
+  font-size: 1.1rem;
 }
 
 .source {
@@ -40,8 +40,8 @@
 }
 
 .read-more-btn {
-  height: 50px;
-  width: 190px;
+  height: 3rem;
+  width: 12rem;
   border-radius: 25px;
   font-size: 1rem;
 }

@@ -1,10 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap');
-* {
 
+* {
   font-family: 'Nunito';
   background-color: #FFFF;
   letter-spacing: 1.5px;
-  margin: 6px 15px;
+  margin: 0.2rem 0.5rem;
 }
 
 .navbar, .links {
@@ -22,17 +22,16 @@ li {
 a, .logo {
   text-decoration: none;
   color: black;
-  font-size: 1rem;
   cursor: pointer;
 }
 
 .logo {
   font-weight: bold;
-  font-size: 2.3em;
+  font-size: 1.8rem;
 }
 
 a {
-  font-size: 1.3em;
+  font-size: 1rem;
 }
 
 .links {
@@ -43,18 +42,18 @@ a {
   border: none;
   outline: none;
   background-color: transparent;
-  font-size: 1.3em;
+  font-size: 1rem;
 }
 
 form {
-  height: 30px;
+  height: 1rem;
   display: flex;
   cursor: pointer;
   align-items: center;
 }
 
 form:hover input {
-  width: 280px;
+  width: 9rem;
 }
 
 form input {
@@ -64,14 +63,13 @@ form input {
 }
 
 img {
-  height: 28px;
-  width: 28px;
+  height: 1.3rem;
+  width: 1.3rem;
 }
 
 .horizontal-line {
   height: 1px;
   width: 100%;
   background-color: #949494;
-  margin-top: -4px;
   margin-bottom: 100px;
 }

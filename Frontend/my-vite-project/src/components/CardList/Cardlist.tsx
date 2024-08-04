@@ -38,7 +38,8 @@ function ArticleList({ category }: ArticleListProps) {
           source={article.source}
           date={article.date}
           summary={article.summary}
-          isLoading={loading}> 
+          isLoading={loading}
+          category={category}> 
         </Card>
       ))}
     </div>

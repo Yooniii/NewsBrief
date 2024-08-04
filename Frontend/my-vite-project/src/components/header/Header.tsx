@@ -14,6 +14,7 @@ function Header() {
         <li><a onClick={() => setCategory('top_stories')}>Top Stories</a></li>
         <li><a onClick={() => setCategory('business')}>Business</a></li>
         <li><a onClick={() => setCategory('entertainment')}>Entertainment</a></li>
+        <li><a onClick={() => setCategory('health')}>Health</a></li>
         <li><a onClick={() => setCategory('science')}>Science</a></li>
         <li><a onClick={() => setCategory('sports')}>Sports</a></li>
         <li><a onClick={() => setCategory('tech')}>Tech</a></li>
