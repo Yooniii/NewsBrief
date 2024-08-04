@@ -9,6 +9,7 @@ class Article(models.Model):
   img_url = models.URLField()
   content = models.TextField()
   summary = models.TextField()
+  category = models.CharField(max_length=20)
 
   def __str__(self):
     return self.title

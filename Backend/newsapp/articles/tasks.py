@@ -6,8 +6,7 @@ from datetime import datetime
 
 class BackgroundClass:
   @staticmethod
-  def fetch_articles():
-    url = 'https://news.google.com/rss/topics/CAAqKggKIiRDQkFTRlFvSUwyMHZNRFZxYUdjU0JXVnVMVWRDR2dKRFFTZ0FQAQ?hl=en-CA&gl=CA&ceid=CA%3Aen'
+  def fetch_articles(url, category):
     feed = feedparser.parse(url)
 
     for entry in feed.entries:
@@ -28,10 +27,34 @@ class BackgroundClass:
             'article_link': decoded_url,
             'img_url': image,
             'content': content,
-            'summary': summary 
+            'summary': summary,
+            'category': category 
           }
         )
         print('Successfully added new articles')
       
       except:
         print('error')
+      
+  @staticmethod
+  def main():
+    top_url = 'https://news.google.com/rss/topics/CAAqKggKIiRDQkFTRlFvSUwyMHZNRFZxYUdjU0JXVnVMVWRDR2dKRFFTZ0FQAQ?hl=en-CA&gl=CA&ceid=CA%3Aen'
+    business_url = 'https://news.google.com/rss/topics/CAAqKggKIiRDQkFTRlFvSUwyMHZNRGx6TVdZU0JXVnVMVWRDR2dKRFFTZ0FQAQ?hl=en-CA&gl=CA&ceid=CA%3Aen'
+    tech_url = 'https://news.google.com/rss/topics/CAAqKggKIiRDQkFTRlFvSUwyMHZNRGRqTVhZU0JXVnVMVWRDR2dKRFFTZ0FQAQ?hl=en-CA&gl=CA&ceid=CA%3Aen'
+    entertainment_url = 'https://news.google.com/rss/topics/CAAqKggKIiRDQkFTRlFvSUwyMHZNREpxYW5RU0JXVnVMVWRDR2dKRFFTZ0FQAQ?hl=en-CA&gl=CA&ceid=CA%3Aen'
+    sports_url = 'https://news.google.com/topics/rss/CAAqKggKIiRDQkFTRlFvSUwyMHZNRFp1ZEdvU0JXVnVMVWRDR2dKRFFTZ0FQAQ?hl=en-CA&gl=CA&ceid=CA%3Aen'
+    sci_url = 'https://news.google.com/rss/topics/CAAqKggKIiRDQkFTRlFvSUwyMHZNRFp0Y1RjU0JXVnVMVWRDR2dKRFFTZ0FQAQ?hl=en-CA&gl=CA&ceid=CA%3Aen'
+    health_url = 'https://news.google.com/rss/topics/CAAqJQgKIh9DQkFTRVFvSUwyMHZNR3QwTlRFU0JXVnVMVWRDS0FBUAE?hl=en-CA&gl=CA&ceid=CA%3Aen'
+
+    links = {'top_stories': top_url,
+                  'business': business_url,
+                  'tech': tech_url,
+                  'entertainment': entertainment_url,
+                  'sports': sports_url,
+                  'science': sci_url,
+                  'health': health_url
+                  }
+    
+    for category in links:
+      BackgroundClass.fetch_articles(category, links[category])
+
