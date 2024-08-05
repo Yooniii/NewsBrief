@@ -1,29 +1,33 @@
 
 .article-container{
   display: flex;
+  align-items: center;
   box-sizing: border-box;
-  margin-top: 9rem;
+  background-color: white;
+  margin: 4rem 15.6rem;
+  height: 27rem;
+  width: 75%;
+  padding: 0 2rem;
+  border-radius: 1.3rem;
+}
+
+.text, .source, .date, .summary, .read-more-btn, .btn-wrap, h2 {
+  background-color: white;
 }
 
 .article-img {
-  width: 29rem;
-  height: 22rem;
-  border-radius: 1.4rem;
-  margin-top: 2rem;
-  margin-left: auto;
-  margin-right: 3rem;
+  width: 22rem;
+  height: 17rem;
+  border-radius: 1.3rem;
   object-fit: cover;
 }
 
 .text {
-  max-width: 60rem;
   display: flex;
   flex-direction: column;
-  align-items: stretch;
   gap: 0.5rem;
   text-align: left;
-  margin-left: 0;
-  margin-right: auto;
+  margin-left: 2rem;
 }
 
 .article-title {
@@ -32,7 +36,7 @@
 }
 
 .source, .date, .summary {
-  font-size: 1.1rem;
+  font-size: 1rem;
 }
 
 .source {
@@ -40,10 +44,11 @@
 }
 
 .read-more-btn {
-  height: 3rem;
-  width: 12rem;
+  height: 2.5rem;
+  width: 11rem;
+  border-width: 0.05rem;
   border-radius: 25px;
-  font-size: 1rem;
+  font-size: 0.9rem;
 }
 
 

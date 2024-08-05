@@ -52,13 +52,13 @@ class BackgroundClass:
     sci_url = 'https://news.google.com/rss/topics/CAAqKggKIiRDQkFTRlFvSUwyMHZNRFp0Y1RjU0JXVnVMVWRDR2dKRFFTZ0FQAQ?hl=en-CA&gl=CA&ceid=CA%3Aen'
     health_url = 'https://news.google.com/rss/topics/CAAqJQgKIh9DQkFTRVFvSUwyMHZNR3QwTlRFU0JXVnVMVWRDS0FBUAE?hl=en-CA&gl=CA&ceid=CA%3Aen'
 
-    links = {'top_stories': top_url,
-              'business': business_url,
-              'tech': tech_url,
-              'entertainment': entertainment_url,
-              'sports': sports_url,
-              'science': sci_url,
-              'health': health_url
+    links = {'Top Stories': top_url,
+              'Business': business_url,
+              'Tech': tech_url,
+              'Entertainment': entertainment_url,
+              'Sports': sports_url,
+              'Science': sci_url,
+              'Health': health_url
             }
         
     for category in links:

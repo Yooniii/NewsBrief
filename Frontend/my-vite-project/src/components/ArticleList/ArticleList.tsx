@@ -1,10 +1,10 @@
-
 import axios from 'axios';
 import Card from '../Card/Card';
 import { useState, useEffect, Fragment } from 'react';
 import { Article } from '../Card/Card';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import LoadingCard from '../Loading/LoadingCard';
+import './ArticleList.css'
 
 interface ArticleListProps {
   category: string;
@@ -20,6 +20,7 @@ function ArticleList({ category }: ArticleListProps) {
   useEffect(() => {
     const fetchData = async () => {
       setLoading(true);
+
       try {
         const response = await axios.get('http://127.0.0.1:8000/articles/');
         const filteredArticles = response.data.filter(
@@ -52,7 +53,8 @@ function ArticleList({ category }: ArticleListProps) {
   };
 
   return (
-    <div className='card-list'>
+    <div className='article-list'>
+      <h1>{category}</h1>
       <InfiniteScroll
         dataLength={displayedArticles.length}
         next={fetchMoreData}
