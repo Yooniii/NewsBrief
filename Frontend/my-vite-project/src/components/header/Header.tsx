@@ -1,7 +1,7 @@
 import './Header.css'
 import search from '../../assets/Search.png'
 import { Fragment, useState } from 'react'
-import ArticleList from '../CardList/Cardlist'
+import ArticleList from '../ArticleList/ArticleList'
 
 function Header() {
   const [category, setCategory] = useState('top_stories');
