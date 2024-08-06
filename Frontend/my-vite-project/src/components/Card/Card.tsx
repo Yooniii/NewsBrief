@@ -31,7 +31,7 @@ const ArticleCard: React.FC<Article> = ({ title, img, source, date, summary, isL
           <TimeAgo className="date" datetime={date}/>
           <p className="summary">{summary}</p>
           <div className="btn-wrap">
-            <button className="read-more-btn">Continue Reading</button>
+            <button className="read-more-btn">Read summary</button>
           </div>
         </div>
       </div>
