@@ -11,8 +11,8 @@ interface ArticleListProps {
 }
 
 function ArticleList({ category }: ArticleListProps) {
-  const [allArticles, setAllArticles] = useState<Article[]>([]);
-  const [displayedArticles, setDisplayedArticles] = useState<Article[]>([]);
+  const [allArticles, setAllArticles] = useState([]);
+  const [displayedArticles, setDisplayedArticles] = useState([]);
   const [loading, setLoading] = useState(true);
   const [hasMore, setHasMore] = useState(true);
   const [index, setIndex] = useState(3);
@@ -20,15 +20,17 @@ function ArticleList({ category }: ArticleListProps) {
   useEffect(() => {
     const fetchData = async () => {
       setLoading(true);
+      setDisplayedArticles([])
+      setIndex(3)
 
       try {
         const response = await axios.get('http://127.0.0.1:8000/articles/');
         const filteredArticles = response.data.filter(
           (article: Article) => article.category === category
         );
-        // Reset state on category change
+
         setAllArticles(filteredArticles);
-        setDisplayedArticles(filteredArticles.slice(0, index));
+        setDisplayedArticles(filteredArticles.slice(0, 3));
         setHasMore(filteredArticles.length > 3);
       } catch (error) {
         console.log(error);

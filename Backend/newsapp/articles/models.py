@@ -2,7 +2,7 @@ from django.db import models
 
 # Defining the structure of an article
 class Article(models.Model):
-  title = models.CharField(max_length=225)
+  title = models.CharField(max_length=225, unique=True)
   date = models.DateTimeField()
   source = models.CharField(max_length=225)
   article_link = models.URLField()

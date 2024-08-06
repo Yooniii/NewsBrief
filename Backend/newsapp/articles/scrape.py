@@ -41,5 +41,6 @@ def scrape(url):
   content = page.text.replace('\n', '')
   summary = summarize(content)
   image = page.top_image
-  return image, content, summary
+  date = page.publish_date
+  return date, image, content, summary
   

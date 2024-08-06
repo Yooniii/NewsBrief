@@ -22,17 +22,18 @@
   object-fit: cover;
 }
 
-.text {
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-  text-align: left;
-  margin-left: 2rem;
-}
-
 .article-title {
   font-size: 2rem;
   line-height: 3.2rem;
+}
+
+
+.text {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+  text-align: left;
+  margin-left: 2rem;
 }
 
 .source, .date, .summary {
@@ -43,6 +44,9 @@
   margin-bottom: -0.5rem;
 }
 
+.date {
+  margin-top: -0.5rem;
+}
 .read-more-btn {
   height: 2.5rem;
   width: 11rem;
