@@ -6,8 +6,11 @@
   letter-spacing: 1.5px;
 }
 
-.header {
+.header, .logo, .search-bar, .form, .form:hover input, .form input, img, a {
   background-color: white;
+}
+
+.header {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -21,7 +24,6 @@
   cursor: pointer;
   font-weight: bold;
   font-size: 1.6rem;
-  background-color: white;
 }
 
 .search-bar {
@@ -36,32 +38,24 @@ form {
   display: flex;
   cursor: pointer;
   align-items: center;
-  background-color: white;
 }
 
 form:hover input {
   width: 11rem;
-  background-color: white;
 }
 
 form input {
   width: 0;
-  background-color: white;
   transition: 0.8s;
 }
 
 img {
   height: 1.3rem;
   width: 1.3rem;
-  background-color: white;
 }
 
 .horizontal-line {
   height: 1px;
   width: 100%;
   margin-bottom: 100px;
-}
-
-a {
-  background-color: white;
 }

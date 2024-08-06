@@ -56,7 +56,10 @@ function ArticleList({ category }: ArticleListProps) {
 
   return (
     <div className='article-list'>
-      <h1>{category}</h1>
+      <div className='category'>
+        <h1>{category}</h1>
+      </div>
+      
       <InfiniteScroll
         dataLength={displayedArticles.length}
         next={fetchMoreData}

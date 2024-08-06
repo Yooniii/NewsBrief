@@ -2,7 +2,6 @@ import feedparser
 from articles.models import Article
 from .decode_url import decode_google_news_url
 from .scrape import scrape
-from datetime import datetime
 
 class BackgroundClass:
 
@@ -16,25 +15,21 @@ class BackgroundClass:
         break
 
       try: 
-        if not Article.objects.filter(article_link=decoded_url).exists():
-          decoded_url = decode_google_news_url(entry.link)
-          date, image, content, summary = scrape(decoded_url)
+        decoded_url = decode_google_news_url(entry.link)
+        date, image, content, summary = scrape(decoded_url)
         
-          Article.objects.create(
-            title=entry.title.split(' - ')[0],
-            date=date,
-            source=entry.source.title,
-            article_link=decoded_url,
-            img_url=image,
-            content=content,
-            summary=summary,
-            category=category 
-          )
-          count+=1
-          print('Successfully added new article')
-        
-        else:
-          break
+        Article.objects.create(
+          title=entry.title.split(' - ')[0],
+          date=date,
+          source=entry.source.title,
+          article_link=decoded_url,
+          img_url=image,
+          content=content,
+          summary=summary,
+          category=category 
+        )
+        count+=1
+        print('Successfully added new article')
       
       except Exception as e:
         print(f'error{e}')

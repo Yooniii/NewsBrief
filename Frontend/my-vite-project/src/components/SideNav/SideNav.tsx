@@ -6,7 +6,7 @@ function SideNav() {
   const [category, setCategory] = useState('Top Stories');
 
   const handleCategoryChange = (category: string) => {
-    window.scrollTo({
+    window.scroll({
       top: 0,
       behavior: 'smooth',
     });

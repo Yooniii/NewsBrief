@@ -3,5 +3,5 @@ from .tasks import BackgroundClass
 
 def start():
   scheduler = BackgroundScheduler()
-  scheduler.add_job(BackgroundClass.upload_data, 'interval', minutes=70)
+  scheduler.add_job(BackgroundClass.upload_data, 'interval', minutes=1)
   scheduler.start()

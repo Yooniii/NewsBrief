@@ -1,18 +1,17 @@
+.text, .source, .date, .summary, .read-more-btn, .btn-wrap, h2 {
+  background-color: white;
+}
 
 .article-container{
   display: flex;
   align-items: center;
   box-sizing: border-box;
   background-color: white;
-  margin: 4rem 15.6rem;
+  margin: 2.5rem 15.6rem;
+  margin-bottom: 3rem;
   height: 27rem;
-  width: 75%;
   padding: 0 2rem;
   border-radius: 1.3rem;
-}
-
-.text, .source, .date, .summary, .read-more-btn, .btn-wrap, h2 {
-  background-color: white;
 }
 
 .article-img {
@@ -47,6 +46,7 @@
 .date {
   margin-top: -0.5rem;
 }
+
 .read-more-btn {
   height: 2.5rem;
   width: 11rem;
