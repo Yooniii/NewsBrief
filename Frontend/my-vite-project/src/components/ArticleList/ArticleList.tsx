@@ -75,7 +75,6 @@ function ArticleList({ category }: ArticleListProps) {
       >
         {displayedArticles.map((article: Article) => (
           <Card
-            key={article.title} // Ensure each Card has a unique key
             title={article.title}
             img={article.img_url}
             source={article.source}

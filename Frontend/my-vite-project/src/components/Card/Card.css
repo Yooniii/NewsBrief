@@ -2,7 +2,7 @@ ul, .text, .source, .date, .summary, .read-more-btn, .btn-wrap, h2 {
   background-color: #fdfcfe;
 }
 
-.article-container{
+.article-container, .article-container-without-img {
   display: flex;
   align-items: flex-start;
   box-sizing: border-box;
@@ -13,6 +13,14 @@ ul, .text, .source, .date, .summary, .read-more-btn, .btn-wrap, h2 {
   padding: 3.5rem 2.5rem;
   border-radius: 1.3rem;
   box-shadow: 0 0 0.4rem rgba(210, 206, 206, 0.5);
+}
+
+.article-container-without-img{
+  flex-direction: column;
+}
+
+.img-container-without-img {
+  display: none;
 }
 
 .article-img {
@@ -39,6 +47,7 @@ ul, .text, .source, .date, .summary, .read-more-btn, .btn-wrap, h2 {
 
 .source, .date, .summary {
   font-size: 1.3rem;
+  color: #404040;
 }
 
 .source {
@@ -50,12 +59,18 @@ ul, .text, .source, .date, .summary, .read-more-btn, .btn-wrap, h2 {
   margin-bottom: 0.8rem;
 }
 
+.summary, .summary-list {
+  color: #6b6b6b;
+}
+
 .read-more-btn {
   height: 2.5rem;
   width: 9rem;
   border-width: 0.05rem;
   border-radius: 25px;
   font-size: 0.9rem;
+  color: #6b6b6b;
+  border-color: #6b6b6b;
 }
 
 
