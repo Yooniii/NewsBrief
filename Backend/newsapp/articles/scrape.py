@@ -42,12 +42,15 @@ def summarize(input_text):
     f"""Please provide a 1-2 sentence description preview of the following news 
     article. Then summarize the remaining content into 3 concise bullet points 
     that flow chronologically. If the text provided is incoherent or does not 
-    make sense, respond with 'null': {summary}"""
+    make sense, respond with 'null'. 
+    Preview: This is a sentence or two describing the article.
+    - Point one
+    - Point two
+    - Point three
+    {summary}"""
   )
 
-  header = "Here are the key bullet points from the news article:"
-  refined_summary = refined_summary.text.replace(header, '')
-  return refined_summary
+  return refined_summary.text
 
 def scrape(url):
   page = newspaper.article(url)
