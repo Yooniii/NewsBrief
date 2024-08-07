@@ -7,7 +7,7 @@ function Header() {
   return (
     <Fragment>
       <div className="header"> 
-      <a href="http://localhost:5173/" className="logo">NewsBrief</a>
+      <a href="http://localhost:5173/" className="logo">NEWSBRIEF</a>
       <form>
         <input className="search-bar" type="search" placeholder="Search..."/>
         <a>

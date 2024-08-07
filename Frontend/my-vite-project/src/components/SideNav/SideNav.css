@@ -1,9 +1,12 @@
+.side-nav, .side-nav p, .side-nav a {
+  background-color: #fdfcfe;
+}
+
 .side-nav {
-  background-color: white;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  height: 50%;
+  height: 29rem;
   position: fixed;
   overflow-x: hidden;
   z-index: 1;
@@ -11,14 +14,23 @@
   padding: 0 1.5rem;
   border-radius: 1.3rem;
   margin: 2rem;
+  box-shadow: 0 0 0.4rem rgba(210, 206, 206, 0.5);
 }
 
 .side-nav p {
-  background-color: white;
-  font-size: 1.5rem;
+  font-size: 1.4rem;
   font-weight: bold;
+  font-family: 'Inter-Bold';
 }
 
-a {
+.category-btn {
+  font-family: 'InterVariable';
+  color: #959595;
   cursor: pointer;
+  text-decoration: none;
+}
+
+.category-btn:active {
+  color: #f88166;
+  font-family: 'Inter-SemiBold';
 }

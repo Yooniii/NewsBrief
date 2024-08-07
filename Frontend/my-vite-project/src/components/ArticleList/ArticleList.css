@@ -10,3 +10,8 @@
   padding-left: 16rem;
   margin-top: -4rem;
 }
+
+.category h1 {
+  font-family: 'Inter-Bold';
+  font-size: 2.2rem;
+}

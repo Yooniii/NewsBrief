@@ -18,13 +18,14 @@ function SideNav() {
     <Fragment>
       <div className='side-nav'>
         <p>Category</p>
-        <a onClick={() => handleCategoryChange('Top Stories')}>Top Stories</a>
-        <a onClick={() => handleCategoryChange('Business')}>Business</a>
-        <a onClick={() => handleCategoryChange('Entertainment')}>Entertainment</a>
-        <a onClick={() => handleCategoryChange('Health')}>Health</a>
-        <a onClick={() => handleCategoryChange('Science')}>Science</a>
-        <a onClick={() => handleCategoryChange('Sports')}>Sports</a>
-        <a onClick={() => handleCategoryChange('Tech')}>Tech</a>
+        <a className='category-btn' onClick={() => handleCategoryChange('Top Stories')}>Top Stories</a>
+        <a className='category-btn' onClick={() => handleCategoryChange('Business')}>Business</a>
+        <a className='category-btn' onClick={() => handleCategoryChange('Entertainment')}>Entertainment</a>
+        <a className='category-btn' onClick={() => handleCategoryChange('Health')}>Health</a>
+        <a className='category-btn' onClick={() => handleCategoryChange('Politics')}>Politics</a>
+        <a className='category-btn' onClick={() => handleCategoryChange('Science')}>Science</a>
+        <a className='category-btn' onClick={() => handleCategoryChange('Sports')}>Sports</a>
+        <a className='category-btn' onClick={() => handleCategoryChange('Tech')}>Tech</a>
     </div>
     <ArticleList category={category}></ArticleList>
     </Fragment>
