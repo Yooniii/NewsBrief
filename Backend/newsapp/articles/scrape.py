@@ -16,7 +16,6 @@ def summarize(input_text):
   summary_ids = ml_model.generate(
     inputs['input_ids'], 
     max_length=160, 
-    min_length=150, 
     length_penalty=2.0, 
     num_beams=4, 
     early_stopping=True

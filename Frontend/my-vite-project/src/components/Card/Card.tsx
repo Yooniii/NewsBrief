@@ -22,23 +22,27 @@ const ArticleCard: React.FC<Article> = ({ title, img, source, date, summary, isL
      <LoadingCard></LoadingCard>
     );
   }
-  
-  // clean AI output for formatting
-  const lines = summary
-  .replace(/^\*\s*/gm, '') // remove * and ** in the summary
-  .replace(/\*\*\s*/g, '')
-  .replace('\n', '')
-  .trim()
-  .split('\n');
 
+  // const winkNLP = require('wink-nlp');
+  // const model = require('wink-eng-lite-model');
+  // const nlp = winkNLP(model);
+
+  // const doc = nlp.readDoc( summary );
+  // const lines = doc.sentences().out();
+
+  // const lines = summary.replace(/([.?!])\s*(?=[A-Z])/g, "$1|").split("|")
+  const lines = summary.split('\n');
   const description = lines[0].trim();
 
-  const animationProps = useSpring({
+  const props = useSpring({
     opacity: showMore ? 1 : 0,
     maxHeight: showMore ? '500px' : '0px',
-    config: { duration: 350 },
+    overflow: 'hidden',
+    config: { duration: 400 },
   });
 
+  const displayedLines = showMore ? lines : lines.slice(0, 1);
+  
 
    return (
     <Fragment>
@@ -52,8 +56,8 @@ const ArticleCard: React.FC<Article> = ({ title, img, source, date, summary, isL
           <h2 className='article-title'>{title}</h2>
           <TimeAgo className='date' datetime={date} />
           <p className='summary'>{description}</p>
-          <animated.ul style={animationProps} className='summary-list'>
-            {showMore ? lines.slice(1).map((line, index) => (
+          <animated.ul style={props} className='summary-list'>
+            {showMore ? displayedLines.slice(1).map((line, index) => (
                 <li key={index} className="summary">{line}</li>
               )) : null }
           </animated.ul>
