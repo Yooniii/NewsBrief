@@ -7,18 +7,17 @@ ul, .text, .source, .date, .summary, .read-more-btn, .btn-wrap, h2,
   display: flex;
   align-items: flex-start;
   box-sizing: border-box;
-  margin: 2.5rem 15.6rem;
   margin-bottom: 3rem;
   height: auto;
-  padding: 3.5rem 2.5rem;
+  width: 90%;
+  padding: 3rem 2rem;
   border-radius: 1.3rem;
   box-shadow: 0 0 0.4rem rgba(210, 206, 206, 0.5);
 }
 
 .article-container-without-img{
   flex-direction: column;
-  padding: 3.5rem 1rem;
-
+  padding: 2.8rem 1.5rem;
 }
 
 .img-container-without-img {
@@ -28,15 +27,16 @@ ul, .text, .source, .date, .summary, .read-more-btn, .btn-wrap, h2,
 .article-img {
   width: 22rem;
   height: 17rem;
+  margin-right: 0.7rem;
   border-radius: 1.3rem;
   object-fit: cover;
   flex-shrink: 0;
 }
 
 .article-title {
-  font-size: 2.1rem;
+  font-size: 1.8rem;
   font-family: 'Inter-Bold';
-  line-height: 3.2rem;
+  line-height: 3rem;
 }
 
 .text {
@@ -44,11 +44,11 @@ ul, .text, .source, .date, .summary, .read-more-btn, .btn-wrap, h2,
   flex-direction: column;
   gap: 0.7rem;
   text-align: left;
-  margin-left: 2.6rem;
+  padding: 0 1.5rem;
 }
 
 .source, .date, .summary {
-  font-size: 1.3rem;
+  font-size: 1rem;
   color: #404040;
 }
 
@@ -57,8 +57,8 @@ ul, .text, .source, .date, .summary, .read-more-btn, .btn-wrap, h2,
 }
 
 .date {
-  margin-top: -0.8rem;
-  margin-bottom: 0.8rem;
+  margin-top: -0.6rem;
+  margin-bottom: 0.5rem;
 }
 
 .summary, .summary-list .read-more-btn {
@@ -67,8 +67,10 @@ ul, .text, .source, .date, .summary, .read-more-btn, .btn-wrap, h2,
 
 .btn-container {
   display: flex;
+  justify-content: space-between;
+  align-items: center;
   flex-direction: row;
-  gap: 50rem;
+  margin-top: -0.5rem;
 }
 
 .read-more-btn {

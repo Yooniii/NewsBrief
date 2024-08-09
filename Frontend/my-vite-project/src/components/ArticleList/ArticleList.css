@@ -1,17 +1,16 @@
 .article-list {
   display: flex;
   flex-direction: column;
-  align-items: center; /* Center items horizontally */
   box-sizing: border-box;
+  margin-left: 15rem;
 }
 
 .category {
-  align-self: flex-start;
-  padding-left: 16rem;
-  margin-top: -4rem;
+  margin-top: -5rem;
+  margin-bottom: 1rem;
 }
 
 .category h1 {
   font-family: 'Inter-Bold';
-  font-size: 2.2rem;
+  font-size: 2rem;
 }

@@ -19,6 +19,7 @@ function SideNav() {
       <div className='side-nav'>
         <p>Category</p>
         <a className='category-btn' onClick={() => handleCategoryChange('Top Stories')}>Top Stories</a>
+        <a className='category-btn' onClick={() => handleCategoryChange('World')}>World</a>
         <a className='category-btn' onClick={() => handleCategoryChange('Business')}>Business</a>
         <a className='category-btn' onClick={() => handleCategoryChange('Entertainment')}>Entertainment</a>
         <a className='category-btn' onClick={() => handleCategoryChange('Health')}>Health</a>
