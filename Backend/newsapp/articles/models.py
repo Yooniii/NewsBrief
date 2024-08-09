@@ -5,6 +5,7 @@ from django.utils import timezone
 class Article(models.Model):
   title = models.CharField(max_length=225, unique=True)
   date = models.DateTimeField(default=timezone.now)
+  author = models.CharField(max_length=60)
   source = models.CharField(max_length=225)
   article_link = models.URLField()
   img_url = models.URLField()
