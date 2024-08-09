@@ -23,16 +23,9 @@ const ArticleCard: React.FC<Article> = ({ title, img, source, date, summary, isL
     );
   }
 
-  // const winkNLP = require('wink-nlp');
-  // const model = require('wink-eng-lite-model');
-  // const nlp = winkNLP(model);
-
-  // const doc = nlp.readDoc( summary );
-  // const lines = doc.sentences().out();
-
-  // const lines = summary.replace(/([.?!])\s*(?=[A-Z])/g, "$1|").split("|")
-  const lines = summary.split('\n');
-  const description = lines[0].trim();
+  const lines = summary.split("\n-")
+  
+  const description = lines[0];
 
   const props = useSpring({
     opacity: showMore ? 1 : 0,
