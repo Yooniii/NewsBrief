@@ -1,15 +1,15 @@
 from articles.models import Article
-from .decode_url import decode_google_news_url
-from .scrape import scrape
 from newscatcherapi import NewsCatcherApiClient
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from concurrent.futures import ThreadPoolExecutor, as_completed
+from .decode_url import decode_google_news_url
+from .scrape import scrape
+from .summarize import summarize
 import feedparser
 import requests
 import os
 import concurrent.futures
-
 
 class BackgroundClass:
 
@@ -27,11 +27,16 @@ class BackgroundClass:
 
         try: 
           decoded_url = decode_google_news_url(entry.link)
-          date, image, content, summary = scrape(decoded_url)
-
+          date = scrape(decoded_url, 'date')
+          image = scrape(decoded_url, 'image')
+          content = scrape(decoded_url, 'content')
+          author = scrape(decoded_url, 'author')
+          summary = summarize(content)
+          
           Article.objects.create(
             title=entry.title.split(' - ')[0],
             date=date,
+            author=author,
             source=entry.source.title,
             article_link=decoded_url,
             img_url=image,
@@ -58,11 +63,14 @@ class BackgroundClass:
 
       for article in articles:
         try:
-          date, image, content, summary = scrape(article.get('link'))
+          content = scrape(url, 'content')
+          author = scrape(url, 'author')
+          summary = summarize(content)
 
           Article.objects.create(
             title=article.get('title'),
             date=article.get('published_date'),
+            author=author,
             source=article.get('author'),
             article_link=article.get('link'),
             img_url=article.get('media'),
