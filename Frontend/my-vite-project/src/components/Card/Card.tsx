@@ -3,18 +3,20 @@ import LoadingCard from '../Loading/LoadingCard'
 import './Card.css';
 import TimeAgo from 'timeago-react';
 import { useSpring, animated } from 'react-spring'
+import linkImg from '../../assets/Link.png'
 
 export interface Article {
   title: string;
   date: string;
   source: string;
   img: string;
+  link: string;
   summary: string;
   category: string;
   isLoading: boolean;
 }
 
-const ArticleCard: React.FC<Article> = ({ title, img, source, date, summary, isLoading }) => {
+const ArticleCard: React.FC<Article> = ({ title, img, source, link, date, summary, isLoading }) => {
   const [showMore, setShowMore] = useState(false)
 
   if (isLoading) {
@@ -54,10 +56,13 @@ const ArticleCard: React.FC<Article> = ({ title, img, source, date, summary, isL
                 <li key={index} className="summary">{line}</li>
               )) : null }
           </animated.ul>
-          <div className="btn-wrap">
+          <div className='btn-container'>
             <button className="read-more-btn" onClick={() => setShowMore(!showMore)}>
               {showMore ? 'Read Less' : 'Read More'}
             </button>
+            <a href={link} target="_blank">
+              <img src={linkImg} className="link-icon"></img>
+            </a>
           </div>
         </div>
       </div>

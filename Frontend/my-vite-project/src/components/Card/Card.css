@@ -1,5 +1,5 @@
 ul, .text, .source, .date, .summary, .read-more-btn, .btn-wrap, h2, 
-.article-container, .article-container-without-img {
+.article-container, .article-container-without-img, .btn-container {
   background-color: #fdfcfe;
 }
 
@@ -63,6 +63,12 @@ ul, .text, .source, .date, .summary, .read-more-btn, .btn-wrap, h2,
 
 .summary, .summary-list .read-more-btn {
   color: #6b6b6b;
+}
+
+.btn-container {
+  display: flex;
+  flex-direction: row;
+  gap: 50rem;
 }
 
 .read-more-btn {

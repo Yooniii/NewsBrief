@@ -78,6 +78,7 @@ function ArticleList({ category }: ArticleListProps) {
             title={article.title}
             img={article.img_url}
             source={article.source}
+            link={article.article_link}
             date={article.date}
             summary={article.summary}
             isLoading={loading}
