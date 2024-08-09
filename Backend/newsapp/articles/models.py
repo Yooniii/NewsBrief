@@ -1,9 +1,10 @@
 from django.db import models
+from django.utils import timezone
 
 # Defining the structure of an article
 class Article(models.Model):
   title = models.CharField(max_length=225, unique=True)
-  date = models.DateTimeField()
+  date = models.DateTimeField(default=timezone.now)
   source = models.CharField(max_length=225)
   article_link = models.URLField()
   img_url = models.URLField()
