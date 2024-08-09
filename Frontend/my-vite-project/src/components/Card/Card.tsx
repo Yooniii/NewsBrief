@@ -36,46 +36,40 @@ const ArticleCard: React.FC<Article> = ({ title, img, source, link, date, summar
   const description = lines[0];
   const displayedLines = showMore ? lines : lines.slice(0, 1);
 
-  // const displayAuthors = {
-  //   if (authors.length() > 1) {
-  //     return authors;
-  //   } 
-
-  //   for author in authors:
-  //     if (author != authors[authors.length()-1]) {
-  //       authors.append(', ')
-  //     } 
-  // }
-  
-
    return (
     <Fragment>
       <div className={`article-container${img ? '' : '-without-img'}`}>
-        <div className={`img-container${img ? '' : '-without-img'}`}>
-          <img className='article-img' src={img}/>
+
+        <div className='top-section'>
+           <div className={`img-container${img ? '' : '-without-img'}`}>
+            <img className='article-img' src={img}/>
+          </div>
+          <div className='text'>
+            <p className='source'>{source}</p>
+            <h2 className='article-title'>{title}</h2>
+            <TimeAgo className='date' datetime={date} />
+            <p className='summary'>{description}
+              <button className="read-more-btn" onClick={() => setShowMore(!showMore)}>
+                {showMore ? 'Read Less' : 'Read More'}
+              </button>
+            </p>
+          </div>
         </div>
-        
-        <div className='text'>
-          <p className='source'>{source}</p>
-          <h2 className='article-title'>{title}</h2>
-          <TimeAgo className='date' datetime={date} />
-          <p className='summary'>{description}</p>
+       
+        <div className='bottom-section'>
           <animated.ul style={props} className='summary-list'>
             {showMore ? displayedLines.slice(1).map((line, index) => (
                 <li key={index} className="summary">{line}</li>
               )) : null }
           </animated.ul>
           <div className='btn-container'>
-            <button className="read-more-btn" onClick={() => setShowMore(!showMore)}>
-              {showMore ? 'Read Less' : 'Read More'}
-            </button>
             <a href={link} target="_blank">
               <img src={linkImg} className="link-icon"></img>
             </a>
           </div>
         </div>
+        
       </div>
-      <div className="divider"></div>
     </Fragment>
   );
 }

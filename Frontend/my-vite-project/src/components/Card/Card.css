@@ -1,11 +1,11 @@
 ul, .text, .source, .date, .summary, .read-more-btn, .btn-wrap, h2, 
-.article-container, .article-container-without-img, .btn-container {
+.article-container, .article-container-without-img, .btn-container, .bottom-section, .top-section, .img-container {
   background-color: #fdfcfe;
 }
 
 .article-container, .article-container-without-img {
   display: flex;
-  align-items: flex-start;
+  flex-direction: column;
   box-sizing: border-box;
   margin-bottom: 3rem;
   height: auto;
@@ -24,9 +24,14 @@ ul, .text, .source, .date, .summary, .read-more-btn, .btn-wrap, h2,
   display: none;
 }
 
+.top-section{
+  display: flex;
+  margin-bottom: 1rem;
+}
+
 .article-img {
-  width: 22rem;
-  height: 17rem;
+  width: 21rem;
+  height: 15rem;
   margin-right: 0.7rem;
   border-radius: 1.3rem;
   object-fit: cover;
@@ -36,7 +41,7 @@ ul, .text, .source, .date, .summary, .read-more-btn, .btn-wrap, h2,
 .article-title {
   font-size: 1.8rem;
   font-family: 'Inter-Bold';
-  line-height: 3rem;
+  line-height: 2.8rem;
 }
 
 .text {
@@ -47,7 +52,7 @@ ul, .text, .source, .date, .summary, .read-more-btn, .btn-wrap, h2,
   padding: 0 1.5rem;
 }
 
-.source, .date, .summary {
+.source, .date {
   font-size: 1rem;
   color: #404040;
 }
@@ -57,7 +62,6 @@ ul, .text, .source, .date, .summary, .read-more-btn, .btn-wrap, h2,
 }
 
 .date {
-  font-size: 1rem;
   margin-top: -0.6rem;
   margin-bottom: 0.5rem;
 }
@@ -66,21 +70,25 @@ ul, .text, .source, .date, .summary, .read-more-btn, .btn-wrap, h2,
   color: #6b6b6b;
 }
 
+.read-more-btn {
+  border-style: none;
+  color: #404040;
+  font-size: 1rem;
+  margin-left: -0.5rem;
+}
+
+.bottom-section {
+  display: flex;
+  flex-direction: column;
+}
+
 .btn-container {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
+  justify-content: flex-end;
   flex-direction: row;
+  align-items: center;
   margin-top: -0.5rem;
 }
 
-.read-more-btn {
-  height: 2.5rem;
-  width: 9rem;
-  border-width: 0.05rem;
-  border-radius: 25px;
-  font-size: 0.9rem;
-  border-color: #6b6b6b;
-}
 
 

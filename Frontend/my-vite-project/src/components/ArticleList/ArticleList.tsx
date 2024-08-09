@@ -38,12 +38,12 @@ function ArticleList({ category }: ArticleListProps) {
       } finally {
         setLoading(false);
       }
-      setIndex(3); // Reset index for new category
+      setIndex(3); 
 
     };
 
     fetchData();
-  }, [category]); // Dependency on category changes
+  }, [category]); 
 
   const fetchMoreData = () => {
     if (!hasMore || loading) return;
