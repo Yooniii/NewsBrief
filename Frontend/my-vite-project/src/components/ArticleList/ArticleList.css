@@ -12,5 +12,9 @@
 
 .category h1 {
   font-family: 'Inter-Bold';
-  font-size: 2rem;
+  font-size: 1.8rem;
+}
+
+.category-btn {
+  font-size: 1rem;
 }

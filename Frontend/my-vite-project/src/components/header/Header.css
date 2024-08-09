@@ -27,7 +27,7 @@
   letter-spacing: 1.5px;
 }
 
-.header, .logo, .search-bar, .form, .form:hover input, .form input, img, a {
+.header, .logo, .search-bar, form, form:hover input, form input, img, a {
   background-color: #fdfcfe;
 }
 
@@ -51,8 +51,13 @@
 .search-bar {
   border: none;
   outline: none;
-  background-color: transparent;
-  font-size: 1rem;
+  width: 0;
+  transition: 0.8s;
+  font-size: 1.1rem;
+}
+
+.seach-bar::-ms-clear {
+  display: none;
 }
 
 form {
@@ -63,13 +68,9 @@ form {
 }
 
 form:hover input {
-  width: 11rem;
+  width: 12rem;
 }
 
-form input {
-  width: 0;
-  transition: 0.8s;
-}
 
 img {
   height: 1.3rem;
@@ -81,3 +82,10 @@ img {
   width: 100%;
   margin-bottom: 100px;
 }
+
+
+.search-bar::-webkit-search-cancel-button {
+  -webkit-appearance: none;
+  appearance: none;
+}
+
