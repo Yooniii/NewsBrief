@@ -25,10 +25,6 @@ const ArticleCard: React.FC<Article> = ({ title, img, source, link, date, summar
     );
   }
 
-  const lines = summary.split("\n-")
-  
-  const description = lines[0];
-
   const props = useSpring({
     opacity: showMore ? 1 : 0,
     maxHeight: showMore ? '500px' : '0px',
@@ -36,7 +32,20 @@ const ArticleCard: React.FC<Article> = ({ title, img, source, link, date, summar
     config: { duration: 400 },
   });
 
+  const lines = summary.split("\n-")
+  const description = lines[0];
   const displayedLines = showMore ? lines : lines.slice(0, 1);
+
+  // const displayAuthors = {
+  //   if (authors.length() > 1) {
+  //     return authors;
+  //   } 
+
+  //   for author in authors:
+  //     if (author != authors[authors.length()-1]) {
+  //       authors.append(', ')
+  //     } 
+  // }
   
 
    return (

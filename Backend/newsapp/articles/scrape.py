@@ -5,9 +5,7 @@ def scrape(url, method):
   page.download()
   page.parse()
   
-  if method == 'author':
-    return page.authors
-  elif method == 'image':
+  if method == 'image':
     return page.top_image
   elif method == 'date':
     return page.publish_date

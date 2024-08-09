@@ -30,13 +30,11 @@ class BackgroundClass:
           date = scrape(decoded_url, 'date')
           image = scrape(decoded_url, 'image')
           content = scrape(decoded_url, 'content')
-          author = scrape(decoded_url, 'author')
           summary = summarize(content)
           
           Article.objects.create(
             title=entry.title.split(' - ')[0],
             date=date,
-            author=author,
             source=entry.source.title,
             article_link=decoded_url,
             img_url=image,
@@ -64,13 +62,11 @@ class BackgroundClass:
       for article in articles:
         try:
           content = scrape(url, 'content')
-          author = scrape(url, 'author')
           summary = summarize(content)
 
           Article.objects.create(
             title=article.get('title'),
             date=article.get('published_date'),
-            author=author,
             source=article.get('author'),
             article_link=article.get('link'),
             img_url=article.get('media'),

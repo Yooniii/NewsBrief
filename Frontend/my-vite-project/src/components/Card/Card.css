@@ -57,6 +57,7 @@ ul, .text, .source, .date, .summary, .read-more-btn, .btn-wrap, h2,
 }
 
 .date {
+  font-size: 1rem;
   margin-top: -0.6rem;
   margin-bottom: 0.5rem;
 }
