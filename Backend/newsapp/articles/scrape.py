@@ -3,16 +3,47 @@ import os
 import google.generativeai as genai
 from transformers import AutoTokenizer, AutoModelForSeq2SeqLM
 from dotenv import load_dotenv
-import nltk
-from nltk.tokenize import sent_tokenize
-nltk.download('punkt')
+import google.generativeai as genai
 
+def clean_summary(summary):
+
+  genai.configure(api_key='AIzaSyAlUMz4miaQv8xiVtYNxc3iDzJowhe7hmo')
+
+  generation_config = {
+        "temperature": 1,
+        "top_p": 0.95,
+        "top_k": 64,
+        "max_output_tokens": 8192,
+        "response_mime_type": "text/plain",
+    }
+
+  genai_model = genai.GenerativeModel(
+        model_name='gemini-1.5-flash',
+        generation_config=generation_config,
+    )
+
+  cleaned_summary = genai_model.generate_content(
+      f"""Please refine and reformat the following news article summary. 
+      Begin with a 1-2 sentence preview that gives a concise overview of the article. 
+      Then, organize the remaining details into bullet points that follow a chronological order. 
+      Ignore any incoherent or irrelevant text. 
+
+      This is the format to be followed:
+      Sentence describing the article.
+      - Bullet point 1
+      - Bullet point 2
+      ...
+      - Bullet point N
+
+      Here is the summary to be reformatted: {summary}"""
+  )
+
+  return cleaned_summary.text
 
 def summarize(input_text):
   tokenizer = AutoTokenizer.from_pretrained("Yooniii/Article_summarizer")
   ml_model = AutoModelForSeq2SeqLM.from_pretrained("Yooniii/Article_summarizer")
 
-  # get an initial summary of the scraped content using a ML model
   inputs = tokenizer(input_text, 
                     return_tensors="pt", 
                     max_length=1024, 
@@ -26,14 +57,14 @@ def summarize(input_text):
     early_stopping=True
   )
   summary = tokenizer.decode(summary_ids[0], skip_special_tokens=True)
+  summary = clean_summary(summary)
 
-  sentences = sent_tokenize(summary)  
-  delimited_summmary = '|||'.join(sentences)
-  return delimited_summmary
+  return summary
 
 def scrape(url):
   page = newspaper.article(url)
-  content = page.text.replace('\n', '')
+  content = page.text.replace('\n', ' ')
+  
   summary = summarize(content)
   image = page.top_image
   date = page.publish_date
