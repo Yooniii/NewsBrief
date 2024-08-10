@@ -11,7 +11,7 @@ function Header() {
       <form>
         <input className="search-bar" type="search" placeholder="Search..."/>
         <a>
-          <img src={search} className="search-icon"></img>
+          <img className='search-icon' src={search} className="search-icon"></img>
         </a>
       </form>
     </div>

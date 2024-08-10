@@ -1,5 +1,6 @@
 ul, .text, .source, .date, .summary, .read-more-btn, .btn-wrap, h2, 
-.article-container, .article-container-without-img, .btn-container, .bottom-section, .top-section, .img-container {
+.article-container, .article-container-without-img, .btn-container, 
+.bottom-section, .top-section, .img-container {
   background-color: #fdfcfe;
 }
 
@@ -13,6 +14,7 @@ ul, .text, .source, .date, .summary, .read-more-btn, .btn-wrap, h2,
   padding: 3rem 2rem;
   border-radius: 1.3rem;
   box-shadow: 0 0 0.4rem rgba(210, 206, 206, 0.5);
+  cursor: pointer;
 }
 
 .article-container-without-img{

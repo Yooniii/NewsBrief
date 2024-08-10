@@ -27,7 +27,7 @@
   letter-spacing: 1.5px;
 }
 
-.header, .logo, .search-bar, form, form:hover input, form input, img, a {
+.header, .logo, form, form:hover input, form input, a {
   background-color: #fdfcfe;
 }
 
@@ -48,33 +48,37 @@
   font-size: 1.6rem;
 }
 
-.search-bar {
-  border: none;
-  outline: none;
-  width: 0;
-  transition: 0.8s;
-  font-size: 1.1rem;
-}
-
-.seach-bar::-ms-clear {
-  display: none;
-}
-
 form {
-  height: 1.3rem;
   display: flex;
   cursor: pointer;
   align-items: center;
 }
 
-form:hover input {
-  width: 12rem;
+.search-icon {
+  background-color: #f7f8f9;
+  height: 1.1rem;
+  width: 1.1rem;
+  opacity: 0.5;
+  margin-left: -2.3rem;
 }
 
+.search-bar {
+  border: none;
+  outline: none;
+  height: 2.5rem;
+  width: 18rem;
+  transition: 0.8s;
+  font-size: 0.9rem;
+  padding: 0.5rem 1.5rem;
+  padding-right: 2.5rem;
+  border-radius: 1.3rem;
+  background-color: #f7f8f9;
 
-img {
-  height: 1.3rem;
-  width: 1.3rem;
+}
+
+.search-bar::-webkit-search-cancel-button {
+  -webkit-appearance: none;
+  appearance: none;
 }
 
 .horizontal-line {
@@ -82,10 +86,3 @@ img {
   width: 100%;
   margin-bottom: 100px;
 }
-
-
-.search-bar::-webkit-search-cancel-button {
-  -webkit-appearance: none;
-  appearance: none;
-}
-

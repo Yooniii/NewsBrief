@@ -38,7 +38,7 @@ const ArticleCard: React.FC<Article> = ({ title, img, source, link, date, summar
 
    return (
     <Fragment>
-      <div className={`article-container${img ? '' : '-without-img'}`}>
+      <div className={`article-container${img ? '' : '-without-img'}`} onClick={() => setShowMore(!showMore)}>
 
         <div className='top-section'>
            <div className={`img-container${img ? '' : '-without-img'}`}>
