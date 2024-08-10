@@ -1,9 +1,11 @@
-import ArticleList from '../ArticleList/ArticleList'
 import { Fragment, useState } from 'react'
 import './SideNav.css'
 
-function SideNav() {
-  const [category, setCategory] = useState('Top Stories');
+interface SideNavProps {
+  onCategoryChange: (category: string) => void;
+}
+
+const SideNav: React.FC<SideNavProps> = ({ onCategoryChange }) => {
 
   const handleCategoryChange = (category: string) => {
     window.scroll({
@@ -11,7 +13,7 @@ function SideNav() {
       behavior: 'smooth',
     });
 
-    setCategory(category);
+    onCategoryChange(category);
   }
 
   return (
@@ -28,7 +30,6 @@ function SideNav() {
         <a className='category-btn' onClick={() => handleCategoryChange('Sports')}>Sports</a>
         <a className='category-btn' onClick={() => handleCategoryChange('Tech')}>Tech</a>
     </div>
-    <ArticleList category={category}></ArticleList>
     </Fragment>
   )
 }

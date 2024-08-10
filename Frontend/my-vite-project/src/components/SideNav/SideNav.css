@@ -2,22 +2,6 @@
   background-color: #fdfcfe;
 }
 
-.side-nav {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  height: 29rem;
-  position: fixed;
-  overflow-x: hidden;
-  z-index: 1;
-  gap: 1rem;
-  padding: 0 1.5rem;
-  border-radius: 1.3rem;
-  margin: 2rem;
-  box-shadow: 0 0 0.4rem rgba(210, 206, 206, 0.5);
-  margin-top: -1rem;
-}
-
 .side-nav p {
   font-size: 1.3rem;
   font-weight: bold;

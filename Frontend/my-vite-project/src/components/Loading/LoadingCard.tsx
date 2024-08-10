@@ -5,11 +5,11 @@ function LoadingCard() {
   return (
     <Fragment>
       <div className="article-container">
-        <CustomSkeleton width={352} height={280} variant="rounded" sx={{ bgcolor: 'black' }}/>
+        <CustomSkeleton width={336} height={240} variant="rounded" sx={{ bgcolor: 'black' }}/>
           <div className="text">
-            <CustomSkeleton width={643} height={104} variant="rounded" sx={{ bgcolor: 'black' }}/>
-            <CustomSkeleton width={643} height={24} variant="rounded" sx={{ bgcolor: 'black' }}/>
-            <CustomSkeleton width={643} height={144} variant="rounded" sx={{ bgcolor: 'black' }}/>
+            <CustomSkeleton width={333} height={104} variant="rounded" sx={{ bgcolor: 'black' }}/>
+            <CustomSkeleton width={333} height={24} variant="rounded" sx={{ bgcolor: 'black' }}/>
+            <CustomSkeleton width={333} height={144} variant="rounded" sx={{ bgcolor: 'black' }}/>
           </div>
       </div>
     </Fragment>

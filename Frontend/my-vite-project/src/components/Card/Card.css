@@ -1,6 +1,6 @@
 ul, .text, .source, .date, .summary, .read-more-btn, .btn-wrap, h2, 
 .article-container, .article-container-without-img, .btn-container, 
-.bottom-section, .top-section, .img-container {
+.bottom-section, .top-section, .img-container, .link-icon {
   background-color: #fdfcfe;
 }
 
@@ -10,7 +10,6 @@ ul, .text, .source, .date, .summary, .read-more-btn, .btn-wrap, h2,
   box-sizing: border-box;
   margin-bottom: 3rem;
   height: auto;
-  width: 90%;
   padding: 3rem 2rem;
   border-radius: 1.3rem;
   box-shadow: 0 0 0.4rem rgba(210, 206, 206, 0.5);
@@ -51,7 +50,7 @@ ul, .text, .source, .date, .summary, .read-more-btn, .btn-wrap, h2,
   flex-direction: column;
   gap: 0.7rem;
   text-align: left;
-  padding: 0 1.5rem;
+  padding: 0 1.1rem;
 }
 
 .source, .date {
@@ -92,5 +91,7 @@ ul, .text, .source, .date, .summary, .read-more-btn, .btn-wrap, h2,
   margin-top: -0.5rem;
 }
 
-
+.link-icon {
+  height: 1.3rem;
+}
 

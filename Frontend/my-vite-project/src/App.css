@@ -1,0 +1,62 @@
+
+@font-face {
+  font-family: 'InterVariable';
+  src: url('./fonts/InterVariable.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Inter-Bold';
+  src: url('./fonts/Inter-Bold.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Inter-SemiBold';
+  src: url('./fonts/Inter-SemiBold.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+* {
+  font-family: 'InterVariable';
+  background-color: #f7f8f9;
+  color: #181818;
+  letter-spacing: 1.5px;
+  justify-content: center;
+  padding: 0 0.3rem;
+}
+
+.content {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+}
+
+.side-nav {
+  margin-top: 7rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  border-radius: 1.3rem;
+  box-shadow: 0 0 0.4rem rgba(210, 206, 206, 0.5);
+  height: 29rem;
+  padding: 0 0.7rem;
+  overflow-x: hidden;
+  z-index: 1;
+  position: fixed;
+  left: 1.7rem;
+  top: 4rem;
+}
+
+.article-list {
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  justify-content: center;
+  padding-left: 12rem;
+  padding-right: 7rem;
+  margin-top: 5.5rem;
+}

@@ -8,9 +8,10 @@ import './ArticleList.css'
 
 interface ArticleListProps {
   category: string;
+  query: string;
 }
 
-function ArticleList({ category }: ArticleListProps) {
+function ArticleList({ category, query }: ArticleListProps) {
   const [allArticles, setAllArticles] = useState([]);
   const [displayedArticles, setDisplayedArticles] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -20,18 +21,22 @@ function ArticleList({ category }: ArticleListProps) {
   useEffect(() => {
     const fetchData = async () => {
       setLoading(true);
-      setDisplayedArticles([])
+      setDisplayedArticles([]);
+      setAllArticles([]);
       setIndex(3)
 
       try {
         const response = await axios.get('http://127.0.0.1:8000/articles/');
-        const filteredArticles = response.data.filter(
-          (article: Article) => article.category === category
-        );
 
-        setAllArticles(filteredArticles);
-        setDisplayedArticles(filteredArticles.slice(0, 3));
-        setHasMore(filteredArticles.length > 3);
+        const filtered = response.data.filter((article: Article) => 
+        category === '' 
+          ? article.summary.toLowerCase().includes(query.toLowerCase())
+          : article.category === category
+        );
+      
+        setAllArticles(filtered);
+        setDisplayedArticles(filtered.slice(0, 3));
+        setHasMore(filtered.length > 3);
       } catch (error) {
         console.log(error);
         setHasMore(false);
@@ -43,7 +48,7 @@ function ArticleList({ category }: ArticleListProps) {
     };
 
     fetchData();
-  }, [category]); 
+  }, [category, query]); 
 
   const fetchMoreData = () => {
     if (!hasMore || loading) return;
@@ -82,7 +87,6 @@ function ArticleList({ category }: ArticleListProps) {
             date={article.date}
             summary={article.summary}
             isLoading={loading}
-            category={category}
           />
         ))}
       </InfiniteScroll>
