@@ -1,7 +1,7 @@
 import { Fragment } from 'react'
 import CustomSkeleton from './Skeleton';
 
-function LoadingCard() {
+const LoadingCard = () => {
   return (
     <Fragment>
       <div className="article-container">

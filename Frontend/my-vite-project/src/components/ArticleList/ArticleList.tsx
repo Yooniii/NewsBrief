@@ -11,7 +11,7 @@ interface ArticleListProps {
   query: string;
 }
 
-function ArticleList({ category, query }: ArticleListProps) {
+const ArticleList = ({ category, query }: ArticleListProps) => {
   const [allArticles, setAllArticles] = useState([]);
   const [displayedArticles, setDisplayedArticles] = useState([]);
   const [loading, setLoading] = useState(true);
