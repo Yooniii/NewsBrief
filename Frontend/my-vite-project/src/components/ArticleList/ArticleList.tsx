@@ -71,9 +71,9 @@ const ArticleList = ({ category, query }: ArticleListProps) => {
         hasMore={hasMore}
         loader={
           <Fragment>
-            <LoadingCard />
-            <LoadingCard />
-            <LoadingCard />
+            <LoadingCard/>
+            <LoadingCard/>
+            <LoadingCard/>
           </Fragment>
         }
         endMessage={<p>No more articles to display</p>}

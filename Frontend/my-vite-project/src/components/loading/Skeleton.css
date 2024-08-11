@@ -25,19 +25,19 @@
   }
 }
 
-.skeletonBlock {
+.load-card {
   display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: auto;
-  text-align: center;
-  box-sizing: border-box;
-  margin-top: 70px;
-  border-radius: 15px;
+  align-items: flex-start;
+  margin-bottom: 3rem;
+  background-color: #fdfcfe;
+  padding: 3rem 2rem;
+  box-shadow: 0 0 0.4rem rgba(210, 206, 206, 0.5);
+  cursor: pointer;
+  border-radius: 1.3rem;
 }
 
-.contentBlock {
-  display: flex;
-  flex-direction: column;
-}
+.img-container {
+  margin-right: 0.7rem;
+  
 
+}

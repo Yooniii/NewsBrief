@@ -9,7 +9,7 @@ const CustomSkeleton = ({ width, height, variant, sx }: any) => {
     <Skeleton
       width={width}
       height={height}
-      style={{ ...sx }} // Use the style prop for inline styles
+      style={{ ...sx }} 
       className={className}
     />
   );
