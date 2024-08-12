@@ -9,9 +9,10 @@ import './ArticleList.css'
 interface ArticleListProps {
   category: string;
   query: string;
+  fetchKey: number;
 }
 
-const ArticleList = ({ category, query }: ArticleListProps) => {
+const ArticleList = ({ category, query, fetchKey }: ArticleListProps) => {
   const [categoryArticles, setCategoryArticles] = useState<Article[]>([]);
   const [queryArticles, setQueryArticles] = useState<Article[]>([]);
   const [isQueryPage, setIsQueryPage] = useState<boolean>(false);
@@ -56,7 +57,7 @@ const ArticleList = ({ category, query }: ArticleListProps) => {
     };
 
     fetchData();
-  }, [category, query]); 
+  }, [category, query, fetchKey]); 
 
   const fetchMoreData = () => {
     if (!hasMore || loading) return;

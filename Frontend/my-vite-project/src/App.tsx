@@ -7,15 +7,19 @@ import { useState } from 'react';
 function App() {
   const [category, setCategory] = useState('');
   const [query, setQuery] = useState('')
+  const [fetchKey, setFetchKey] = useState(0);
+
 
   const handleCategoryChange = (newCategory: string) => {
     setCategory(newCategory);
     setQuery('');
+    setFetchKey(prevKey => prevKey + 1);
   }
 
   const handleQueryChange = (newQuery: string) => {
     setQuery(newQuery);
     setCategory('');
+    setFetchKey(prevKey => prevKey + 1);
   }
 
   return (
@@ -23,7 +27,7 @@ function App() {
       <Header onQueryChange={handleQueryChange}/>
       <div className='content'>
         <SideNav onCategoryChange={handleCategoryChange}/>
-        <ArticleList category={category} query={query}/>
+        <ArticleList category={category} query={query} fetchKey={fetchKey}/>
       </div>
 
     </div>
