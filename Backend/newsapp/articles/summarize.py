@@ -5,7 +5,7 @@ from dotenv import load_dotenv
 import google.generativeai as genai
 
 
-def clean_summary(summary):
+def clean_summary(summary, title):
 
   genai.configure(api_key=os.getenv('GENAI_API_KEY'))
 
@@ -23,24 +23,25 @@ def clean_summary(summary):
     )
 
   cleaned_summary = genai_model.generate_content(
-      f"""Please refine and reformat the following news article summary. 
-      Begin with a 1-2 sentence preview that gives a concise overview of the article. 
-      Then, organize the remaining details into bullet points that follow a chronological order. 
-      Ignore any incoherent or irrelevant text. 
+    f"""Please refine and reformat the following news article summary. 
+    Begin with a 1-2 sentence preview that gives a concise overview of the 
+    article. Then, organize the remaining details into bullet points that follow
+    a chronological order. Ignore any incoherent or irrelevant text. If the
+    summary does not relate to the news article title, return 'null'.
 
-      This is the format to be followed:
+    This is the format to be followed:
       Sentence describing the article.
       - Bullet point 1
       - Bullet point 2
       ...
       - Bullet point N
 
-      Here is the summary to be reformatted: {summary}"""
+      Here is the title: {title} and the summary to be reformatted: {summary}"""
   )
 
   return cleaned_summary.text
 
-def summarize(input_text):
+def summarize(input_text, title):
   tokenizer = AutoTokenizer.from_pretrained("Yooniii/Article_summarizer")
   ml_model = AutoModelForSeq2SeqLM.from_pretrained("Yooniii/Article_summarizer")
 
@@ -57,6 +58,6 @@ def summarize(input_text):
     early_stopping=True
   )
   summary = tokenizer.decode(summary_ids[0], skip_special_tokens=True)
-  summary = clean_summary(summary)
+  summary = clean_summary(summary, title)
 
   return summary
