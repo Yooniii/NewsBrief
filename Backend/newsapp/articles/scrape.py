@@ -7,8 +7,6 @@ def scrape(url, method):
   
   if method == 'top_image':
     return page.top_image
-  elif method == 'images':
-    return page.images
   elif method == 'date':
     return page.publish_date
   elif method == 'content':

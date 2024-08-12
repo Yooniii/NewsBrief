@@ -8,7 +8,6 @@ class Article(models.Model):
   source = models.CharField(max_length=225)
   article_link = models.URLField()
   top_image = models.URLField()
-  images = models.TextField()
   media = models.URLField()
   content = models.TextField()
   summary = models.TextField()
