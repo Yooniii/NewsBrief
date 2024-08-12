@@ -27,7 +27,7 @@ def clean_summary(summary, title):
     Begin with a 1-2 sentence preview that gives a concise overview of the 
     article. Then, organize the remaining details into bullet points that follow
     a chronological order. Ignore any incoherent or irrelevant text. If the
-    summary does not relate to the news article title, return 'null'.
+    summary does not relate to the news article title, return 'INVALID'.
 
     This is the format to be followed:
       Sentence describing the article.

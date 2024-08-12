@@ -33,7 +33,7 @@ class BackgroundClass:
         title = entry.title.split(' - ')[0]
         summary = summarize(content, title)
         
-        if summary != 'null':
+        if summary.strip() != 'INVALID':
           Article.objects.create(
             title=title,
             date=date,
@@ -47,7 +47,7 @@ class BackgroundClass:
           )
           count+=1
           print('Successfully added new article')    
-        
+
       except Exception as e:
         print(f'error{e}')
             
