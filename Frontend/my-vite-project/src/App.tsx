@@ -8,11 +8,21 @@ function App() {
   const [category, setCategory] = useState('');
   const [query, setQuery] = useState('')
 
+  const handleCategoryChange = (newCategory: string) => {
+    setCategory(newCategory);
+    setQuery('');
+  }
+
+  const handleQueryChange = (newQuery: string) => {
+    setQuery(newQuery);
+    setCategory('');
+  }
+
   return (
     <div className='main-container'>
-      <Header onQueryChange={setQuery}/>
+      <Header onQueryChange={handleQueryChange}/>
       <div className='content'>
-        <SideNav onCategoryChange={setCategory}/>
+        <SideNav onCategoryChange={handleCategoryChange}/>
         <ArticleList category={category} query={query}/>
       </div>
 

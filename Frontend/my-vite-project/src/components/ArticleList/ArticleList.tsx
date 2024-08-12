@@ -12,8 +12,10 @@ interface ArticleListProps {
 }
 
 const ArticleList = ({ category, query }: ArticleListProps) => {
-  const [allArticles, setAllArticles] = useState([]);
-  const [displayedArticles, setDisplayedArticles] = useState([]);
+  const [categoryArticles, setCategoryArticles] = useState<Article[]>([]);
+  const [queryArticles, setQueryArticles] = useState<Article[]>([]);
+  const [isQueryPage, setIsQueryPage] = useState<boolean>(false);
+  const [displayedArticles, setDisplayedArticles] = useState<Article[]>([]);
   const [loading, setLoading] = useState(true);
   const [hasMore, setHasMore] = useState(true);
   const [index, setIndex] = useState(3);
@@ -22,19 +24,26 @@ const ArticleList = ({ category, query }: ArticleListProps) => {
     const fetchData = async () => {
       setLoading(true);
       setDisplayedArticles([]);
-      setAllArticles([]);
       setIndex(3)
 
       try {
         const response = await axios.get('http://127.0.0.1:8000/articles/');
+        let filtered = response.data;
 
-        const filtered = response.data.filter((article: Article) => 
-        category === '' 
-          ? article.summary.toLowerCase().includes(query.toLowerCase())
-          : article.category === category
-        );
-      
-        setAllArticles(filtered);
+        if (query) {
+          filtered = response.data.filter((article: Article) =>
+            article.summary.toLowerCase().includes(query.toLowerCase())
+          );
+          setQueryArticles(filtered);
+          setIsQueryPage(true);
+        } else if (category) {
+          filtered = response.data.filter((article: Article) =>
+          article.category === category
+          );
+          setCategoryArticles(filtered);
+          setIsQueryPage(false);
+        }
+        
         setDisplayedArticles(filtered.slice(0, 3));
         setHasMore(filtered.length > 3);
       } catch (error) {
@@ -44,7 +53,6 @@ const ArticleList = ({ category, query }: ArticleListProps) => {
         setLoading(false);
       }
       setIndex(3); 
-
     };
 
     fetchData();
@@ -54,15 +62,16 @@ const ArticleList = ({ category, query }: ArticleListProps) => {
     if (!hasMore || loading) return;
 
     const nextIndex = index + 3;
-    setDisplayedArticles(allArticles.slice(0, nextIndex));
+    
+    setDisplayedArticles((isQueryPage ? queryArticles : categoryArticles).slice(0, nextIndex));
+    setHasMore((isQueryPage ? queryArticles : categoryArticles).length > nextIndex);
     setIndex(nextIndex);
-    setHasMore(allArticles.length > nextIndex);
   };
 
   return (
     <div className='article-list'>
       <div className='category'>
-        <h1>{category}</h1>
+        <h1>{isQueryPage ? 'Search Results' : category}</h1>
       </div>
       
       <InfiniteScroll
@@ -72,8 +81,6 @@ const ArticleList = ({ category, query }: ArticleListProps) => {
         loader={
           <Fragment>
             <LoadingCard/>
-            <LoadingCard/>
-            <LoadingCard/>
           </Fragment>
         }
         scrollThreshold={1}
@@ -82,15 +89,13 @@ const ArticleList = ({ category, query }: ArticleListProps) => {
             <p className='end-msg'>No more articles to display</p>
             {/* <button className='view-more-btn'> View Yesterday's Stories</button> */}
           </div>
-        
-        
         }
       >
         {displayedArticles.map((article: Article) => (
           <Card
+            key={article.article_link}
             title={article.title}
             topImage={article.top_image}
-            images={article.images}
             media={article.media}
             source={article.source}
             link={article.article_link}

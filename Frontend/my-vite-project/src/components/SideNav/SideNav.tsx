@@ -1,4 +1,4 @@
-import { Fragment, useState } from 'react'
+import { Fragment } from 'react'
 import './SideNav.css'
 
 interface SideNavProps {

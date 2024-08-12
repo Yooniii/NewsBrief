@@ -9,22 +9,24 @@ interface HeaderProps {
 
 const Header: React.FC<HeaderProps> = ({ onQueryChange }) => {
 
-  const [inputValue, setInputValue] = useState('')
+  const [inputValue, setInputValue] = useState('');
 
   const searchUserQuery = async (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault()
-    onQueryChange(inputValue)
+    e.preventDefault();
+    onQueryChange(inputValue);
+    setInputValue('');
   }
 
   return (
     <Fragment>
-      <div className="header"> 
+      <div className='header'> 
       <a href="http://localhost:5173/" className="logo">NEWSBRIEF</a>
       <form onSubmit={searchUserQuery}>
         <input 
-          className="search-bar" 
-          type="search" 
-          placeholder="Search..." 
+          id='search-bar'
+          className='search-bar'
+          type='search'
+          placeholder='Search...'
           value={inputValue} 
           onChange={(e) => setInputValue(e.target.value)}
         />

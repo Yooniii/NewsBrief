@@ -7,6 +7,7 @@ import linkImg from '../../assets/Link.png'
 import ReactPlayer from 'react-player'
 
 export interface Article {
+  key: string;
   title: string;
   date: string;
   source: string;
@@ -19,7 +20,7 @@ export interface Article {
 }
 
 const ArticleCard: React.FC<Article> = 
-({ title, topImage, media, source, link, date, summary, isLoading }) => {
+({ key, title, topImage, media, source, link, date, summary, isLoading }) => {
   const [showMore, setShowMore] = useState(false)
 
   if (isLoading) {
