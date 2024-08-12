@@ -4,46 +4,85 @@ import './Card.css';
 import TimeAgo from 'timeago-react';
 import { useSpring, animated } from 'react-spring'
 import linkImg from '../../assets/Link.png'
+import ReactPlayer from 'react-player'
 
 export interface Article {
   title: string;
   date: string;
   source: string;
-  img: string;
+  topImage: string;
+  images: string
+  media: string;
   link: string;
   summary: string;
   category: string;
   isLoading: boolean;
 }
 
-const ArticleCard: React.FC<Article> = ({ title, img, source, link, date, summary, isLoading }) => {
+const ArticleCard: React.FC<Article> = 
+({ title, topImage, images, media, source, link, date, summary, isLoading }) => {
   const [showMore, setShowMore] = useState(false)
 
   if (isLoading) {
     return (
-     <LoadingCard></LoadingCard>
+     <LoadingCard/>
     );
   }
 
   const props = useSpring({
     opacity: showMore ? 1 : 0,
-    maxHeight: showMore ? '500px' : '0px',
+    maxHeight: showMore ? '600px' : '0px',
     overflow: 'hidden',
     config: { duration: 400 },
   });
 
+  const hasImages = Boolean(images);
+  const hasMedia = Boolean(media);
+  
+  const renderMediaContent = () => {
+    if (hasMedia) {
+      return (
+        <div className='media-container'>
+          {showMore ? (
+            <ReactPlayer
+              className='media' 
+              url={media} 
+              controls
+              width='100%'
+              height='auto'
+            />
+            ) : null}
+        </div>
+      )
+    }
+  }
+
+  const renderImages = () => {
+    if (hasImages) {
+      images = images.replace('[', '').replace(']', '');
+      const imageList = images.split(',');
+
+      return (
+        <div className='images-container'>
+          {showMore? (imageList.map((image) => (
+            <img className='extra-image' src={image}></img>
+          ))) : null}
+        </div>
+      )
+    }
+  }
+
   const lines = summary.split("\n-")
   const description = lines[0];
   const displayedLines = showMore ? lines : lines.slice(0, 1);
+  console.log(media);
 
    return (
     <Fragment>
-      <div className={`article-container${img ? '' : '-without-img'}`} onClick={() => setShowMore(!showMore)}>
-
-        <div className='top-section'>
-           <div className={`img-container${img ? '' : '-without-img'}`}>
-            <img className='article-img' src={img}/>
-          </div>
+      <div className='article-container'
+        onClick={() => setShowMore(!showMore)}>
+        <div className='preview'>
+          <img className={`article-img${topImage ? '' : '-no-img'}`} src={topImage}/>
           <div className='text'>
             <p className='source'>{source}</p>
             <h2 className='article-title'>{title}</h2>
@@ -55,20 +94,22 @@ const ArticleCard: React.FC<Article> = ({ title, img, source, link, date, summar
             </p>
           </div>
         </div>
-       
-        <div className='bottom-section'>
+        
+        <div className='expand-container'>
+          {hasMedia ? renderMediaContent() : renderImages() }
           <animated.ul style={props} className='summary-list'>
             {showMore ? displayedLines.slice(1).map((line, index) => (
-                <li key={index} className="summary">{line}</li>
-              )) : null }
+              <li key={index} className="summary">{line}</li>
+            )) : null }
           </animated.ul>
-          <div className='btn-container'>
-            <a href={link} target="_blank">
-              <img src={linkImg} className="link-icon"></img>
-            </a>
-          </div>
+          {hasImages && hasMedia ? renderImages() : null }
         </div>
-        
+
+        <div className='btn-container'>
+          <a href={link} target='_blank'>
+            <img src={linkImg} className='link-icon'></img>
+          </a>
+        </div>
       </div>
     </Fragment>
   );

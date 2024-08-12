@@ -76,12 +76,22 @@ const ArticleList = ({ category, query }: ArticleListProps) => {
             <LoadingCard/>
           </Fragment>
         }
-        endMessage={<p>No more articles to display</p>}
+        scrollThreshold={1}
+        endMessage={
+          <div className='end-container'>
+            <p className='end-msg'>No more articles to display</p>
+            {/* <button className='view-more-btn'> View Yesterday's Stories</button> */}
+          </div>
+        
+        
+        }
       >
         {displayedArticles.map((article: Article) => (
           <Card
             title={article.title}
-            img={article.img_url}
+            topImage={article.top_image}
+            images={article.images}
+            media={article.media}
             source={article.source}
             link={article.article_link}
             date={article.date}

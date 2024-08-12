@@ -11,3 +11,15 @@
 .category-btn {
   font-size: 1rem;
 }
+
+.end-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 5rem 0;
+}
+
+.end-msg {
+  font-size: 1.3rem;
+  font-family: 'Inter-SemiBold';
+}
