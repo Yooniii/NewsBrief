@@ -28,7 +28,6 @@ class BackgroundClass:
         decoded_url = decode_google_news_url(entry.link)
         date = scrape(decoded_url, 'date')
         top_image = scrape(decoded_url, 'top_image')
-        images = scrape(decoded_url, 'images')
         content = scrape(decoded_url, 'content')
         media = scrape(decoded_url, 'media')
         title = entry.title.split(' - ')[0]
@@ -41,7 +40,6 @@ class BackgroundClass:
             source=entry.source.title,
             article_link=decoded_url,
             top_image=top_image, 
-            images=images,
             media=media,
             content=content,
             summary=summary,

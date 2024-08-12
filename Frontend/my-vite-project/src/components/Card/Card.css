@@ -19,7 +19,6 @@ ul, .text, .source, .date, .summary, .read-more-btn, .btn-wrap, h2,
 .preview {
   display: flex;
   flex-direction: row;
-  margin-bottom: 1rem;
   background-color: #fdfcfe;
 }
 
@@ -75,23 +74,14 @@ ul, .text, .source, .date, .summary, .read-more-btn, .btn-wrap, h2,
   margin-left: -0.5rem;
 }
 
-.expand-container {
+.player-wrapper {
   display: flex;
-  flex-direction: column;
-}
-
-.media-container, .images-container {
-  display: flex;
-  flex-direction: row;
   justify-content: center;
   background-color: #fdfcfe;
 }
 
-.extra-image {
-  width: 30rem;
-  height: 32rem;
-  border-radius: 1rem;
-  margin-bottom: 2rem;
+.react-player {
+  background-color: #fdfcfe;
 }
 
 .btn-container {
@@ -105,4 +95,3 @@ ul, .text, .source, .date, .summary, .read-more-btn, .btn-wrap, h2,
 .link-icon {
   height: 1.3rem;
 }
-

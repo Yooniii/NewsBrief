@@ -11,7 +11,6 @@ export interface Article {
   date: string;
   source: string;
   topImage: string;
-  images: string
   media: string;
   link: string;
   summary: string;
@@ -20,7 +19,7 @@ export interface Article {
 }
 
 const ArticleCard: React.FC<Article> = 
-({ title, topImage, images, media, source, link, date, summary, isLoading }) => {
+({ title, topImage, media, source, link, date, summary, isLoading }) => {
   const [showMore, setShowMore] = useState(false)
 
   if (isLoading) {
@@ -31,42 +30,28 @@ const ArticleCard: React.FC<Article> =
 
   const props = useSpring({
     opacity: showMore ? 1 : 0,
-    maxHeight: showMore ? '600px' : '0px',
+    maxHeight: showMore ? '800px' : '0px',
     overflow: 'hidden',
     config: { duration: 400 },
   });
 
-  const hasImages = Boolean(images);
-  const hasMedia = Boolean(media);
-  
-  const renderMediaContent = () => {
-    if (hasMedia) {
-      return (
-        <div className='media-container'>
-          {showMore ? (
-            <ReactPlayer
-              className='media' 
-              url={media} 
-              controls
-              width='100%'
-              height='auto'
-            />
-            ) : null}
-        </div>
-      )
-    }
+  let hasMedia = true;
+  if (media === '[]') {
+    hasMedia = false;
   }
 
-  const renderImages = () => {
-    if (hasImages) {
-      images = images.replace('[', '').replace(']', '');
-      const imageList = images.split(',');
-
+  const renderMediaContent = () => {
+    if (hasMedia) {
+      media = media.replace('[', '').replace(']', '')
       return (
-        <div className='images-container'>
-          {showMore? (imageList.map((image) => (
-            <img className='extra-image' src={image}></img>
-          ))) : null}
+        <div className='player-wrapper'>
+          {showMore ? (
+            <ReactPlayer
+              className='react-player' 
+              url={media} 
+              controls
+            />
+            ) : null}
         </div>
       )
     }
@@ -75,7 +60,6 @@ const ArticleCard: React.FC<Article> =
   const lines = summary.split("\n-")
   const description = lines[0];
   const displayedLines = showMore ? lines : lines.slice(0, 1);
-  console.log(media);
 
    return (
     <Fragment>
@@ -96,13 +80,12 @@ const ArticleCard: React.FC<Article> =
         </div>
         
         <div className='expand-container'>
-          {hasMedia ? renderMediaContent() : renderImages() }
           <animated.ul style={props} className='summary-list'>
             {showMore ? displayedLines.slice(1).map((line, index) => (
               <li key={index} className="summary">{line}</li>
             )) : null }
           </animated.ul>
-          {hasImages && hasMedia ? renderImages() : null }
+          {hasMedia ? renderMediaContent() : null }
         </div>
 
         <div className='btn-container'>
