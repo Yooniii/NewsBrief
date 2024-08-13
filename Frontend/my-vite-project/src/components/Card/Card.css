@@ -65,6 +65,7 @@ ul, .text, .source, .date, .summary, .read-more-btn, .btn-wrap, h2,
 
 .summary, .read-more-btn {
   color: #6b6b6b;
+  line-height: 1.4rem;
 }
 
 .read-more-btn {
@@ -72,6 +73,17 @@ ul, .text, .source, .date, .summary, .read-more-btn, .btn-wrap, h2,
   color: #404040;
   font-size: 1rem;
   margin-left: -0.5rem;
+}
+
+.expand-container {
+  max-height: 0;
+  overflow: hidden;
+}
+
+/* When showMore is true, set max-height to accommodate extra lines */
+.expand-container.show-more {
+  max-height: 35rem; 
+  margin: 1.2rem 0;
 }
 
 .player-wrapper {

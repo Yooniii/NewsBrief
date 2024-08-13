@@ -43,7 +43,7 @@ const ArticleCard: React.FC<Article> =
 
   const renderMediaContent = () => {
     media = media.replace('[', '').replace(']', '')
-    if (hasMedia && ReactPlayer.canPlay(media)) {
+    if (ReactPlayer.canPlay(media)) {
       return (
         <div className='player-wrapper'>
           {showMore ? (
@@ -80,7 +80,7 @@ const ArticleCard: React.FC<Article> =
           </div>
         </div>
         
-        <div className='expand-container'>
+        <div className={`expand-container ${showMore ? 'show-more' : ''}`}>
           <animated.ul style={props} className='summary-list'>
             {showMore ? displayedLines.slice(1).map((line, index) => (
               <li key={index} className="summary">{line}</li>
