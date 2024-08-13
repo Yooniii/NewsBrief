@@ -23,11 +23,12 @@ def clean_summary(summary, title):
     )
 
   cleaned_summary = genai_model.generate_content(
-    f"""Please refine and reformat the following news article summary. 
-    Begin with a 1-2 sentence preview that gives a concise overview of the 
-    article. Then, organize the remaining details into bullet points that follow
-    a chronological order. Ignore any incoherent or irrelevant text. If the
-    summary does not relate to the news article title, return 'INVALID'.
+    f"""Please refine and reformat the following news article summary according
+    to the guidelines below:
+      Begin with a 1-2 sentence preview that provides a concise overview of the 
+      article. Then, organize the remaining details into bullet points, following
+      a chronological order. Ignore any incoherent or irrelevant text. If the
+      summary does not relate to the title, return 'INVALID'.
 
     This is the format to be followed:
       Sentence describing the article.
@@ -36,7 +37,11 @@ def clean_summary(summary, title):
       ...
       - Bullet point N
 
-      Here is the title: {title} and the summary to be reformatted: {summary}"""
+    Write the summary from the perspective of the article itself, avoiding 
+    phrases like "This article" and instead focusing on presenting the 
+    information as if it is coming directly from the source.
+    Present the summary in plain text and avoid any use of asterisks.
+    Here is the title: {title} and the summary to be reformatted: {summary}"""
   )
 
   return cleaned_summary.text
