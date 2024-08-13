@@ -42,8 +42,8 @@ const ArticleCard: React.FC<Article> =
   }
 
   const renderMediaContent = () => {
-    if (hasMedia) {
-      media = media.replace('[', '').replace(']', '')
+    media = media.replace('[', '').replace(']', '')
+    if (hasMedia && ReactPlayer.canPlay(media)) {
       return (
         <div className='player-wrapper'>
           {showMore ? (
