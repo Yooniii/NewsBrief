@@ -26,7 +26,10 @@
   color: #181818;
   letter-spacing: 1.5px;
   justify-content: center;
-  padding: 0 0.3rem;
+}
+
+body {
+  background-color: transparent;
 }
 
 .content {

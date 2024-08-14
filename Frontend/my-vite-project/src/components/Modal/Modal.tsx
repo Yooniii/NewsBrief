@@ -11,6 +11,15 @@ interface ModalComponentProps {
 }
 
 const ModalComponent: React.FC<ModalComponentProps> = ({ isOpen, onRequestClose, articleTitle, source, shareUrl }) => {
+  useEffect(() => {
+    if (isOpen) {
+      document.body.classList.add('no-scroll');
+    } else {
+      document.body.classList.remove('no-scroll');
+
+    }
+  }, [isOpen, onRequestClose]);
+
   if (!isOpen) return null;
 
 
@@ -30,22 +39,11 @@ const ModalComponent: React.FC<ModalComponentProps> = ({ isOpen, onRequestClose,
           <div className='icon-container'>
             <FacebookShare url={shareUrl} round={true} size={75}/>
             <TwitterShare url={shareUrl} round={true} size={75}/>
-
           </div>
-
-          
-          
         </div>
-
-          
-
       </div>
-
     </div>
-     
-    
   )
-
 }
 
 export default ModalComponent;

@@ -1,4 +1,4 @@
-import { Fragment, useState } from 'react';
+import { Fragment, useState, useEffect } from 'react';
 import LoadingCard from '../Loading/LoadingCard';
 import './Card.css';
 import TimeAgo from 'timeago-react';
@@ -25,6 +25,8 @@ const ArticleCard: React.FC<Article> =
 ({ key, title, topImage, media, source, link, date, summary, isLoading }) => {
   const [showMore, setShowMore] = useState(false)
   const [showModal, setShowModal] = useState(false)
+
+   
 
   if (isLoading) {
     return (
