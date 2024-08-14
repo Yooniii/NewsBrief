@@ -1,47 +1,51 @@
-import { Fragment, useState } from 'react';
 import './Modal.css'
-import * as React from 'react';
-import Box from '@mui/material/Box';
-import Button from '@mui/material/Button';
-import Typography from '@mui/material/Typography';
-import Modal from '@mui/material/Modal';
+import { TwitterShare, FacebookShare } from 'react-share-kit';
+import { useEffect } from 'react'
 
 interface ModalComponentProps {
   isOpen: boolean;
   onRequestClose: () => void;
+  articleTitle: string;
+  source: string;
+  shareUrl: string;
 }
 
-const style = {
-  position: 'absolute' as 'absolute',
-  top: '50%',
-  left: '50%',
-  transform: 'translate(-50%, -50%)',
-  width: '40rem',
-  height: '20rem',
-  bgcolor: 'rgba(255, 255, 255, 0.9)', // Semi-transparent white background
-  border: '0',
-  boxShadow: 24,
-  p: 4,
-  borderRadius: '1rem'
-};
-
-const ModalComponent: React.FC<ModalComponentProps> = ({ isOpen, onRequestClose }) => {
+const ModalComponent: React.FC<ModalComponentProps> = ({ isOpen, onRequestClose, articleTitle, source, shareUrl }) => {
   if (!isOpen) return null;
-  
+
+
   return (
-     
-    <Modal
-      open={isOpen}
-      onClose={onRequestClose}
-    >
-      <Box sx={style}>
-        <Typography id="modal-modal-title" variant="h6" component="h2">
-          Text in a modal
-        </Typography>
+    <div className='modal-container'>
+      <div className='modal-content'>
+        <div className='modal-main-contents'>
+          <div className='btn-wrapper'>
+            <button className='close-btn' onClick={onRequestClose}>&times;</button>
+          </div>
+          <div className='modal-text'>
+            <p className='modal-source'>{source}</p>
+            <p className='modal-title'>{articleTitle}</p>
+
+          </div>
+          <p className='share'>Share this via</p>
+          <div className='icon-container'>
+            <FacebookShare url={shareUrl} round={true} size={75}/>
+            <TwitterShare url={shareUrl} round={true} size={75}/>
+
+          </div>
+
           
-      </Box>
-    </Modal>
+          
+        </div>
+
+          
+
+      </div>
+
+    </div>
+     
+    
   )
+
 }
 
 export default ModalComponent;

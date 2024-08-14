@@ -94,7 +94,11 @@ const ArticleCard: React.FC<Article> =
         </div>
         <ModalComponent 
           isOpen={showModal} 
-          onRequestClose={() => setShowModal(false)}/>
+          onRequestClose={() => setShowModal(false)}
+          articleTitle={title}
+          source={source}
+          shareUrl={link}
+        />
       </div>
     </Fragment>
   );
