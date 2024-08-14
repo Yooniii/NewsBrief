@@ -1,0 +1,33 @@
+.modal-container {
+  display: flex;
+  justify-content: center;
+  background-color: rgba(32, 33, 36, 0.6);
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  position: fixed;
+  align-items: center;
+}
+
+
+.modal-content {
+  background-color: white;
+  border-radius: 1rem;
+  padding: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 30rem;
+  height: 30rem;
+
+  
+}
+
+.close-button {
+  align-self: flex-end; /* Align close button to the right */
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+}

@@ -1,31 +1,32 @@
 ul, .text, .source, .date, .summary, .read-more-btn, .btn-wrap, h2, 
 .article-container, .article-container-without-img, .btn-container,
 .top-section, .img-container, .link-icon, .expand-container, 
-.media, .media-container, image {
+.media, .media-container, image, .share-btn, .share-icon, font {
   background-color: #fdfcfe;
 }
 
-.article-container, .article-container-without-img {
+.article-container {
   display: flex;
   flex-direction: column;
   box-sizing: border-box;
+  border-radius: 1.3rem;
   margin-bottom: 3rem;
   padding: 3rem 2rem;
-  border-radius: 1.3rem;
   box-shadow: 0 0 0.4rem rgba(210, 206, 206, 0.5);
   cursor: pointer;
+
 }
 
 .preview {
   display: flex;
-  flex-direction: row;
   background-color: #fdfcfe;
+  justify-content: flex-start;
 }
 
 .article-img {
   width: 21rem;
   height: 15rem;
-  margin-right: 0.7rem;
+  margin-right: 0.8rem;
   border-radius: 1rem;
   object-fit: cover;
   flex-shrink: 0;
@@ -46,7 +47,6 @@ ul, .text, .source, .date, .summary, .read-more-btn, .btn-wrap, h2,
   flex-direction: column;
   gap: 0.7rem;
   text-align: left;
-  padding: 0 1.1rem;
 }
 
 .source, .date {
@@ -63,30 +63,29 @@ ul, .text, .source, .date, .summary, .read-more-btn, .btn-wrap, h2,
   margin-bottom: 0.5rem;
 }
 
-.summary, .read-more-btn {
+.summary, .read-more {
   color: #6b6b6b;
   line-height: 1.4rem;
 }
 
-.read-more-btn {
+.read-more {
   border-style: none;
   color: #404040;
   font-size: 1rem;
-  margin-left: -0.5rem;
+  text-decoration: none;
+  padding: 0;
 }
 
 .expand-container {
   max-height: 0;
-  overflow: hidden;
 }
 
-/* When showMore is true, set max-height to accommodate extra lines */
 .expand-container.show-more {
   max-height: 35rem; 
-  margin: 1.2rem 0;
+  margin-top: 1.3rem;  
 }
 
-.player-wrapper {
+.media-wrapper {
   display: flex;
   justify-content: center;
   background-color: #fdfcfe;
@@ -101,9 +100,12 @@ ul, .text, .source, .date, .summary, .read-more-btn, .btn-wrap, h2,
   justify-content: flex-end;
   flex-direction: row;
   align-items: center;
-  margin-top: -0.5rem;
+  margin-top: 0.8rem;
 }
 
-.link-icon {
-  height: 1.3rem;
+.link-icon, .share-icon {
+  height: 1.1rem;
+  cursor: pointer;
 }
+
+

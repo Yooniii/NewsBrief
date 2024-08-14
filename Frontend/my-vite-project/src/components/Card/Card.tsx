@@ -1,10 +1,12 @@
 import { Fragment, useState } from 'react';
-import LoadingCard from '../Loading/LoadingCard'
+import LoadingCard from '../Loading/LoadingCard';
 import './Card.css';
 import TimeAgo from 'timeago-react';
-import { useSpring, animated } from 'react-spring'
-import linkImg from '../../assets/Link.png'
-import ReactPlayer from 'react-player'
+import { useSpring, animated } from 'react-spring';
+import linkIcon from '../../assets/Link.png';
+import shareIcon from '../../assets/Share.png';
+import ReactPlayer from 'react-player';
+import ModalComponent from '../Modal/Modal';
 
 export interface Article {
   key: string;
@@ -22,6 +24,7 @@ export interface Article {
 const ArticleCard: React.FC<Article> = 
 ({ key, title, topImage, media, source, link, date, summary, isLoading }) => {
   const [showMore, setShowMore] = useState(false)
+  const [showModal, setShowModal] = useState(false)
 
   if (isLoading) {
     return (
@@ -36,26 +39,19 @@ const ArticleCard: React.FC<Article> =
     config: { duration: 400 },
   });
 
-  let hasMedia = true;
-  if (media === '[]') {
-    hasMedia = false;
-  }
-
   const renderMediaContent = () => {
     media = media.replace('[', '').replace(']', '')
-    if (ReactPlayer.canPlay(media)) {
-      return (
-        <div className='player-wrapper'>
-          {showMore ? (
-            <ReactPlayer
-              className='react-player' 
-              url={media} 
-              controls
-            />
-            ) : null}
-        </div>
-      )
-    }
+    return (
+      <div className='media-wrapper'>
+        {showMore ? (
+          <ReactPlayer
+            className='react-player' 
+            url={media} 
+            controls
+          />
+          ) : null}
+      </div>
+    )
   }
 
   const lines = summary.split("\n-")
@@ -64,36 +60,41 @@ const ArticleCard: React.FC<Article> =
 
    return (
     <Fragment>
-      <div className='article-container'
-        onClick={() => setShowMore(!showMore)}>
+      <div className='article-container'>
         <div className='preview'>
           <img className={`article-img${topImage ? '' : '-no-img'}`} src={topImage}/>
           <div className='text'>
             <p className='source'>{source}</p>
             <h2 className='article-title'>{title}</h2>
             <TimeAgo className='date' datetime={date} />
-            <p className='summary'>{description}
-              <button className="read-more-btn" onClick={() => setShowMore(!showMore)}>
+            <p className='summary'>{description} {' '}
+              <a className="read-more" onClick={() => setShowMore(!showMore)}>
                 {showMore ? 'Read Less' : 'Read More'}
-              </button>
+              </a>
             </p>
           </div>
         </div>
         
         <div className={`expand-container ${showMore ? 'show-more' : ''}`}>
-          <animated.ul style={props} className='summary-list'>
+          <animated.ul style={props} className='summary'>
             {showMore ? displayedLines.slice(1).map((line, index) => (
               <li key={index} className="summary">{line}</li>
             )) : null }
           </animated.ul>
-          {hasMedia ? renderMediaContent() : null }
+          {ReactPlayer.canPlay(media) ? renderMediaContent() : null }
         </div>
 
         <div className='btn-container'>
           <a href={link} target='_blank'>
-            <img src={linkImg} className='link-icon'></img>
+            <img src={linkIcon} className='link-icon'></img>
           </a>
+          <button className='share-btn' onClick={() => setShowModal(true)}>
+            <img src={shareIcon} className='share-icon'></img>
+          </button>
         </div>
+        <ModalComponent 
+          isOpen={showModal} 
+          onRequestClose={() => setShowModal(false)}/>
       </div>
     </Fragment>
   );
