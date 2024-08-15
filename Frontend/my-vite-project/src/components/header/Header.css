@@ -6,17 +6,67 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  height: 4.5rem;
   margin-bottom: 1rem;
-  padding: 0 2rem;
+  padding: 0 6rem;
+  padding-top: 2.5rem;
 }
 
 .logo {
+  display: flex;
+  justify-content: flex-start;
   text-decoration: none;
   color: #181818;
   cursor: pointer;
   font-family: 'Inter-Bold';
-  font-size: 1.4rem;
+  font-size: 1.6rem;
+}
+
+.right-section {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  width: 43%;
+  font-size: 1rem;
+}
+
+.link {
+  font-size: 1rem;
+  text-decoration: none;
+  color: #181818;
+}
+
+.btn {
+  background-color: transparent;
+  color: #181818;
+  border: none; 
+}
+
+.button:active, 
+ button:active,
+.button:focus, 
+ button:focus,
+.button:hover, 
+ button:hover{
+  border:none !important;
+  outline:none !important;
+}
+
+ul.dropdown-menu {  
+  border: none;
+  box-shadow: 0 0 0.4rem rgba(210, 206, 206, 0.5);
+  min-width: 1rem;
+  font-size: 0.9rem;
+  padding: 0.3rem;
+}
+
+.dropdown-menu.show {
+  background-color: transparent;
+}
+
+li {
+  display: flex;
+  justify-content: flex-start;
+  padding: 0.5rem 0.4rem;
 }
 
 form {
@@ -45,7 +95,6 @@ form {
   opacity: 0.5;
   margin-left: -4rem;
 }
-
 
 .search-bar::-webkit-search-cancel-button {
   -webkit-appearance: none;
