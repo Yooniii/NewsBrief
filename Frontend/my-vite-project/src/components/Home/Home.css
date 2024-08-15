@@ -1,0 +1,71 @@
+
+.row {
+  display: flex;
+  min-height: 100vh;
+  width: 100vw;
+  padding-left: 14.5rem;
+  padding-right: 5rem;
+  box-sizing: border-box;
+  margin-bottom: -10rem;
+}
+
+.text-box {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.subheading {
+  padding: 1rem 0;
+  background-color: transparent;
+  font-size: 1.5rem;
+}
+
+.see-all {
+  text-decoration: none;
+  background-color: transparent;
+  color: black;
+  font-size: 0.9rem;
+}
+
+.top-stories {
+  background-color: #fdfcfe;
+  height: auto;
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: column;
+  flex: 2;
+}
+
+.card {
+  border-radius: 2rem;
+  outline: none;
+}
+
+.card-img {
+  height: 17rem;
+
+}
+
+.col {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  justify-content: flex-start;
+  padding-left: 3rem;
+  background-color: #fdfcfe;
+  border-radius: 1rem;
+
+}
+
+.political-news {
+  background-color: #fdfcfe;
+  display: flex;
+  flex: 2;
+  justify-content: space-between;
+  padding-left: 15rem;
+  padding-right: 5rem;
+  width: 100vw;
+}
