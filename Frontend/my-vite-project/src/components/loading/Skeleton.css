@@ -30,10 +30,11 @@
   align-items: flex-start;
   margin-bottom: 3rem;
   background-color: #fdfcfe;
-  padding: 3rem 2rem;
+  padding: 3rem 3rem;
   box-shadow: 0 0 0.4rem rgba(210, 206, 206, 0.5);
   cursor: pointer;
   border-radius: 1.3rem;
+  gap: 2rem;
 }
 
 .img-container {

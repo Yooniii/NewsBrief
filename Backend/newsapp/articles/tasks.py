@@ -68,7 +68,7 @@ class BackgroundClass:
       'Health': 'https://news.google.com/rss/topics/CAAqJQgKIh9DQkFTRVFvSUwyMHZNR3QwTlRFU0JXVnVMVWRDS0FBUAE?hl=en-CA&gl=CA&ceid=CA%3Aen'
     }
     
-    with ThreadPoolExecutor(max_workers=8) as executor:
+    with ThreadPoolExecutor(max_workers=7) as executor:
       future_to_article = {
         executor.submit(BackgroundClass.fetch_articles, category, url): 
         category for category, url in urls.items()

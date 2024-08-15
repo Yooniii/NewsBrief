@@ -2,7 +2,6 @@ body {
   width: 100vw
 }
 
-
 @font-face {
   font-family: 'InterVariable';
   src: url('./fonts/InterVariable.ttf') format('truetype');
@@ -24,16 +23,13 @@ body {
   font-style: normal;
 }
 
+
 * {
   font-family: 'InterVariable';
   background-color: #f7f8f9;
   color: #181818;
   letter-spacing: 1.5px;
   justify-content: center;
-}
-
-body {
-  background-color: transparent;
 }
 
 .content {
@@ -43,18 +39,19 @@ body {
 }
 
 .side-nav {
-  margin-top: 7rem;
   display: flex;
   flex-direction: column;
   gap: 1rem;
   border-radius: 1.3rem;
   box-shadow: 0 0 0.4rem rgba(210, 206, 206, 0.5);
-  height: 29rem;
-  padding: 0 0.7rem;
+  height: auto;
+  padding: 1.5rem 1.3rem;
   overflow-x: hidden;
   position: fixed;
   left: 1.7rem;
-  top: 4rem;
+  top: 10.5rem;
+  background-color: #fdfcfe;
+
 }
 
 .article-list {
@@ -62,7 +59,7 @@ body {
   flex-direction: column;
   box-sizing: border-box;
   justify-content: center;
-  padding-left: 12rem;
-  padding-right: 7rem;
+  padding-left: 14rem;
+  padding-right: 12rem;
   margin-top: 5.5rem;
 }

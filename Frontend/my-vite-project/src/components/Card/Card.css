@@ -13,7 +13,6 @@ ul, .text, .source, .date, .summary, .read-more-btn, .btn-wrap, h2,
   margin-bottom: 3rem;
   padding: 3rem 2.5rem;
   box-shadow: 0 0 0.4rem rgba(210, 206, 206, 0.5);
-  cursor: pointer;
 }
 
 .preview {
@@ -72,7 +71,7 @@ ul, .text, .source, .date, .summary, .read-more-btn, .btn-wrap, h2,
   color: #404040;
   font-size: 1rem;
   text-decoration: none;
-  padding: 0;
+  cursor: pointer;
 }
 
 .expand-container {

@@ -1,22 +1,11 @@
-.side-nav, .side-nav p, .side-nav a {
+.side-nav, .side-nav a {
   background-color: #fdfcfe;
 }
 
-.side-nav p {
-  font-size: 1.2rem;
-  font-weight: bold;
-  font-family: 'Inter-Bold';
-}
-
-.category-btn {
+a {
   font-family: 'InterVariable';
   color: #6b6b6b;
   cursor: pointer;
   text-decoration: none;
   font-size: 1rem;
-}
-
-.category-btn:active {
-  color: #f88166;
-  font-family: 'Inter-SemiBold';
 }

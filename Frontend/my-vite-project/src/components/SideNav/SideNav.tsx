@@ -1,37 +1,25 @@
-import { Fragment } from 'react'
-import './SideNav.css'
+import { Link } from 'react-router-dom';
 
-interface SideNavProps {
-  onCategoryChange: (category: string) => void;
-}
-
-const SideNav: React.FC<SideNavProps> = ({ onCategoryChange }) => {
-
-  const handleCategoryChange = (category: string) => {
-    window.scroll({
-      top: 0,
-      behavior: 'smooth',
-    });
-
-    onCategoryChange(category);
-  }
+const SideNav = () => {
+  const linkStyle = {
+    textDecoration: 'none',
+    color: '#6b6b6b',
+    backgroundColor: 'transparent'
+  };
 
   return (
-    <Fragment>
-      <div className='side-nav'>
-        <p>Category</p>
-        <a className='category-btn' onClick={() => handleCategoryChange('Top Stories')}>Top Stories</a>
-        <a className='category-btn' onClick={() => handleCategoryChange('World')}>World</a>
-        <a className='category-btn' onClick={() => handleCategoryChange('Business')}>Business</a>
-        <a className='category-btn' onClick={() => handleCategoryChange('Entertainment')}>Entertainment</a>
-        <a className='category-btn' onClick={() => handleCategoryChange('Health')}>Health</a>
-        <a className='category-btn' onClick={() => handleCategoryChange('Politics')}>Politics</a>
-        <a className='category-btn' onClick={() => handleCategoryChange('Science')}>Science</a>
-        <a className='category-btn' onClick={() => handleCategoryChange('Sports')}>Sports</a>
-        <a className='category-btn' onClick={() => handleCategoryChange('Tech')}>Tech</a>
-    </div>
-    </Fragment>
-  )
-}
+    <nav className='side-nav'>
+      <Link to='/Top Stories' style={linkStyle}>Top Stories</Link>
+      <Link to='/World' style={linkStyle}>World</Link>
+      <Link to='/Business' style={linkStyle}>Business</Link>
+      <Link to='/Tech' style={linkStyle}>Tech</Link>
+      <Link to='/Entertainment' style={linkStyle}>Entertainment</Link>
+      <Link to='/Politics' style={linkStyle}>Politics</Link>
+      <Link to='/Sports' style={linkStyle}>Sports</Link>
+      <Link to='/Science' style={linkStyle}>Science</Link>
+      <Link to='/Health' style={linkStyle}>Health</Link>
+    </nav>
+  );
+};
 
 export default SideNav;

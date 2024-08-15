@@ -7,6 +7,7 @@ import linkIcon from '../../assets/Link.png';
 import shareIcon from '../../assets/Share.png';
 import ReactPlayer from 'react-player';
 import ModalComponent from '../Modal/Modal';
+import CustomSkeleton from '../Loading/Skeleton';
 
 export interface Article {
   key: string;
@@ -18,21 +19,12 @@ export interface Article {
   link: string;
   summary: string;
   category: string;
-  isLoading: boolean;
 }
 
 const ArticleCard: React.FC<Article> = 
-({ key, title, topImage, media, source, link, date, summary, isLoading }) => {
+({ key, title, topImage, media, source, link, date, summary }) => {
   const [showMore, setShowMore] = useState(false)
-  const [showModal, setShowModal] = useState(false)
-
-   
-
-  if (isLoading) {
-    return (
-     <LoadingCard/>
-    );
-  }
+  const [showModal, setShowModal] = useState(false)   
 
   const props = useSpring({
     opacity: showMore ? 1 : 0,

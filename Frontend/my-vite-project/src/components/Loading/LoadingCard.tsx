@@ -6,12 +6,12 @@ const LoadingCard = () => {
     <Fragment>
       <div className='load-card'>
         <div className='img-container'>
-          <CustomSkeleton width={336} height={252} variant="rounded" sx={{ bgcolor: 'black' }}/>
+          <CustomSkeleton width={350} height={252} variant="rounded"/>
         </div>
           <div className="text">
-            <CustomSkeleton width={607} height={120} variant="rounded" sx={{ bgcolor: 'black' }}/>
-            <CustomSkeleton width={607} height={24} variant="rounded" sx={{ bgcolor: 'black' }}/>
-            <CustomSkeleton width={607} height={72} variant="rounded" sx={{ bgcolor: 'black' }}/>
+            <CustomSkeleton width={670} height={120} variant="rounded"/>
+            <CustomSkeleton width={670} height={24} variant="rounded"/>
+            <CustomSkeleton width={670} height={72} variant="rounded"/>
           </div>
       </div>
     </Fragment>
