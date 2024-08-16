@@ -1,5 +1,5 @@
 .header, .logo, form, form:hover input, form input, a {
-  background-color: #fdfcfe;
+  background-color: transparent;
 }
 
 .header {
@@ -7,8 +7,7 @@
   align-items: center;
   justify-content: space-between;
   margin-bottom: 1rem;
-  padding: 0 6rem;
-  padding-top: 2.5rem;
+  padding: 2.5rem 6rem;
 }
 
 .logo {
@@ -17,8 +16,8 @@
   text-decoration: none;
   color: #181818;
   cursor: pointer;
-  font-family: 'Inter-Bold';
-  font-size: 1.6rem;
+  font-family: 'Inter-ExtraBold';
+  font-size: 1.7rem;
 }
 
 .right-section {
@@ -32,23 +31,13 @@
 .link {
   font-size: 1rem;
   text-decoration: none;
-  color: #181818;
+  color: #4f4f4f;
 }
 
-.btn {
+a.btn {
   background-color: transparent;
-  color: #181818;
+  color: #4f4f4f;
   border: none; 
-}
-
-.button:active, 
- button:active,
-.button:focus, 
- button:focus,
-.button:hover, 
- button:hover{
-  border:none !important;
-  outline:none !important;
 }
 
 ul.dropdown-menu {  
@@ -63,7 +52,7 @@ ul.dropdown-menu {
   background-color: transparent;
 }
 
-li {
+.dropdown-menu li {
   display: flex;
   justify-content: flex-start;
   padding: 0.5rem 0.4rem;

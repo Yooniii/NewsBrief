@@ -72,7 +72,7 @@ const ArticleCard: React.FC<Article> =
         <div className={`expand-container ${showMore ? 'show-more' : ''}`}>
           <animated.ul style={props} className='summary'>
             {showMore ? displayedLines.slice(1).map((line, index) => (
-              <li key={index} className="summary">{line}</li>
+              <li key={index} className='summary'>{line}</li>
             )) : null }
           </animated.ul>
           {ReactPlayer.canPlay(media) ? renderMediaContent() : null }

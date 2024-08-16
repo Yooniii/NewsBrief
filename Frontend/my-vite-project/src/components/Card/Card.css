@@ -64,14 +64,13 @@ ul, .text, .source, .date, .summary, .read-more-btn, .btn-wrap, h2,
   margin-bottom: 0.5rem;
 }
 
-.summary, .read-more {
-  color: #6b6b6b;
-  line-height: 1.4rem;
+li.summary, .read-more {
+  color: #404040;
+  line-height: 1.5rem;
 }
 
 .read-more {
   border-style: none;
-  color: #404040;
   font-size: 1rem;
   text-decoration: none;
   cursor: pointer;

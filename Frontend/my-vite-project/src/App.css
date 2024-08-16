@@ -4,29 +4,29 @@ body {
 }
 
 @font-face {
-  font-family: 'InterVariable';
-  src: url('./fonts/InterVariable.ttf') format('truetype');
+  font-family: 'Inter-Regular';
+  src: url('./fonts/Inter-Regular.otf') format('opentype');
   font-weight: normal;
   font-style: normal;
 }
 
 @font-face {
   font-family: 'Inter-Bold';
-  src: url('./fonts/Inter-Bold.ttf') format('truetype');
+  src: url('./fonts/Inter-Bold.otf') format('opentype');
   font-weight: normal;
   font-style: normal;
 }
 
 @font-face {
-  font-family: 'Inter-SemiBold';
-  src: url('./fonts/Inter-SemiBold.ttf') format('truetype');
+  font-family: 'Inter-ExtraBold';
+  src: url('./fonts/Inter-ExtraBold.otf') format('opentype');
   font-weight: normal;
   font-style: normal;
 }
 
 
 * {
-  font-family: 'InterVariable';
+  font-family: 'Inter-Regular';
   background-color: #fdfcfe;
   color: #181818;
   letter-spacing: 1.5px;
@@ -44,6 +44,6 @@ body {
   flex-direction: column;
   box-sizing: border-box;
   justify-content: center;
-  padding: 3rem 6rem;
-  margin-top: 7rem;
+  padding: 3rem 9rem;
+  margin-top: 4rem;
 }

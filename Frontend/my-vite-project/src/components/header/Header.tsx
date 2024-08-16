@@ -29,9 +29,9 @@ const Header = () => {
         <div className='right-section'>
           <Link to="/home" className="link">Home</Link>
           <div className="dropdown">
-            <button className="btn" data-bs-toggle="dropdown" aria-expanded="false">
+            <a className="btn" data-bs-toggle="dropdown" aria-expanded="false">
               Categories
-            </button>
+            </a>
             <ul className="dropdown-menu">
               <li> <Link to='/Top Stories' style={linkStyle}>Top Stories</Link></li>
               <li><Link to='/World' style={linkStyle}>World</Link></li>
