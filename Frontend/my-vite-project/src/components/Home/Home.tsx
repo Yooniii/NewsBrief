@@ -66,7 +66,10 @@ const HomePage: React.FC = () => {
                 <img src={topStories[0].top_image}></img>
                 <div className='article-details'>
                   <p className='source'> {topStories[0].source} </p>
-                  <p className='title'> {topStories[0].title} </p>
+                  <div className='main-text-box'>
+                    <p className='title'> {topStories[0].title} </p>
+                    <p className='preview'> {topStories[0].summary.split('\n-')[0]}</p>
+                  </div>
                 </div>
               </div>
             )}
