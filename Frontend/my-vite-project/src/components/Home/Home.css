@@ -2,6 +2,12 @@
   padding: 0 9rem;
 }
 
+.col {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
 .top-stories, .world-news, .political-news, .sports-news {
   margin-bottom: 1.5rem;
 }
@@ -41,15 +47,17 @@
   font-weight: bold;
 }
 
+
 .headline-row {
   display: flex;
-  gap: 1.3rem;
+  gap: 1rem;
 }
 
 .headline-box {
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
+  flex: 3;
 }
 
 .headline-box img {
@@ -68,25 +76,24 @@
   gap: 1.5rem;
 }
 
-.main-text-box, .headline-box .title, .source {
+.main-text-box, .headline-box .title, .source, .preview {
   background-color: transparent;
 }
 
 .headline-box .source {
-  font-size: 0.9rem;
+  font-size: 0.8rem;
   font-weight: bold;
 }
 
 .headline-box .title {
-  font-size: 1.2rem;
+  font-size: 1.1rem;
 }
 
 .headline-box .preview {
-  font-size: 0.9rem;
-  background-color: transparent;
+  font-size: 0.8rem;
 }
 
-.h_line {
+.h-line {
   height: 1px;
   width: 100%;
   background-color: #e2e1e1;
@@ -97,16 +104,19 @@
 .headline-col {
   display: flex;
   flex-direction: column;
+  flex: 1;
+  gap: 0.3rem;
 }
 
 .headline-col-box {
   display: flex;
   gap: 1rem;
+
 }
 
 .headline-col-box img {
-  width: 7rem;
-  height: 5.5rem;
+  width: 6rem;
+  height: 4rem;
   object-fit: cover;
   border-radius: 0.5rem;
 }
@@ -114,18 +124,13 @@
 .headline-col-box .title{
   font-size: 0.8rem;
   line-height: 1.1rem;
-  padding: 0.8rem 0;
+  padding: 0.75rem 0;
 }
 
 .headline-col-box .source{
   font-size: 0.7rem;
 }
 
-.col {
-  display: flex;
-  flex-direction: column;
-  gap: 1.5rem;
-}
 
 .article-row {
   display: flex;

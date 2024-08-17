@@ -101,7 +101,7 @@ const HomePage: React.FC = () => {
                       <p className='title'> {article.title} </p>
                     </div>
                   </div>
-                  {index < 2 && <div className="h_line"></div>}
+                  {index < 2 && <div className='h-line'></div>}
                 </Fragment>          
               )))}
             </div>
