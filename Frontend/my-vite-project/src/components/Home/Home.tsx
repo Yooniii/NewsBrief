@@ -15,9 +15,8 @@ const HomePage: React.FC = () => {
 
 
   useEffect(() => {
-    const fetchArticles = async (category: string) => {
+    const fetchArticles = async (category: string, articleCount: number) => {
       let articlesWithImages = [];
-      let count = 0;
 
       try {
         const response = await axios.get('http://127.0.0.1:8000/articles/');
@@ -26,16 +25,19 @@ const HomePage: React.FC = () => {
           article.category === category
         );
 
-        for (let article of filteredArticles.slice(0,8)) {
-          if (count === 4) {
+        for (let count = 0; count < articleCount + 4; ++count) {
+          if (articlesWithImages.length == articleCount) {
             break;
           }
+
+          let article = filteredArticles[count];
+
           if (article.top_image != '') {
             articlesWithImages.push(article);
           }
         }
 
-        return articlesWithImages.slice(0,4);
+        return articlesWithImages
 
       } catch (error) {
         console.error('Error fetching articles:', error);
@@ -44,10 +46,10 @@ const HomePage: React.FC = () => {
     };
 
     const fetchAllArticles = async () => {
-      setWorldNews(await fetchArticles('World'));
-      setTopStories(await fetchArticles('Top Stories'));
-      setSportsNews(await fetchArticles('Sports'));
-      setPoliticalNews(await fetchArticles('Politics'));
+      setWorldNews(await fetchArticles('World', 4));
+      setTopStories(await fetchArticles('Top Stories', 4));
+      setSportsNews(await fetchArticles('Sports', 4));
+      setPoliticalNews(await fetchArticles('Politics', 10));
     };
 
     fetchAllArticles();
@@ -135,9 +137,9 @@ const HomePage: React.FC = () => {
 
           <div className='carousel-row'>
             <div className='article-grid'>
-              <div className='col'>
+              <div className='grid-col'>
                 
-                {politicalNews.length > 0 && (politicalNews.slice(1,4).map((article: Article, index) => (
+                {politicalNews.length > 0 && (politicalNews.slice(0,3).map((article: Article, index) => (
                 <Fragment key={index}>
                   <div className='grid-box'>
                     <p className='source'> {article.source} </p>
@@ -148,9 +150,8 @@ const HomePage: React.FC = () => {
                 
               )))}
               </div>
-
-               <div className='col'>
-                {politicalNews.length > 0 && (politicalNews.slice(1,4).map((article: Article, index) => (
+               <div className='grid-col'>
+                {politicalNews.length > 0 && (politicalNews.slice(4, 7).map((article: Article, index) => (
                 <Fragment key={index}>
                   <div className='grid-box'>
                     <p className='source'> {article.source} </p>
@@ -164,7 +165,7 @@ const HomePage: React.FC = () => {
 
             <div className='carousel-component'>
               <Slider {...settings}>
-                {politicalNews.map((article: Article, index) => (
+                {politicalNews.slice(7, 10).map((article: Article, index) => (
                   <div className='carousel-slide'>
                     <img src={article.top_image}></img>
                     <div className='overlay'>
