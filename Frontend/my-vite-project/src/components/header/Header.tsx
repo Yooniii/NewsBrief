@@ -1,5 +1,5 @@
 import React, { Fragment, useState } from 'react';
-import { useSearchParams, Link } from 'react-router-dom';
+import { useSearchParams, Link, useNavigate } from 'react-router-dom';
 
 import './Header.css';
 import search from '../../assets/Search.png';
@@ -8,10 +8,14 @@ import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 const Header = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const [inputValue, setInputValue] = useState('');
+  const navigate = useNavigate();
+
 
   const handleSearch = (event: React.FormEvent) => {
     event.preventDefault(); 
-    setSearchParams({ query: inputValue }); 
+    if (inputValue.trim() !== '') {
+      navigate(`/search?query=${encodeURIComponent(inputValue)}`);
+    }
     setInputValue('');
   };
 

@@ -13,6 +13,7 @@ function App() {
       <Header />
       <Routes>
         <Route path='/home' element={<HomePage/>} />
+        <Route path='/search' element={<ArticleList />} />
         <Route path='/:category' element={<ArticleList/>} />
       </Routes>
       <ScrollToTop />
