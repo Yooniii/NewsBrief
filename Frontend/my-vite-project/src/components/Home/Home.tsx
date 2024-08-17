@@ -3,13 +3,15 @@ import { Link } from 'react-router-dom';
 import { Fragment, useState, useEffect } from 'react'
 import axios from 'axios'
 import { Article } from '../Card/Card'
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import Slider from 'react-slick';
 
 const HomePage: React.FC = () => {
   const [worldNews, setWorldNews] = useState<Article[]>([]);
   const [sportsNews, setSportsNews] = useState<Article[]>([]);
   const [topStories, setTopStories] = useState<Article[]>([]);
   const [politicalNews, setPoliticalNews] = useState<Article[]>([]);
-  const [articlesWithImages, setArticlesWithImages] = useState<Article[]>([]);
 
 
   useEffect(() => {
@@ -51,15 +53,26 @@ const HomePage: React.FC = () => {
     fetchAllArticles();
   }, [])
 
+  const settings = {
+    dots: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    autoplay: true,
+  };
+
   return (
     <div className='home-container'>
 
       <div className='col'>
         <div className='top-stories'>
+  
           <div className='text-box'>
             <h2 className='subheading'>Top Stories</h2>
             <Link to='/Top Stories' className='see-all'>See all</Link>
           </div>
+          <div className='header-line'></div>
           <div className='headline-row'>
             {topStories.length > 0 && (
               <div className='headline-box'>
@@ -75,14 +88,17 @@ const HomePage: React.FC = () => {
             )}
             <div className='headline-col'>
               {topStories.length > 0 && (topStories.slice(1, 4).map((article: Article, index) => (
-                <div key={index} className='headline-col-box'>
-                  <img src={article.top_image}></img>
-                  <div className='article-details'>
-                    <p className='source'> {article.source} </p>
-                    <p className='title'> {article.title} </p>
+                <Fragment key={index}>
+                  <div className='headline-col-box'>
+                    <img src={article.top_image}></img>
+                    <div className='article-details'>
+                      <p className='source'> {article.source} </p>
+                      <p className='title'> {article.title} </p>
+                    </div>
                   </div>
-                </div>
-
+                  {index < 2 && <div className="h_line"></div>}
+                </Fragment>
+                
               )))}
 
             </div>
@@ -94,6 +110,7 @@ const HomePage: React.FC = () => {
             <h2 className='subheading'>World News</h2>
             <Link to='/World' className='see-all'>See all</Link>
           </div>
+          <div className='header-line'></div>
 
           <div className='article-row'>
             {worldNews.map((article: Article, index) => ( 
@@ -109,11 +126,46 @@ const HomePage: React.FC = () => {
           </div>
         </div>
 
+        <div className='political-news'>
+          <div className='text-box'>
+            <h2 className='subheading'>Politics</h2>
+            <Link to='/World' className='see-all'>See all</Link>
+          </div>
+          <div className='header-line'></div>
+
+          <div className='carousel-row'>
+            <div className='article-grid'>
+
+            </div>
+
+            <div className='carousel-component'>
+              <Slider {...settings}>
+                {politicalNews.map((article: Article, index) => (
+                  <div className='carousel-slide'>
+                    <img src={article.top_image}></img>
+                    <div className='overlay'>
+                      <p className='source'> {article.source} </p>
+                      <p className='title'> {article.title} </p>
+
+                    </div>
+                    
+                  </div>
+                ))}
+
+              </Slider>
+
+            </div>
+           
+        
+          </div>
+        </div>
+
         <div className='sports-news'>
           <div className='text-box'>
             <h2 className='subheading'>Sports News</h2>
             <Link to='/Sports' className='see-all'>See all</Link>
           </div>
+          <div className='header-line'></div>
           <div className='article-row'>
             {sportsNews.map((article: Article, index) => (
               <div key={index} className='article-box'>
