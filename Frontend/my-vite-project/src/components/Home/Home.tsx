@@ -60,6 +60,9 @@ const HomePage: React.FC = () => {
     slidesToShow: 1,
     slidesToScroll: 1,
     autoplay: true,
+    autoplaySpeed: 2000,
+    cssEase: 'linear',
+    pauseOnHover: true
   };
 
   return (
@@ -97,24 +100,21 @@ const HomePage: React.FC = () => {
                     </div>
                   </div>
                   {index < 2 && <div className="h_line"></div>}
-                </Fragment>
-                
+                </Fragment>          
               )))}
-
             </div>
           </div>
         </div>
 
         <div className='world-news'>
           <div className='text-box'>
-            <h2 className='subheading'>World News</h2>
+            <h2 className='subheading'>World</h2>
             <Link to='/World' className='see-all'>See all</Link>
           </div>
           <div className='header-line'></div>
 
           <div className='article-row'>
             {worldNews.map((article: Article, index) => ( 
-
               <div key={index} className='article-box'>
                 <img src={article.top_image}></img>
                 <div className='article-details'>
@@ -135,7 +135,31 @@ const HomePage: React.FC = () => {
 
           <div className='carousel-row'>
             <div className='article-grid'>
+              <div className='col'>
+                
+                {politicalNews.length > 0 && (politicalNews.slice(1,4).map((article: Article, index) => (
+                <Fragment key={index}>
+                  <div className='grid-box'>
+                    <p className='source'> {article.source} </p>
+                    <p className='title'> {article.title} </p>
+                  </div>
+                  {index < 2 && <div className="grid-line"></div>}
+                </Fragment>
+                
+              )))}
+              </div>
 
+               <div className='col'>
+                {politicalNews.length > 0 && (politicalNews.slice(1,4).map((article: Article, index) => (
+                <Fragment key={index}>
+                  <div className='grid-box'>
+                    <p className='source'> {article.source} </p>
+                    <p className='title'> {article.title} </p>
+                  </div>
+                  {index < 2 && <div className="grid-line"></div>}
+                </Fragment>
+              )))}
+              </div>
             </div>
 
             <div className='carousel-component'>
@@ -144,25 +168,19 @@ const HomePage: React.FC = () => {
                   <div className='carousel-slide'>
                     <img src={article.top_image}></img>
                     <div className='overlay'>
-                      <p className='source'> {article.source} </p>
-                      <p className='title'> {article.title} </p>
-
+                      <p className='carousel-source'> {article.source} </p>
+                      <p className='carousel-title'> {article.title} </p>
                     </div>
-                    
                   </div>
                 ))}
-
               </Slider>
-
             </div>
-           
-        
           </div>
         </div>
 
         <div className='sports-news'>
           <div className='text-box'>
-            <h2 className='subheading'>Sports News</h2>
+            <h2 className='subheading'>Sports</h2>
             <Link to='/Sports' className='see-all'>See all</Link>
           </div>
           <div className='header-line'></div>
@@ -179,7 +197,6 @@ const HomePage: React.FC = () => {
           </div>
         </div>
       </div>
-
     </div>
     
   )
