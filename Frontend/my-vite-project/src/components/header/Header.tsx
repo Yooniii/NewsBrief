@@ -39,9 +39,9 @@ const Header = () => {
               <li> <Link to='/Tech' style={linkStyle}>Tech</Link></li>
               <li><Link to='/Entertainment' style={linkStyle}>Entertainment</Link></li>
               <li><Link to='/Politics' style={linkStyle}>Politics</Link></li>
-              <li><Link to='/Politics' style={linkStyle}>Sports</Link></li>
-              <li><Link to='/Politics' style={linkStyle}>Science</Link></li>
-              <li><Link to='/Politics' style={linkStyle}>Health</Link></li>
+              <li><Link to='/Sports' style={linkStyle}>Sports</Link></li>
+              <li><Link to='/Science' style={linkStyle}>Science</Link></li>
+              <li><Link to='/Health' style={linkStyle}>Health</Link></li>
             </ul>
           </div>
           

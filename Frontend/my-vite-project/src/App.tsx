@@ -1,5 +1,4 @@
 import Header from './components/Header/Header';
-import SideNav from './components/SideNav/SideNav';
 import ArticleList from './components/ArticleList/ArticleList'
 import HomePage from './components/Home/Home';
 import ScrollToTop from './components/ScrollToTop/ScrollToTop'
