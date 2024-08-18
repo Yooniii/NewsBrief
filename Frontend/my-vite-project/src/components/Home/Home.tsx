@@ -6,6 +6,7 @@ import { Article } from '../Card/Card'
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from 'react-slick';
+import LinkIcon from '../../assets/Link.png'
 
 const HomePage: React.FC = () => {
   const [worldNews, setWorldNews] = useState<Article[]>([]);
@@ -198,6 +199,8 @@ const HomePage: React.FC = () => {
           </div>
         </div>
       </div>
+
+      <footer></footer>
     </div>
     
   )
