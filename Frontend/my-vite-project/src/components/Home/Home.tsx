@@ -202,7 +202,6 @@ const HomePage: React.FC = () => {
 
       <footer></footer>
     </div>
-    
   )
 }
 
