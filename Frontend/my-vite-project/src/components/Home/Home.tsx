@@ -26,15 +26,14 @@ const HomePage: React.FC = () => {
           article.category === category
         );
 
-        for (let count = 0; count < articleCount + 4; ++count) {
-          if (articlesWithImages.length == articleCount) {
-            break;
-          }
+        let count = 0;
 
+        while (articlesWithImages.length != articleCount) {
           let article = filteredArticles[count];
-
+          
           if (article.top_image != '') {
             articlesWithImages.push(article);
+            count++;
           }
         }
 
