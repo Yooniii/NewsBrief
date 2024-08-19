@@ -23,21 +23,10 @@ const HomePage: React.FC = () => {
         const response = await axios.get('http://127.0.0.1:8000/articles/');
     
         const filteredArticles = response.data.filter((article: Article) =>
-          article.category === category
+          article.category === category && article.top_image != ''
         );
 
-        let count = 0;
-
-        while (articlesWithImages.length != articleCount) {
-          let article = filteredArticles[count];
-          
-          if (article.top_image != '') {
-            articlesWithImages.push(article);
-            count++;
-          }
-        }
-
-        return articlesWithImages
+        return filteredArticles.slice(0, articleCount)
 
       } catch (error) {
         console.error('Error fetching articles:', error);
