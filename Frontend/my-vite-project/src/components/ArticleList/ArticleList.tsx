@@ -18,6 +18,8 @@ const ArticleList = () => {
   const [hasMore, setHasMore] = useState<boolean>(true);
   const [index, setIndex] = useState(3);
 
+  
+
   useEffect(() => {
     const fetchData = async () => {
       try {
