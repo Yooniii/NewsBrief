@@ -10,6 +10,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@google/generative-ai": "^0.17.0",
     "bootstrap": "^5.3.3",
     "fullpage.js": "^4.0.26",
     "install": "^0.13.0",
