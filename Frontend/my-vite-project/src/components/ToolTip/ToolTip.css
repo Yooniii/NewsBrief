@@ -1,0 +1,14 @@
+.tool-tip-container {
+  position: absolute;
+}
+
+.tool-tip-container button {
+  background-color: rgb(0, 0, 0, 0.9);
+  position: absolute; 
+  color: white;
+  padding: 0.5rem 0.5rem;
+  border-radius: 4px;
+  width: 6rem;
+  height: 2.5rem;
+  text-align: center;
+}
