@@ -1,7 +1,5 @@
 import os
-import google.generativeai as genai
 from transformers import AutoTokenizer, AutoModelForSeq2SeqLM
-from dotenv import load_dotenv
 import google.generativeai as genai
 
 
@@ -10,17 +8,17 @@ def clean_summary(summary, title):
   genai.configure(api_key=os.getenv('GENAI_API_KEY'))
 
   generation_config = {
-        "temperature": 1,
-        "top_p": 0.95,
-        "top_k": 64,
-        "max_output_tokens": 8192,
-        "response_mime_type": "text/plain",
-    }
+    "temperature": 1,
+    "top_p": 0.95,
+    "top_k": 64,
+    "max_output_tokens": 8192,
+    "response_mime_type": "text/plain",
+  }
 
   genai_model = genai.GenerativeModel(
-        model_name='gemini-1.5-flash',
-        generation_config=generation_config,
-    )
+    model_name='gemini-1.5-flash',
+    generation_config=generation_config,
+  )
 
   cleaned_summary = genai_model.generate_content(
     f"""Please refine and reformat the following news article summary according

@@ -7,8 +7,6 @@ from .decode_url import decode_google_news_url
 from .scrape import scrape
 from .summarize import summarize
 import feedparser
-import requests
-import os
 import concurrent.futures
 
 class BackgroundClass:
