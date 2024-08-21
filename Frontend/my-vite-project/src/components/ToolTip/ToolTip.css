@@ -1,6 +1,7 @@
 .tool-tip-container {
   position: absolute;
   height: 0;
+  z-index: 1000;
 }
 
 .tool-tip-container button {
@@ -12,6 +13,8 @@
   width: 5.5rem;
   height: 2.3rem;
   text-align: center;
+  
+  
 }
 
 .options-container {
@@ -22,6 +25,7 @@
   height: 10rem;
   top: 3rem;
   position: absolute;
+  border-radius: 0.5rem;
 }
 
 .gpt-input {
@@ -32,6 +36,7 @@
   outline: none;
   padding: 0.5rem 1rem;
   background-color: #fbfbfb;
+  border-radius: 0.5rem;
 }
 
 .gpt-options {
@@ -45,6 +50,7 @@
   height: 100%;
   padding-top: 0.3rem;
   padding-left: 1rem;
+  border-radius: 0.5rem;
 
 
 }

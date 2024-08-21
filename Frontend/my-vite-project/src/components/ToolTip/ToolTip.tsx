@@ -30,8 +30,13 @@ const ToolTip = () => {
         setIsVisible(true);
 
         if (rectangle) {
+          const lineHeight = parseInt(window.getComputedStyle(document.body).lineHeight, 10) || 20;
+          const isSingleLine = (rectangle.bottom - rectangle.top) < lineHeight;
+
           setPosition({
-            top: rectangle.top + window.scrollY - 43,
+            top: isSingleLine
+              ? rectangle.bottom + window.scrollY // Position closer for single-line text
+              : rectangle.bottom + window.scrollY + 10, // Adjust for multi-line text
             left: rectangle.left + window.scrollX + (rectangle.width / 2) - (toolTipWidth / 2),
           });
         }
