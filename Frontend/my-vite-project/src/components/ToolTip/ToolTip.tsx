@@ -6,7 +6,7 @@ import CloseModalComponent from '../Modal/CloseModal';
 const genAI = new GoogleGenerativeAI('AIzaSyCNA7BjxzDJz2UGz5GAyWqryzthajGAGzo');
 const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
 
-const ToolTip = async () => {
+const ToolTip = () => {
   const toolTipRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
   const optionsRef = useRef<HTMLDivElement>(null);
@@ -104,12 +104,18 @@ const ToolTip = async () => {
 
   const handleClick = async (type: string) => {
 
-    const prompt = `Based on the selected option: ${type}, please provide a simple 
-    explanation, definition, or background information for the following text: 
-    ${selectedText}. If the provided text is incoherent, incomplete, or 
-    irrelevant to the selected option, respond with: 
-    'It seems nothing meaningful was highlighted or typed. Please highlight 
-    text or enter your query.`
+    const prompts = {
+      clarify: `Please provide a simple explanation for the following text: ${selectedText}.`,
+      define: `Please provide a simple definition for the following term: ${selectedText}.`,
+      background: `Please provide some information on who the following person/organization/entity is: ${selectedText}.`
+    }
+
+    const disclaimer = `Provide a concise answer and avoid unnecessary information. 
+    If the provided text is irrelevant to the selected option,
+    respond with: 'It seems nothing meaningful was highlighted or typed. 
+    Please highlight text or enter your query.`
+
+    const prompt = `${prompts[type as keyof typeof prompts]} ${disclaimer}`;
 
     try {
       const result = await model.generateContent(prompt);
