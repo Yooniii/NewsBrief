@@ -86,12 +86,7 @@ const ToolTip = () => {
   //   setCloseModal(true);
   // }
 
-  const handleSearch = async (event: React.FormEvent) => {
-    event.preventDefault(); 
-    const prompt = `Please perform the following instructions. If nonsensical
-    input is provided, do not return anything.
-    Here are the instructions: ${gptPrompt}`;
-
+  const generateResponse = async(prompt: string) => {
     try {
       const result = await model.generateContent(prompt);
       const text = await result.response.text(); 
@@ -101,7 +96,15 @@ const ToolTip = () => {
     } catch (error) {
       console.error('Error generating content:', error);
     }
+  }
 
+  const handleSearch = async (event: React.FormEvent) => {
+    event.preventDefault(); 
+    const prompt = `Please perform the following instructions. If nonsensical
+    input is provided, do not return anything.
+    Here are the instructions: ${gptPrompt}`;
+
+    generateResponse(prompt);
     setGptPrompt('');
   };
 
@@ -110,7 +113,7 @@ const ToolTip = () => {
     const prompts = {
       clarify: `Please provide a simple explanation for the following text: ${selectedText}.`,
       define: `Please provide a simple definition for the following term: ${selectedText}.`,
-      background: `Please provide some information on who the following person/organization/entity is: ${selectedText}.`
+      background: `Please provide some information on who the following person/organization/entity is: ${selectedText}.`,
     }
 
     const disclaimer = `Provide a concise answer and avoid unnecessary information. 
@@ -119,17 +122,7 @@ const ToolTip = () => {
     Please highlight text or enter your query.`
 
     const prompt = `${prompts[type as keyof typeof prompts]} ${disclaimer}`;
-
-    try {
-      const result = await model.generateContent(prompt);
-      const text = await result.response.text(); 
-      setGptResponse(text);
-      setShowForm(false);
-      setShowResponse(true);
-      console.log(text);
-    } catch (error) {
-      console.error('Error generating content:', error);
-    }
+    generateResponse(prompt);
   };
 
   return (
@@ -151,7 +144,7 @@ const ToolTip = () => {
 
         {showForm && (
           <div className='options-container'>
-            <form onSubmit={handleSearch} > 
+            <form className='gpt-form' onSubmit={handleSearch} > 
               <input 
                 ref={inputRef}
                 id='gpt-input'

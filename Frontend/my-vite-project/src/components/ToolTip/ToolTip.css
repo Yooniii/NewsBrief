@@ -21,6 +21,10 @@
   border-radius: 0.5rem;
 }
 
+.gpt-form {
+  background-color: transparent;
+}
+
 .gpt-input {
   box-shadow: 0 0 0.4rem rgba(210, 206, 206, 0.5);
   border: none;
@@ -31,6 +35,7 @@
   padding: 0.5rem 1rem;
   background-color: white;
   border-radius: 0.5rem;
+
 }
 
 .gpt-options {
@@ -42,8 +47,7 @@
   border-radius: 0.5rem;
   background-color: white;
   padding: 0.7rem;
-  justify-content: flex-start;
-  width: 30rem;
+  width: 30rem
 }
 
 .gpt-input::-webkit-search-cancel-button {
@@ -52,8 +56,10 @@
 }
 
 .response-container {
+  box-shadow: 0 0 0.4rem rgba(210, 206, 206, 0.5);
   font-size: 0.9rem;
   height: auto;
-  padding-left: 1rem;
-  padding-top: 1rem;
+  padding: 0.5rem 1.2rem;
+  background-color: white;
+  border-radius: 0.5rem;
 }
