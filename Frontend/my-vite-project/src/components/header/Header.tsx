@@ -6,7 +6,6 @@ import search from '../../assets/Search.png';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 
 const Header = () => {
-  const [searchParams, setSearchParams] = useSearchParams();
   const [inputValue, setInputValue] = useState('');
   const navigate = useNavigate();
 
