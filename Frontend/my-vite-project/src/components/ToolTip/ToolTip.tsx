@@ -8,8 +8,6 @@ const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
 
 const ToolTip = () => {
   const toolTipRef = useRef<HTMLDivElement>(null);
-  const inputRef = useRef<HTMLInputElement>(null);
-  const optionsRef = useRef<HTMLDivElement>(null);
 
   const [selectedText, setSelectedText] = useState('');
   const [position, setPosition] = useState({ top: 0, left: 0 });
@@ -29,35 +27,28 @@ const ToolTip = () => {
       if (text) {
         const range = window.getSelection()?.getRangeAt(0);
         const rectangle = range?.getBoundingClientRect();
-        const toolTipWidth = 96;
-        console.log(text);
+
         setSelectedText(text);
         setIsVisible(true);
 
         if (rectangle) {
-          const lineHeight = parseInt(window.getComputedStyle(document.body).lineHeight, 10) || 20;
-          const isSingleLine = (rectangle.bottom - rectangle.top) < lineHeight;
+
+          const topPosition = rectangle.bottom + window.scrollY + 10; 
+          const leftPosition = (window.innerWidth / 2) - (toolTipRef.current?.offsetWidth || 0) / 2;
 
           setPosition({
-            top: isSingleLine
-              ? rectangle.bottom + window.scrollY 
-              : rectangle.bottom + window.scrollY + 10, 
-            left: rectangle.left + window.scrollX + (rectangle.width / 2) - (toolTipWidth / 2),
+            top: topPosition,
+            left: leftPosition,
           });
         }
-      } else {
-        setSelectedText('');
-      }
+      } 
     };
 
     const handleClickOutside = (event: MouseEvent) => {
+      console.log('click outside')
       if (
         toolTipRef.current &&
-        !toolTipRef.current.contains(event.target as Node) &&
-        inputRef.current &&
-        !inputRef.current.contains(event.target as Node) &&
-        optionsRef.current &&
-        !optionsRef.current.contains(event.target as Node)
+        !toolTipRef.current.contains(event.target as Node) 
       ) {
         console.log('Click outside detected');
         setShowForm(false);
@@ -67,7 +58,6 @@ const ToolTip = () => {
         setGptPrompt('');
       }
     }
-
     document.addEventListener('mouseup', handleMouseUp);
     document.addEventListener('mousedown', handleClickOutside);
 
@@ -102,7 +92,7 @@ const ToolTip = () => {
     event.preventDefault(); 
     const prompt = `Please perform the following instructions. If nonsensical
     input is provided, do not return anything.
-    Here are the instructions: ${gptPrompt}`;
+    Here are the instructions: ${gptPrompt} and the corresponding input: ${selectedText}`;
 
     generateResponse(prompt);
     setGptPrompt('');
@@ -135,7 +125,7 @@ const ToolTip = () => {
           left: `${position.left}px`,
         }}
       >
-        <div className='gpt-options' ref={optionsRef}>
+        <div className='gpt-options'>
           <button onClick={() => setShowForm(true)}>Ask AI</button>
           <button onClick={() => handleClick('clarify')}>Clarify This</button>
           <button onClick={() => handleClick('define')}>Define This</button>
@@ -146,7 +136,6 @@ const ToolTip = () => {
           <div className='options-container'>
             <form className='gpt-form' onSubmit={handleSearch} > 
               <input 
-                ref={inputRef}
                 id='gpt-input'
                 className='gpt-input'
                 type='search'
