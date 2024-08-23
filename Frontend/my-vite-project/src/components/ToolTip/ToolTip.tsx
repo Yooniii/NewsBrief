@@ -32,9 +32,14 @@ const ToolTip = () => {
         setIsVisible(true);
 
         if (rectangle) {
+          let topPosition = rectangle.bottom + window.scrollY + 10; 
+          let leftPosition = rectangle.left + window.scrollX;
 
-          const topPosition = rectangle.bottom + window.scrollY + 10; 
-          const leftPosition = (window.innerWidth / 2) - (toolTipRef.current?.offsetWidth || 0) / 2;
+          const tooltipWidth = 480;
+
+          if (leftPosition + tooltipWidth > window.innerWidth) {
+            leftPosition = window.innerWidth - tooltipWidth - 50; 
+          }
 
           setPosition({
             top: topPosition,
