@@ -2,6 +2,9 @@ import './ToolTip.css'
 import { useState, useEffect, useRef } from 'react'
 import { GoogleGenerativeAI } from '@google/generative-ai'; 
 import CloseModalComponent from '../Modal/CloseModal';
+import { CiCircleQuestion } from "react-icons/ci";
+import { FaBook } from "react-icons/fa";
+import { PiSparkleFill } from "react-icons/pi";
 
 const genAI = new GoogleGenerativeAI('AIzaSyCNA7BjxzDJz2UGz5GAyWqryzthajGAGzo');
 const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
@@ -35,10 +38,10 @@ const ToolTip = () => {
           let topPosition = rectangle.bottom + window.scrollY + 10; 
           let leftPosition = rectangle.left + window.scrollX;
 
-          const tooltipWidth = 480;
+          const tooltipWidth = 400;
 
           if (leftPosition + tooltipWidth > window.innerWidth) {
-            leftPosition = window.innerWidth - tooltipWidth - 50; 
+            leftPosition = window.innerWidth - tooltipWidth - 60; 
           }
 
           setPosition({
@@ -97,7 +100,7 @@ const ToolTip = () => {
     event.preventDefault(); 
     const prompt = `Please perform the following instructions. If nonsensical
     input is provided, do not return anything.
-    Here are the instructions: ${gptPrompt} and the corresponding input: ${selectedText}`;
+    Here are the instructions: ${gptPrompt} and the corresponding input if needed: ${selectedText}`;
 
     generateResponse(prompt);
     setGptPrompt('');
@@ -106,15 +109,15 @@ const ToolTip = () => {
   const handleClick = async (type: string) => {
 
     const prompts = {
-      clarify: `Please provide a simple explanation for the following text: ${selectedText}.`,
+      explain: `Please provide a simple explanation for the following text: ${selectedText}.`,
       define: `Please provide a simple definition for the following term: ${selectedText}.`,
-      background: `Please provide some information on who the following person/organization/entity is: ${selectedText}.`,
     }
 
     const disclaimer = `Provide a concise answer and avoid unnecessary information. 
+    Present the response in plain text and avoid any use of asterisks.
     If the provided text is irrelevant to the selected option,
     respond with: 'It seems nothing meaningful was highlighted or typed. 
-    Please highlight text or enter your query.`
+    Please highlight text or enter your query. `
 
     const prompt = `${prompts[type as keyof typeof prompts]} ${disclaimer}`;
     generateResponse(prompt);
@@ -131,10 +134,13 @@ const ToolTip = () => {
         }}
       >
         <div className='gpt-options'>
-          <button onClick={() => setShowForm(true)}>Ask AI</button>
-          <button onClick={() => handleClick('clarify')}>Clarify This</button>
-          <button onClick={() => handleClick('define')}>Define This</button>
-          <button onClick={() => handleClick('background')}>Background</button>
+          <button className='ai-btn'onClick={() => setShowForm(true)}>
+            <PiSparkleFill /> Ask AI </button>
+          <button className='explain-btn' onClick={() => handleClick('explain')}>
+            <CiCircleQuestion /> Explain This 
+          </button>
+          <button className='define-btn' onClick={() => handleClick('define')}>
+            <FaBook />Define This</button>
         </div>
 
         {showForm && (
