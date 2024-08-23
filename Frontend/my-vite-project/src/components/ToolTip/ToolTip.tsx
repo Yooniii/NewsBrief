@@ -17,6 +17,7 @@ const ToolTip = () => {
   const [showForm, setShowForm] = useState(false);
 
   const [showCloseModal, setCloseModal] = useState(false);
+  const [showResponse, setShowResponse] = useState(false);
 
   const [gptPrompt, setGptPrompt] = useState('');
   const [gptResponse, setGptResponse] = useState('');
@@ -62,6 +63,7 @@ const ToolTip = () => {
         setShowForm(false);
         setIsVisible(false);
         setCloseModal(true);
+        setGptResponse('');
         setGptPrompt('');
       }
     }
@@ -88,12 +90,13 @@ const ToolTip = () => {
     event.preventDefault(); 
     const prompt = `Please perform the following instructions. If nonsensical
     input is provided, do not return anything.
-    Here are the instructions: ${selectedText}`;
+    Here are the instructions: ${gptPrompt}`;
 
     try {
       const result = await model.generateContent(prompt);
-      const text = result.response.text(); 
+      const text = await result.response.text(); 
       setGptResponse(text);
+      setShowResponse(true);
       console.log(text);
     } catch (error) {
       console.error('Error generating content:', error);
@@ -119,8 +122,10 @@ const ToolTip = () => {
 
     try {
       const result = await model.generateContent(prompt);
-      const text = result.response.text(); 
+      const text = await result.response.text(); 
       setGptResponse(text);
+      setShowForm(false);
+      setShowResponse(true);
       console.log(text);
     } catch (error) {
       console.error('Error generating content:', error);
@@ -137,9 +142,14 @@ const ToolTip = () => {
           left: `${position.left}px`,
         }}
       >
-        <button onClick={() => setShowForm(true)}>Ask AI</button>
+        <div className='gpt-options' ref={optionsRef}>
+          <button onClick={() => setShowForm(true)}>Ask AI</button>
+          <button onClick={() => handleClick('clarify')}>Clarify This</button>
+          <button onClick={() => handleClick('define')}>Define This</button>
+          <button onClick={() => handleClick('background')}>Background</button>
+        </div>
 
-        {showForm ? (
+        {showForm && (
           <div className='options-container'>
             <form onSubmit={handleSearch} > 
               <input 
@@ -155,12 +165,14 @@ const ToolTip = () => {
               <img className='search-icon' src={search} alt='Search' />
             </button> */}
             </form>
-            <div className='gpt-options' ref={optionsRef}>
-              <button onClick={() => handleClick('clarify')}>Clarify This</button>
-              <button onClick={() => handleClick('define')}>Define This</button>
-              <button onClick={() => handleClick('background')}>Background</button>
-            </div>
-          </div> ) : null}
+            
+          </div> )}
+
+        {showResponse && (
+          <div className='response-container'>
+            <p className='response-text'>{gptResponse}</p>
+          </div>
+        )}
         {/* <div>{gptResponse}</div> */}
 
         {/* {showCloseModal ? (
