@@ -11,15 +11,6 @@
   border-radius: 4px;
 }
 
-.options-container {
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-  width: 26rem;
-  top: 3rem;
-  border-radius: 0.5rem;
-}
-
 .gpt-options {
   box-shadow: 0 0 0.4rem rgba(210, 206, 206, 0.5);
   background-color: #fbfbfb;
@@ -42,8 +33,18 @@
   margin-right: 0.3rem;
 }
 
+.search-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  width: 26rem;
+  top: 3rem;
+  border-radius: 0.5rem;
+}
+
 .gpt-form {
   background-color: transparent;
+  display: absolute;
 }
 
 .gpt-input {
@@ -54,6 +55,7 @@
   font-size: 0.9rem;
   outline: none;
   padding: 0.5rem 1rem;
+  padding-right: 2rem;
   background-color: white;
   border-radius: 0.5rem;
 }
@@ -61,6 +63,13 @@
 .gpt-input::-webkit-search-cancel-button {
   -webkit-appearance: none;
   appearance: none;
+}
+
+.ai-search-btn {
+  padding: 0;
+  position: absolute;
+  right: 1rem;
+
 }
 
 .response-container {

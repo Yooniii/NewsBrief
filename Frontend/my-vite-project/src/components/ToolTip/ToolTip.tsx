@@ -5,6 +5,9 @@ import CloseModalComponent from '../Modal/CloseModal';
 import { CiCircleQuestion } from "react-icons/ci";
 import { FaBook } from "react-icons/fa";
 import { PiSparkleFill } from "react-icons/pi";
+import { useSpring, animated } from '@react-spring/web'
+import { IoIosSearch } from "react-icons/io";
+
 
 const genAI = new GoogleGenerativeAI('AIzaSyCNA7BjxzDJz2UGz5GAyWqryzthajGAGzo');
 const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
@@ -53,7 +56,6 @@ const ToolTip = () => {
     };
 
     const handleClickOutside = (event: MouseEvent) => {
-      console.log('click outside')
       if (
         toolTipRef.current &&
         !toolTipRef.current.contains(event.target as Node) 
@@ -123,6 +125,19 @@ const ToolTip = () => {
     generateResponse(prompt);
   };
 
+  //   const showGptResponse = () => {
+  //     const props = useSpring({
+  //       from: { opacity: 0, transform: 'translateY(10px)' },
+  //       to: { opacity: 1, transform: 'translateY(0px)' },
+  //     });
+      
+  //     return (
+  //     <animated.div className='response-container' style={props}>
+  //       <p className='response-text'>{gptResponse}</p>
+  //     </animated.div>
+  //   );
+  // };
+
   return (
     isVisible ? (
       <div 
@@ -144,7 +159,7 @@ const ToolTip = () => {
         </div>
 
         {showForm && (
-          <div className='options-container'>
+          <div className='search-wrapper'>
             <form className='gpt-form' onSubmit={handleSearch} > 
               <input 
                 id='gpt-input'
@@ -154,9 +169,9 @@ const ToolTip = () => {
                 value={gptPrompt} 
                 onChange={(e) => setGptPrompt(e.target.value)} 
               />
-            {/* <button type='submit'>
-              <img className='search-icon' src={search} alt='Search' />
-            </button> */}
+              <button className='ai-search-btn' type='submit'>
+                <IoIosSearch />
+              </button>
             </form>
             
           </div> )}
@@ -165,6 +180,7 @@ const ToolTip = () => {
           <div className='response-container'>
             <p className='response-text'>{gptResponse}</p>
           </div>
+          // showGptResponse()
         )}
         {/* <div>{gptResponse}</div> */}
 
