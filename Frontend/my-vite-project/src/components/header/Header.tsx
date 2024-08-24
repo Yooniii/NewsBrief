@@ -1,5 +1,6 @@
-import React, { Fragment, useState } from 'react';
-import { useSearchParams, Link, useNavigate } from 'react-router-dom';
+import React, { Fragment, useState, useRef, useEffect } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import { IoIosMenu, IoIosSearch } from "react-icons/io";
 
 import './Header.css';
 import search from '../../assets/Search.png';
@@ -7,7 +8,35 @@ import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 
 const Header = () => {
   const [inputValue, setInputValue] = useState('');
+  const [openMenu, setOpenMenu] = useState(false)
+  const [showSearchBar, setShowSearchBar] = useState(false)
+  const [showIcon, setShowIcon] = useState(true); // Manage icon visibility
+
   const navigate = useNavigate();
+  const navRef = useRef<HTMLDivElement>(null);
+
+  const handleSearchIconClick = () => {
+    setShowSearchBar((prev) => !prev);
+    setShowIcon((prev) => !prev); 
+  };
+
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (openMenu &&
+        navRef.current && 
+        !navRef.current.contains(event.target as Node)) {
+        setOpenMenu(false)
+      }
+    }
+    document.addEventListener('mousedown', handleClickOutside);
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+
+  }, [openMenu])
+  
 
 
   const handleSearch = (event: React.FormEvent) => {
@@ -29,6 +58,37 @@ const Header = () => {
     <Fragment>
       <div className='header'> 
         <Link to="/home" className="logo">NewsBrief</Link>
+
+        <div className='nav-toggle' onClick={() => setOpenMenu((prev) => !prev)}>
+          <IoIosMenu size={27} style={{backgroundColor: 'transparent'}}/>
+        
+          {openMenu && (
+            <div className='menu-container' ref={navRef}>
+              <form onSubmit={handleSearch}>
+                <input 
+                  className='toggle-search'
+                  type='search'
+                  placeholder='Search...'
+                  value={inputValue} 
+                  onChange={(e) => setInputValue(e.target.value)} 
+                />
+              </form>
+
+
+              <Link to="/home" style={linkStyle} className="link">Home</Link>
+              <Link to='/Top Stories' style={linkStyle}>Top Stories</Link>
+              <Link to='/World' style={linkStyle}>World</Link>
+              <Link to='/Business' style={linkStyle}>Business</Link>
+              <Link to='/Tech' style={linkStyle}>Tech</Link>
+              <Link to='/Entertainment' style={linkStyle}>Entertainment</Link>
+              <Link to='/Politics' style={linkStyle}>Politics</Link>
+              <Link to='/Sports' style={linkStyle}>Sports</Link>
+              <Link to='/Science' style={linkStyle}>Science</Link>
+              <Link to='/Health' style={linkStyle}>Health</Link>
+            </div>
+          )}
+        </div>
+
         <div className='right-section'>
           <Link to="/home" className="link">Home</Link>
           <div className="dropdown">
@@ -50,7 +110,6 @@ const Header = () => {
           
           <form onSubmit={handleSearch}>
             <input 
-              id='search-bar'
               className='search-bar'
               type='search'
               placeholder='Search...'
@@ -58,10 +117,12 @@ const Header = () => {
               onChange={(e) => setInputValue(e.target.value)} 
             />
             <button type='submit'>
-              <img className='search-icon' src={search} alt='Search' />
+              <IoIosSearch style={{
+                marginLeft: '-3.6rem', backgroundColor: 'transparent'}}/>
             </button>
           </form>
         </div>
+        
         
       </div>
     </Fragment>    

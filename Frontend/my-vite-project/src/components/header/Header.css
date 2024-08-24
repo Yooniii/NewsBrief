@@ -1,3 +1,5 @@
+
+
 .header, .logo, form, form:hover input, form input, a {
   background-color: transparent;
 }
@@ -65,7 +67,7 @@ form {
   align-items: center;
 }
 
-.search-bar {
+.search-bar, .toggle-search {
   border: none;
   outline: none;
   height: 2.5rem;
@@ -74,16 +76,8 @@ form {
   font-size: 0.9rem;
   padding: 0.5rem 1.5rem;
   padding-right: 2.5rem;
-  border-radius: 1.3rem;
+  border-radius: 0.6rem;
   background-color: #f7f8f9;
-}
-
-.search-icon {
-  background-color: transparent;
-  height: 0.9rem;
-  width: 1rem;
-  opacity: 0.5;
-  margin-left: -4rem;
 }
 
 .search-bar::-webkit-search-cancel-button {
@@ -94,4 +88,48 @@ form {
 button {
   border: none;
   background-color: transparent;
+}
+
+.nav-toggle {
+  cursor: pointer;
+  display: none;
+  background-color: transparent;
+  position: relative;
+}
+
+@media (min-width: 769px) {
+  .menu-container {
+    display: none;
+  }
+}
+
+@media (max-width: 768px) {
+  .nav-toggle {
+    display: block;
+  }
+
+  .right-section {
+    display: none;
+  }
+
+  .toggle-search {
+    width: 14rem;
+    height: 2.8rem;
+    padding-left: 1rem;
+    margin-left: -0.3rem;
+    font-size: 1rem;
+  }
+
+  .menu-container {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    position: absolute;
+    box-shadow: 0 0 0.4rem rgba(210, 206, 206, 0.5);
+    padding: 1rem 1.3rem;
+    padding-bottom: 1.5rem;
+    left: -14rem;
+    top: 3rem;
+  }
 }
