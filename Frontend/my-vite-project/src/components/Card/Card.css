@@ -10,10 +10,10 @@ ul, .text, .source, .date, .summary, .read-more-btn, .btn-wrap, h2,
   flex-direction: column;
   box-sizing: border-box;
   border-radius: 1rem;
-  margin-bottom: 3rem;
   padding: 3rem 2.5rem;
   box-shadow: 0 0 0.4rem rgba(210, 206, 206, 0.5);
   margin-top: 1rem;
+  margin-bottom: 3rem;
   margin-left: 0.2rem;
   margin-right: 0.2rem;
 }
