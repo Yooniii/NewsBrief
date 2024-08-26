@@ -100,12 +100,23 @@ li.summary, .read-more {
   justify-content: flex-end;
   align-items: center;
   margin-top: 0.5rem;
-  gap: 0.8rem;
+  gap: 0.5rem;
 }
 
-.link-icon, .share-icon {
-  height: 1.1rem;
-  cursor: pointer;
+@media (max-width: 768px) {
+  .preview {
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .article-title {
+    font-size: 1.4rem;
+    line-height: 2.2rem;
+  }
+
+  .source, .date, .summary, .read-more {
+    font-size: 0.9rem;
+    color: #404040;
+  }
+
 }
-
-

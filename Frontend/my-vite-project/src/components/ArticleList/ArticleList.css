@@ -1,3 +1,11 @@
+.article-list {
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  justify-content: center;
+  padding: 3rem 8.5rem;
+  margin-top: 4rem;
+}
 
 .category {
   margin-top: -4.6rem;
@@ -24,3 +32,4 @@
   font-size: 1.3rem;
   font-family: 'Inter-Regular';
 }
+

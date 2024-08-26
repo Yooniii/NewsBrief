@@ -33,17 +33,8 @@ body {
   justify-content: center;
 }
 
-.content {
+/* .content {
   display: flex;
   flex-direction: row;
   align-items: flex-start;
-}
-
-.article-list {
-  display: flex;
-  flex-direction: column;
-  box-sizing: border-box;
-  justify-content: center;
-  padding: 3rem 9rem;
-  margin-top: 4rem;
-}
+} */

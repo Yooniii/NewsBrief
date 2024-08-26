@@ -1,13 +1,11 @@
 import { Fragment, useState, useEffect } from 'react';
-import LoadingCard from '../Loading/LoadingCard';
 import './Card.css';
 import TimeAgo from 'timeago-react';
 import { useSpring, animated } from 'react-spring';
-import linkIcon from '../../assets/Link.png';
-import shareIcon from '../../assets/Share.png';
 import ReactPlayer from 'react-player';
 import ModalComponent from '../Modal/Modal';
-import CustomSkeleton from '../Loading/Skeleton';
+import { GoLinkExternal } from "react-icons/go";
+import { IoShareSocialOutline } from "react-icons/io5";
 
 export interface Article {
   key: string;
@@ -80,10 +78,10 @@ const ArticleCard: React.FC<Article> =
 
         <div className='btn-container'>
           <a href={link} target='_blank'>
-            <img src={linkIcon} className='link-icon'></img>
+            <GoLinkExternal size={20}/>
           </a>
           <button className='share-btn' onClick={() => setShowModal(true)}>
-            <img src={shareIcon} className='share-icon'></img>
+            <IoShareSocialOutline size={21} style={{marginBottom: '0.01rem'}}/>
           </button>
         </div>
         <ModalComponent 

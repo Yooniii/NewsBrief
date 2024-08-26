@@ -1,6 +1,6 @@
 import { useEffect, Fragment } from 'react';
 import { useLocation } from 'react-router-dom';
-import ScrollIcon from '../../assets/Scroll.png';
+import { IoIosArrowUp } from "react-icons/io";
 
 const ScrollToTop = () => {
   const pathName = useLocation();
@@ -15,17 +15,14 @@ const ScrollToTop = () => {
   return (
     <Fragment>
       <button onClick={handleScrollToTop}>
-         <img src={ScrollIcon} style={{
-          height: '0.8rem',
-          width: '1.5rem',
+         <IoIosArrowUp size={35} style={{
           zIndex: '1',
           position: 'fixed',
           bottom: '2rem',
           right: '2.5rem',
           cursor: 'pointer',
           backgroundColor: 'transparent'
-        }}> 
-        </img>
+        }} /> 
       </button>
       
     </Fragment>
