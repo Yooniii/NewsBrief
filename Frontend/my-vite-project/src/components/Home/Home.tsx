@@ -14,10 +14,8 @@ const HomePage: React.FC = () => {
   const [topStories, setTopStories] = useState<Article[]>([]);
   const [politicalNews, setPoliticalNews] = useState<Article[]>([]);
 
-
   useEffect(() => {
     const fetchArticles = async (category: string, articleCount: number) => {
-      let articlesWithImages = [];
 
       try {
         const response = await axios.get('http://127.0.0.1:8000/articles/');
@@ -127,17 +125,16 @@ const HomePage: React.FC = () => {
           <div className='carousel-row'>
             <div className='article-grid'>
               <div className='grid-col'>
-                
                 {politicalNews.length > 0 && (politicalNews.slice(0,3).map((article: Article, index) => (
                 <Fragment key={index}>
                   <div className='grid-box'>
                     <p className='source'> {article.source} </p>
                     <p className='title'> {article.title} </p>
+                    {index < 2 && <div className="grid-line"></div>}
                   </div>
-                  {index < 2 && <div className="grid-line"></div>}
                 </Fragment>
-                
               )))}
+              
               </div>
                <div className='grid-col'>
                 {politicalNews.length > 0 && (politicalNews.slice(4, 7).map((article: Article, index) => (

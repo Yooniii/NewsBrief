@@ -1,5 +1,5 @@
 .home-container {
-  padding: 0 9rem;
+  padding: 0 8rem;
 }
 
 .col {
@@ -69,7 +69,7 @@
 .headline-box .article-details {
   background-color: rgb(248, 248, 248);
   border-radius: 0.8rem;
-  padding: 1.5rem 1.8rem;
+  padding: 1.5rem 1.5rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -111,7 +111,7 @@
 .headline-col-box {
   display: flex;
   gap: 1rem;
-
+  justify-content: flex-start;
 }
 
 .headline-col-box img {
@@ -131,12 +131,10 @@
   font-size: 0.7rem;
 }
 
-
 .article-row {
   display: flex;
-  flex-direction: row;
+  grid-template-columns: repeat(4, 1fr); 
   align-items: flex-start;
-  justify-content: flex-start;
   gap: 1.5rem;
 }
 
@@ -182,11 +180,15 @@
 }
 
 .article-grid {
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
 }
 
 .grid-col {
-  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
 }
 
 .grid-box {
@@ -194,9 +196,8 @@
   flex-direction: column;
   align-items: flex-start;
   justify-content: flex-start;
-  height: 8rem;
   gap: 1rem;
-  width: 93%;
+  width: 90%;
 }
 
 .grid-box .source {
@@ -213,7 +214,6 @@
   height: 1px;
   width: 90%;
   background-color: #e2e1e1;
-  margin-top: -1rem;
   margin-bottom: 1rem;
 }
 
@@ -223,7 +223,6 @@
 
 .carousel-component img {
   width: 100%;
-  height: 100%;
   height: 24rem;
   object-fit: cover;
   border-radius: 0.5rem;
@@ -233,7 +232,7 @@
   position: relative;
   display: inline-block;
   overflow: hidden;
-  height: 100%; /* Ensure the slide takes up the full height */
+  height: 100%; 
 }
 
 .overlay {
@@ -244,7 +243,7 @@
   bottom: 0;
   width: 100%;
   height: 10rem;
-  background: rgba(11, 11, 11, 0.6); /* Semi-transparent black background */
+  background: rgba(11, 11, 11, 0.6); 
   color: white;
   padding: 2rem 1rem;
   box-sizing: border-box;
@@ -266,4 +265,48 @@ p {
 
 .btn-wrapper {
   height: 1.6rem;
+}
+
+@media (max-width: 768px) {
+  .home-container {
+    padding: 0 5rem;
+  }
+  
+  .headline-row, .headline-box {
+    flex-direction: column;
+  }
+
+  .headline-box {
+    margin-bottom: 1rem;
+  }
+
+  .headline-box img {
+    width: 100%;
+  }
+
+  .carousel-row {
+    flex-direction: column;
+  }
+
+  .carousel-component {
+    width: 100%;
+  }
+}
+
+@media (max-width: 1024px) { 
+  .article-row {
+    grid-template-columns: repeat(3, 1fr); 
+  }
+}
+
+@media (max-width: 768px) { 
+  .article-row {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 480px) { 
+  .article-row {
+    grid-template-columns: 1fr; 
+  }
 }

@@ -9,23 +9,18 @@ import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 const Header = () => {
   const [inputValue, setInputValue] = useState('');
   const [openMenu, setOpenMenu] = useState(false)
-  const [showSearchBar, setShowSearchBar] = useState(false)
-  const [showIcon, setShowIcon] = useState(true); // Manage icon visibility
 
   const navigate = useNavigate();
   const navRef = useRef<HTMLDivElement>(null);
-
-  const handleSearchIconClick = () => {
-    setShowSearchBar((prev) => !prev);
-    setShowIcon((prev) => !prev); 
-  };
-
+  const searchRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (openMenu &&
         navRef.current && 
-        !navRef.current.contains(event.target as Node)) {
+        !navRef.current.contains(event.target as Node) &&
+        searchRef.current && 
+        !searchRef.current.contains(event.target as Node)) {
         setOpenMenu(false)
       }
     }
@@ -71,6 +66,7 @@ const Header = () => {
                   placeholder='Search...'
                   value={inputValue} 
                   onChange={(e) => setInputValue(e.target.value)} 
+                  ref={searchRef}
                 />
               </form>
 

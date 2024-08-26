@@ -104,6 +104,10 @@ button {
 }
 
 @media (max-width: 768px) {
+  .header {
+    padding: 2.5rem 4.5rem;
+  }
+
   .nav-toggle {
     display: block;
   }
