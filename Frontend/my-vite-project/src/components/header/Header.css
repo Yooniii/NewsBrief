@@ -49,7 +49,6 @@ ul.dropdown-menu {
   min-width: 2rem;
 }
 
-
 .dropdown-menu li {
   display: flex;
   justify-content: flex-start;
@@ -93,13 +92,20 @@ button {
   position: relative;
 }
 
-@media (min-width: 950px) {
+@media (max-width: 1024px) {
+  .header {
+    padding: 2.5rem 5rem;
+  }
+  }
+
+@media (max-width: 950px) {
   .menu-container {
     display: none;
   }
 }
 
 @media (max-width: 949px) {
+
   .nav-toggle {
     display: block;
   }

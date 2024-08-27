@@ -103,6 +103,7 @@
 .headline-col {
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
   flex: 1;
   gap: 0.3rem;
 }
@@ -111,6 +112,7 @@
   display: flex;
   gap: 1rem;
   justify-content: flex-start;
+  align-items: flex-start;
 }
 
 .headline-col-box img {
@@ -188,6 +190,7 @@
 .grid-col {
   display: flex;
   flex-direction: column;
+  justify-content: flex-start;
 }
 
 .grid-box {
@@ -267,6 +270,11 @@ p {
 }
 
 @media (max-width: 1024px) {
+  .home-container {
+    padding: 0 6.5rem;
+  }
+  
+
   .headline-row, .headline-box {
     flex-direction: column;
   }
@@ -286,11 +294,6 @@ p {
 }
 
 @media (max-width: 768px) {
-  .home-container {
-    padding: 0 4rem;
-  }
-  
-
   .carousel-row {
     flex-direction: column;
   }

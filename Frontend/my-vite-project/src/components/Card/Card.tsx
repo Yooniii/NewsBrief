@@ -17,6 +17,7 @@ export interface Article {
   link: string;
   summary: string;
   category: string;
+  loaded?: boolean;
 }
 
 const ArticleCard: React.FC<Article> = 
