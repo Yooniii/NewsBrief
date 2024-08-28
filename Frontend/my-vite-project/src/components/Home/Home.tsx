@@ -176,7 +176,6 @@ const HomePage: React.FC = () => {
                 </div>
               </Fragment>
             )}
-            
           </div>
         </div>
         {renderArticleRow(articles.sportsNews, 'Sports')}
