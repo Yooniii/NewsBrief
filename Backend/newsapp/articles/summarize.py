@@ -4,7 +4,18 @@ import google.generativeai as genai
 
 
 def clean_summary(summary, title):
+  """
+    Reformats and ensures the raw summary is coherent 
 
+    Args:
+      summary (str): Initial news summary
+      title (str): News article title
+    
+    Returns:
+      cleaned_summary.text (str)
+  """
+
+  # Load the Gemini AI Model
   genai.configure(api_key=os.getenv('GENAI_API_KEY'))
 
   generation_config = {
@@ -20,6 +31,7 @@ def clean_summary(summary, title):
     generation_config=generation_config,
   )
 
+  # Pass in the prompt, raw summary, and title for context to GeminiAI
   cleaned_summary = genai_model.generate_content(
     f"""Please refine and reformat the following news article summary according
     to the guidelines below:
@@ -45,13 +57,28 @@ def clean_summary(summary, title):
   return cleaned_summary.text
 
 def summarize(input_text, title):
+  """
+  Returns a summary of input_text
+
+  Args:
+    input_text(str): Raw article content
+    title(str): News article title
+  
+  Returns:
+    summary(str)
+  
+  """
+
+  # Load the tokenizer and ML model from HuggingFace
   tokenizer = AutoTokenizer.from_pretrained("Yooniii/Article_summarizer")
   ml_model = AutoModelForSeq2SeqLM.from_pretrained("Yooniii/Article_summarizer")
 
+  # Tokenize the input text to prepare it for the model
   inputs = tokenizer(input_text, 
                     return_tensors="pt", 
                     max_length=1024, 
                     truncation=True)
+  
   summary_ids = ml_model.generate(
     inputs['input_ids'], 
     max_length=150, 
@@ -60,7 +87,11 @@ def summarize(input_text, title):
     num_beams=4, 
     early_stopping=True
   )
+
+  # Decode the generated summary back into human text, remove special tokens
   summary = tokenizer.decode(summary_ids[0], skip_special_tokens=True)
+
+  # Refine and reformat the summary
   summary = clean_summary(summary, title)
 
   return summary

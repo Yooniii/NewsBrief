@@ -1,7 +1,5 @@
 from articles.models import Article
-from newscatcherapi import NewsCatcherApiClient
 from rest_framework.decorators import api_view
-from rest_framework.response import Response
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from .decode_url import decode_google_news_url
 from .scrape import scrape
@@ -10,27 +8,44 @@ import feedparser
 import concurrent.futures
 
 class BackgroundClass:
+  """
+  A class to handle background tasks related to fetching and uploading articles
+  """
 
   @staticmethod
   def fetch_articles(category, url):
+    """
+    Fetch articles from a given RSS feed URL, scrape them, and save them to the 
+    database.
+
+    Args:
+      category (str): The category of the articles to fetch
+      url (str): The RSS feed URL to fetch articles from.
+    
+    Returns:
+      None
+    """
+
     print(f"Fetching articles from URL: {url}")
 
     count = 0
     feed = feedparser.parse(url)
 
     for entry in feed.entries:
+
+      # Condition to only fetch ten articles from the given Feed at a time
       if count >= 10:
         break
+      
 
       try: 
-        decoded_url = decode_google_news_url(entry.link)
-        date = scrape(decoded_url, 'date')
-        top_image = scrape(decoded_url, 'top_image')
-        content = scrape(decoded_url, 'content')
-        media = scrape(decoded_url, 'media')
+        # Scrape the article content and summarize it
+        decoded_url = decode_google_news_url(entry.link) # Get the original link
+        date, top_image, content, media = scrape(decoded_url)
         title = entry.title.split(' - ')[0]
         summary = summarize(content, title)
         
+        # If the summary is valid, save the article to the database
         if summary.strip() != 'INVALID':
           Article.objects.create(
             title=title,
@@ -43,6 +58,7 @@ class BackgroundClass:
             summary=summary,
             category=category 
           )
+
           count+=1
           print('Successfully added new article')    
 
@@ -53,6 +69,13 @@ class BackgroundClass:
 
   @staticmethod
   def upload_data():
+    """
+      Wrapper function that calls fetch_articles() concurrently for multiple news
+      categories.
+
+      Returns: 
+        None
+    """
 
     urls = {
       'Top Stories': 'https://news.google.com/rss/topics/CAAqKggKIiRDQkFTRlFvSUwyMHZNRFZxYUdjU0JXVnVMVWRDR2dKRFFTZ0FQAQ?hl=en-CA&gl=CA&ceid=CA%3Aen',
@@ -66,6 +89,7 @@ class BackgroundClass:
       'Health': 'https://news.google.com/rss/topics/CAAqJQgKIh9DQkFTRVFvSUwyMHZNR3QwTlRFU0JXVnVMVWRDS0FBUAE?hl=en-CA&gl=CA&ceid=CA%3Aen'
     }
     
+    # Use ThreadPoolExecutor to fetch news articles from 7 categories at a time
     with ThreadPoolExecutor(max_workers=7) as executor:
       future_to_article = {
         executor.submit(BackgroundClass.fetch_articles, category, url): 
