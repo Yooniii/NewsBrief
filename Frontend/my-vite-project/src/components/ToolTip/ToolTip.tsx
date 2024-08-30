@@ -60,7 +60,6 @@ const ToolTip = () => {
         toolTipRef.current &&
         !toolTipRef.current.contains(event.target as Node) 
       ) {
-        console.log('Click outside detected');
         setShowForm(false);
         setIsVisible(false);
         setCloseModal(true);
