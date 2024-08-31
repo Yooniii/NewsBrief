@@ -20,7 +20,6 @@ const HomePage: React.FC = () => {
 
   const [loaded, setLoaded] = useState(false);
 
-
   useEffect(() => {
     const fetchArticles = async (category: string, articleCount: number) => {
       try {
@@ -180,7 +179,6 @@ const HomePage: React.FC = () => {
         </div>
         {renderArticleRow(articles.sportsNews, 'Sports')}
       </div>
-
       <footer></footer>
     </div>
   );
