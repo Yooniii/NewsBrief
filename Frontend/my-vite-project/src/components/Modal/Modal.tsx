@@ -22,7 +22,6 @@ const ModalComponent: React.FC<ModalComponentProps> = ({ isOpen, onRequestClose,
 
   if (!isOpen) return null;
 
-
   return (
     <div className='modal-container'>
       <div className='modal-content'>

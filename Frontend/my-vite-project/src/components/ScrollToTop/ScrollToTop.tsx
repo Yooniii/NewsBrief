@@ -24,7 +24,6 @@ const ScrollToTop = () => {
           backgroundColor: 'transparent'
         }} /> 
       </button>
-      
     </Fragment>
     
   );

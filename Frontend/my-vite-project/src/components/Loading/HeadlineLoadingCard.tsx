@@ -9,7 +9,6 @@ const HeadlineLoadingCard = () => {
         <CustomSkeleton width={420} height={390} variant="rounded"/>
         <div className='article-details'>
           <CustomSkeleton width={400} height={24} variant="rounded"/>
-
           <div className='main-text-box'>
             <CustomSkeleton width={400} height={50} variant="rounded"/>
             <CustomSkeleton width={400} height={120} variant="rounded"/>
@@ -41,7 +40,6 @@ const HeadlineLoadingCard = () => {
             </div>
           </div>
         </Fragment>
-
       </div>
     </div>
   );

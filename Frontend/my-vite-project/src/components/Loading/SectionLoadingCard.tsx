@@ -21,7 +21,7 @@ const SectionLoadingCard = () => {
           </div>
         ))}
       </div>
-
+      
       <div className='carousel-component' style={{marginLeft: '1.5rem'}}>
         <div className='carousel-slide'>
           <CustomSkeleton width={550} height={384} variant="rounded"/>
