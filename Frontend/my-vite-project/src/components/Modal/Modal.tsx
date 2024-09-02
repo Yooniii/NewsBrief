@@ -2,6 +2,11 @@ import './Modal.css'
 import { TwitterShare, FacebookShare } from 'react-share-kit';
 import { useEffect } from 'react'
 
+/**
+ * Social media share modal component 
+ * Allows the user to share a news article via Facebook or Twitter
+ */
+
 interface ModalComponentProps {
   isOpen: boolean;
   onRequestClose: () => void;
