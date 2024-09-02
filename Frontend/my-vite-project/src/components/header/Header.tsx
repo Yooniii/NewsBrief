@@ -7,7 +7,6 @@ import './Header.css';
  * Header component for the NewsBrief website.
  * Contains the logo, category dropdown, and search functionality
  */
-
 const Header = () => {
 
   // Manages the input value of the search bar

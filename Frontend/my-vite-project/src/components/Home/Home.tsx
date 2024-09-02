@@ -10,7 +10,15 @@ import HomeLoadingCard from '../Loading/HomeLoadingCard';
 import HeadlineLoadingCard from '../Loading/HeadlineLoadingCard'
 import SectionLoadingCard from '../Loading/SectionLoadingCard'
 
+/**
+ * Homepage for the Newsbrief website.
+ * @returns {React.FC} The HomePage component.
+ */
+
 const HomePage: React.FC = () => {
+  const [loaded, setLoaded] = useState(false);
+
+  // Dictionary that holds various articles to be displayed.
   const [articles, setArticles] = useState({
     worldNews: [] as Article[],
     sportsNews: [] as Article[],
@@ -18,15 +26,21 @@ const HomePage: React.FC = () => {
     politicalNews: [] as Article[],
   });
 
-  const [loaded, setLoaded] = useState(false);
-
+  /**
+   * Uses Axios to retrieve articles from a specific category.
+   * @param {string} category - The category of articles to retrieve.
+   * @param {number} articleCount - The number of articles to retrieve.
+   * @returns {Promise<Array>} A promise that resolves to an array of articles
+   * or an empty array if none are found.
+   */
   useEffect(() => {
     const fetchArticles = async (category: string, articleCount: number) => {
       try {
         const response = await axios.get('http://127.0.0.1:8000/articles/');
-        return response.data
+        const articles = response.data
           .filter((article: Article) => article.category === category && article.top_image)
           .slice(0, articleCount)
+        return articles;
 
       } catch (error) {
         console.error('Error fetching articles:', error);
@@ -34,6 +48,9 @@ const HomePage: React.FC = () => {
       }
     };
 
+    /**
+     * Wrapper method that fetches all articles to be displayed on the homepage.
+     */
     const fetchAllArticles = async () => {
       const [worldNews, topStories, sportsNews, politicalNews] = await Promise.all([
         fetchArticles('World', 4),
@@ -41,6 +58,7 @@ const HomePage: React.FC = () => {
         fetchArticles('Sports', 4),
         fetchArticles('Politics', 10),
       ]);
+      
       setArticles({ worldNews, sportsNews, topStories, politicalNews });
       setLoaded(true);
     };
@@ -48,6 +66,7 @@ const HomePage: React.FC = () => {
     fetchAllArticles();
   }, []);
 
+  // Settings object for carousel component.
   const settings = {
     dots: true,
     infinite: true,
@@ -177,10 +196,10 @@ const HomePage: React.FC = () => {
             )}
           </div>
         </div>
-        
+
         {renderArticleRow(articles.sportsNews, 'Sports')}
       </div>
-      <footer></footer>
+      <footer></footer> 
     </div>
   );
 };
