@@ -79,6 +79,13 @@ const HomePage: React.FC = () => {
     pauseOnHover: true,
   };
 
+  /**
+   * Displays a row of four article cards. Each card displays the image, 
+   * title, and source.
+   * @param {Article[]} articles - An array containing Article objects
+   * @param {String} category - The category of the articles
+   * @returns {JSX.Element} The JSX element representing the row of article cards.
+   */
   const renderArticleRow = (articles: Article[], category: string) => (
     <div className={`${category.toLowerCase()}-news`}>
       <div className='text-box'>
@@ -198,6 +205,7 @@ const HomePage: React.FC = () => {
         </div>
 
         {renderArticleRow(articles.sportsNews, 'Sports')}
+        
       </div>
       <footer></footer> 
     </div>
