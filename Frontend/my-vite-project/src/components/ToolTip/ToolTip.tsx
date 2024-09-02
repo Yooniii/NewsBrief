@@ -1,48 +1,58 @@
 import './ToolTip.css'
 import { useState, useEffect, useRef } from 'react'
 import { GoogleGenerativeAI } from '@google/generative-ai'; 
-import CloseModalComponent from '../Modal/CloseModal';
 import { CiCircleQuestion } from "react-icons/ci";
 import { FaBook } from "react-icons/fa";
 import { PiSparkleFill } from "react-icons/pi";
-import { useSpring, animated } from '@react-spring/web'
 import { IoIosSearch } from "react-icons/io";
+import CloseModalComponent from '../Modal/CloseModal';
 
+/**
+ * Renders the tooltip component when a word or phrase is highlighted.
+ */
 
+// Load the GeminiAI model
 const genAI = new GoogleGenerativeAI('AIzaSyCNA7BjxzDJz2UGz5GAyWqryzthajGAGzo');
 const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
 
+/**
+ * Tooltip component.
+ * @returns {JSX.Element} The JSX element representing the tooltip.
+ */
 const ToolTip = () => {
-  const toolTipRef = useRef<HTMLDivElement>(null);
+  const toolTipRef = useRef<HTMLDivElement>(null); // Ref to the tooltip display
 
+  // State variables for managing the tooltip behaviour and data
   const [selectedText, setSelectedText] = useState('');
   const [position, setPosition] = useState({ top: 0, left: 0 });
   const [isVisible, setIsVisible] = useState(false);
   const [showForm, setShowForm] = useState(false);
-
-  const [showCloseModal, setCloseModal] = useState(false);
   const [showResponse, setShowResponse] = useState(false);
-
   const [gptPrompt, setGptPrompt] = useState('');
   const [gptResponse, setGptResponse] = useState('');
+  const [showCloseModal, setCloseModal] = useState(false);
 
+  // Effect to handle text selection and position of the tooltip when displayed
   useEffect(() => {
     const handleMouseUp = () => {
-      const text = window.getSelection()?.toString().trim();
+      const text = window.getSelection()?.toString().trim(); // Get selected text
 
       if (text) {
+        // Get the range and bounding rectangle of the selected text
         const range = window.getSelection()?.getRangeAt(0);
         const rectangle = range?.getBoundingClientRect();
 
         setSelectedText(text);
-        setIsVisible(true);
+        setIsVisible(true); // Show the tooltip
 
         if (rectangle) {
+          // Calculate the top and left position for the tooltip
           let topPosition = rectangle.bottom + window.scrollY + 10; 
           let leftPosition = rectangle.left + window.scrollX;
 
           const tooltipWidth = 400;
 
+          // Adjust the tooltip position if it overflows the window
           if (leftPosition + tooltipWidth > window.innerWidth) {
             leftPosition = window.innerWidth - tooltipWidth - 60; 
           }
@@ -55,6 +65,7 @@ const ToolTip = () => {
       } 
     };
 
+    // Hides the tooltip display if clicks outside of it are detected.
     const handleClickOutside = (event: MouseEvent) => {
       if (
         toolTipRef.current &&
@@ -85,7 +96,11 @@ const ToolTip = () => {
   //   setCloseModal(true);
   // }
 
-  const generateResponse = async(prompt: string) => {
+  /**
+   * Generates a response from GeminiAI.
+   * @param {String} prompt - The specific prompt to pass to the AI model.
+   */
+  async function generateResponse(prompt: string){
     try {
       const result = await model.generateContent(prompt);
       const text = await result.response.text(); 
@@ -97,7 +112,12 @@ const ToolTip = () => {
     }
   }
 
-  const handleSearch = async (event: React.FormEvent) => {
+  /**
+   * Handles the 'AI Search' option on the tooltip by calling
+   * generateResponse with a specific prompt.
+   * @param {React.FormEvent} event - The event obj from the form submission
+   */
+ async function handleSearch(event: React.FormEvent) {
     event.preventDefault(); 
     const prompt = `Please perform the following instructions. If nonsensical
     input is provided, do not return anything.
@@ -107,7 +127,12 @@ const ToolTip = () => {
     setGptPrompt('');
   };
 
-  const handleClick = async (type: string) => {
+  /**
+   * Function that handles the 'Explain' or 'Define' option on the tooltip by
+   * calling generateResponse with the corresponding prompt.
+   * @param {String} type - The user's selected option ('explain' or 'define') 
+   */
+  async function handleClick(type: string){
 
     const prompts = {
       explain: `Please provide a simple explanation for the following text: ${selectedText}.`,
