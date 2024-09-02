@@ -5,24 +5,18 @@ import './Header.css';
 
 /**
  * Header component for the NewsBrief website.
- * Contains the logo, category dropdown, and search functionality
+ * Contains the logo, category dropdown, and search functionality.
  */
 const Header = () => {
-
-  // Manages the input value of the search bar
+  // Manages the input value of the search bar.
   const [inputValue, setInputValue] = useState(''); 
-
-  // Manages the visibility of the category dropdown
   const [openMenu, setOpenMenu] = useState(false)
 
-    // Ref to detect clicks outside the category dropdown
+  // Ref to detect clicks outside the category dropdown.
   const navRef = useRef<HTMLDivElement>(null); 
+  const navigate = useNavigate(); // React Router's nav hook.
 
-  const navigate = useNavigate(); // React Router's nav hook
-
-  /**
-   * Closes the menu dropdown if a click outside is detected
-   */
+  // Closes the menu dropdown if a click outside is detected.
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
 
@@ -32,7 +26,7 @@ const Header = () => {
     }
     document.addEventListener('mousedown', handleClickOutside);
 
-    // Cleanup event listener on component unmount
+    // Cleanup event listener on component unmount.
     return () => {
       document.removeEventListener('mousedown', handleClickOutside);
     };
@@ -40,8 +34,8 @@ const Header = () => {
 
   /**
    * Handles form submission for the search bar. Navigates to the search
-   * results page with the input query
-   * @param {React.FormEvent} event - The form submission event
+   * results page with the input query.
+   * @param {React.FormEvent} event - The form submission event.
    */
   const handleSearch = (event: React.FormEvent) => {
     event.preventDefault(); 
@@ -51,7 +45,7 @@ const Header = () => {
     setInputValue('');
   };
 
-  // Style object for nav links
+  // Style object for the nav links.
   const linkStyle = {
     textDecoration: 'none',
     color: '#6b6b6b',

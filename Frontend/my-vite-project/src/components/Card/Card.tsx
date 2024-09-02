@@ -7,6 +7,12 @@ import ModalComponent from '../Modal/Modal';
 import { GoLinkExternal } from "react-icons/go";
 import { IoShareSocialOutline } from "react-icons/io5";
 
+/**
+ * Card component for the Newsbrief website. 
+ */
+
+// Article object. Includes the title, date, source, image, videos, URL, 
+// summary, and category.
 export interface Article {
   key: string;
   title: string;
@@ -17,14 +23,27 @@ export interface Article {
   link: string;
   summary: string;
   category: string;
-  loaded?: boolean;
 }
 
+/**
+ * Renders an article card component
+ * @param {Object} param0 - The article properties.
+ * @param {string} param0.key - The unique key for the article.
+ * @param {string} param0.title - The title of the article.
+ * @param {string} param0.topImage - The URL of the top image for the article.
+ * @param {string} param0.media - The URL of the media content (video).
+ * @param {string} param0.source - The source of the article.
+ * @param {string} param0.link - The URL link to the full article.
+ * @param {string} param0.date - The publication date of the article.
+ * @param {string} param0.summary - The summary of the article.
+ * @returns {JSX.Element} The JSX element representing the article card.
+ */
 const ArticleCard: React.FC<Article> = 
 ({ key, title, topImage, media, source, link, date, summary }) => {
   const [showMore, setShowMore] = useState(false)
   const [showModal, setShowModal] = useState(false)   
 
+  // Props object to enable a smooth animation when the user clicks 'read more'
   const props = useSpring({
     opacity: showMore ? 1 : 0,
     maxHeight: showMore ? '800px' : '0px',
@@ -32,6 +51,15 @@ const ArticleCard: React.FC<Article> =
     config: { duration: 400 },
   });
 
+  // Split and reformat the summary into lines for displaying
+  const lines = summary.split("\n-")
+  const description = lines[0];
+  const displayedLines = showMore ? lines : lines.slice(0, 1);
+
+  /**
+   * Displays the media content (e.g., video) if the article has one.
+   * @returns {JSX.Element|null} The JSX element for the media content or null.
+   */
   const renderMediaContent = () => {
     media = media.replace('[', '').replace(']', '')
     return (
@@ -46,10 +74,6 @@ const ArticleCard: React.FC<Article> =
       </div>
     )
   }
-
-  const lines = summary.split("\n-")
-  const description = lines[0];
-  const displayedLines = showMore ? lines : lines.slice(0, 1);
 
    return (
     <Fragment>
