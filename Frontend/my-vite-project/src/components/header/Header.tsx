@@ -3,7 +3,6 @@ import { Link, useNavigate } from 'react-router-dom';
 import { IoIosMenu, IoIosSearch } from "react-icons/io";
 
 import './Header.css';
-import search from '../../assets/Search.png';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 
 const Header = () => {
@@ -12,17 +11,14 @@ const Header = () => {
 
   const navigate = useNavigate();
   const navRef = useRef<HTMLDivElement>(null);
-  const searchRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
-      if (openMenu &&
-        navRef.current && 
-        !navRef.current.contains(event.target as Node) &&
-        searchRef.current && 
-        !searchRef.current.contains(event.target as Node)) {
+
+      if (navRef.current && !navRef.current.contains(event.target as Node)) {
         setOpenMenu(false)
       }
+      
     }
     document.addEventListener('mousedown', handleClickOutside);
 
@@ -31,8 +27,6 @@ const Header = () => {
     };
 
   }, [openMenu])
-  
-
 
   const handleSearch = (event: React.FormEvent) => {
     event.preventDefault(); 
@@ -48,13 +42,12 @@ const Header = () => {
     backgroundColor: 'transparent'
   };
 
-
   return (
     <Fragment>
       <div className='header'> 
         <Link to="/home" className="logo">NewsBrief</Link>
 
-        <div className='nav-toggle' onClick={() => setOpenMenu((prev) => !prev)}>
+        <div className='nav-toggle' onClick={() => setOpenMenu((prev) => !prev)}> 
           <IoIosMenu size={27} style={{backgroundColor: 'transparent'}}/>
         
           {openMenu && (
@@ -66,10 +59,9 @@ const Header = () => {
                   placeholder='Search...'
                   value={inputValue} 
                   onChange={(e) => setInputValue(e.target.value)} 
-                  ref={searchRef}
+                  onClick={(e) => e.stopPropagation()}
                 />
               </form>
-
 
               <Link to="/home" style={linkStyle} className="link">Home</Link>
               <Link to='/Top Stories' style={linkStyle}>Top Stories</Link>
@@ -91,8 +83,9 @@ const Header = () => {
             <a className="btn" data-bs-toggle="dropdown" aria-expanded="false">
               Categories
             </a>
+
             <ul className="dropdown-menu">
-              <li> <Link to='/Top Stories' style={linkStyle}>Top Stories</Link></li>
+              <li><Link to='/Top Stories' style={linkStyle}>Top Stories</Link></li>
               <li><Link to='/World' style={linkStyle}>World</Link></li>
               <li><Link to='/Business' style={linkStyle}>Business</Link></li>
               <li> <Link to='/Tech' style={linkStyle}>Tech</Link></li>
@@ -112,14 +105,13 @@ const Header = () => {
               value={inputValue} 
               onChange={(e) => setInputValue(e.target.value)} 
             />
+
             <button type='submit'>
               <IoIosSearch style={{
                 marginLeft: '-3.6rem', backgroundColor: 'transparent'}}/>
             </button>
           </form>
         </div>
-        
-        
       </div>
     </Fragment>    
   );
