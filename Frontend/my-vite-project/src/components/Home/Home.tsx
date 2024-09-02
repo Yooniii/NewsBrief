@@ -177,6 +177,7 @@ const HomePage: React.FC = () => {
             )}
           </div>
         </div>
+        
         {renderArticleRow(articles.sportsNews, 'Sports')}
       </div>
       <footer></footer>
