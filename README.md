@@ -26,14 +26,14 @@ source venv/bin/activate (`venv\Scripts\activate` for Window users)
 Apply the database migrations   
 ```python manage.py migrate```
 
-Create a superuser (admin account for accessing Django admin panel)  
+5. Create a superuser (admin account for accessing Django admin panel)  
 ```python manage.py createsuperuser```
 
-5. Configure Environment Variables  
+6. Configure Environment Variables  
 Create a .env file in the project root containing your API key to GeminiAI.
 API_KEY='YOUR API KEY'
 
-6. Run the development server  
+7. Run the development server  
 ```python manage.py runserver```
 
 ### Frontend Setup (React)
