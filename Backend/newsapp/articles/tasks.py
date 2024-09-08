@@ -1,11 +1,8 @@
 from articles.models import Article
 from concurrent.futures import ThreadPoolExecutor, as_completed
-from .decode_url import decode_google_news_url
 from .scrape import scrape
 from .summarize import summarize
-from urllib.request import ProxyHandler
 import feedparser
-from urllib.request import ProxyHandler
 import json
 import os
 
