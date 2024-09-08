@@ -1,0 +1,68 @@
+
+{
+  "Top Stories": [
+    "https://search.cnbc.com/rs/search/combinedcms/view.xml?partnerId=wrss01&id=100003114", 
+    "https://www.cbc.ca/webfeed/rss/rss-topstories", 
+    "https://abcnews.go.com/abcnews/topstories", 
+    "https://www.cbsnews.com/latest/rss/main", 
+    "https://www.ctvnews.ca/rss/ctvnews-ca-top-stories-public-rss-1.822009"
+  ], 
+    
+  "World": [
+    "https://search.cnbc.com/rs/search/combinedcms/view.xml?partnerId=wrss01&id=100727362",
+    "https://www.cbc.ca/webfeed/rss/rss-world", 
+    "https://globalnews.ca/world/feed/", 
+    "https://www.cbsnews.com/latest/rss/world", 
+    "https://www.ctvnews.ca/rss/ctvnews-ca-world-public-rss-1.822289"
+  ], 
+
+  "Business": [
+    "https://search.cnbc.com/rs/search/combinedcms/view.xml?partnerId=wrss01&id=10001147", 
+    "https://www.cbc.ca/webfeed/rss/rss-business", 
+    "https://www.ctvnews.ca/rss/business/ctv-news-business-headlines-1.867648", 
+    "https://abcnews.go.com/abcnews/moneyheadlines"
+  ],
+
+  "Tech": [
+    "https://www.cbc.ca/webfeed/rss/rss-technology", 
+    "https://search.cnbc.com/rs/search/combinedcms/view.xml?partnerId=wrss01&id=19854910", 
+    "https://abcnews.go.com/abcnews/technologyheadlines", 
+    "https://www.cbsnews.com/latest/rss/technology"
+  ],
+
+  "Entertainment": [
+    "https://news.google.com/rss/topics/CAAqKggKIiRDQkFTRlFvSUwyMHZNREpxYW5RU0JXVnVMVWRDR2dKRFFTZ0FQAQ?hl=en-CA&gl=CA&ceid=CA%3Aen", 
+    "https://www.cbsnews.com/latest/rss/entertainment", 
+    "https://globalnews.ca/entertainment/feed/", 
+    "https://abcnews.go.com/abcnews/entertainmentheadlines", 
+    "https://www.ctvnews.ca/rss/ctvnews-ca-entertainment-public-rss-1.822292"
+  ],
+
+  "Politics": [
+    "https://search.cnbc.com/rs/search/combinedcms/view.xml?partnerId=wrss01&id=10000113", 
+    "https://abcnews.go.com/abcnews/politicsheadlines", 
+    "https://www.cbc.ca/webfeed/rss/rss-politics", 
+    "https://www.cbsnews.com/latest/rss/politics",
+    "https://globalnews.ca/politics/feed/", 
+    "https://www.ctvnews.ca/rss/ctvnews-ca-politics-public-rss-1.822302"
+  ],
+
+  "Sports": [
+    "https://www.cbc.ca/webfeed/rss/rss-sports",           
+    "https://globalnews.ca/sports/feed/", 
+    "https://www.ctvnews.ca/rss/sports/ctv-news-sports-1.3407726"
+  ],
+
+  "Science": [
+    "https://www.cbsnews.com/latest/rss/science", 
+    "https://news.google.com/rss/topics/CAAqKggKIiRDQkFTRlFvSUwyMHZNRFp0Y1RjU0JXVnVMVWRDR2dKRFFTZ0FQAQ?hl=en-CA&gl=CA&ceid=CA%3Aen"
+  ],
+
+  "Health": [
+    "https://abcnews.go.com/abcnews/healthheadlines", 
+    "https://www.cbsnews.com/latest/rss/health", 
+    "https://www.cbc.ca/webfeed/rss/rss-health", 
+    "https://globalnews.ca/health/feed/", 
+    "https://www.ctvnews.ca/rss/ctvnews-ca-health-public-rss-1.822299"
+  ]
+}
