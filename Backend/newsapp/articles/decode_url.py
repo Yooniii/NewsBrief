@@ -1,67 +1,35 @@
 import requests
 import base64
+import json
+from urllib.parse import quote, urlparse
+from bs4 import BeautifulSoup
 
-def fetch_decoded_batch_execute(id):
-    s = (
-        '[[["Fbv4je","[\\"garturlreq\\",[[\\"en-US\\",\\"US\\",[\\"FINANCE_TOP_INDICES\\",\\"WEB_TEST_1_0_0\\"],'
-        'null,null,1,1,\\"US:en\\",null,180,null,null,null,null,null,0,null,null,[1608992183,723341000]],'
-        '\\"en-US\\",\\"US\\",1,[2,3,4,8],1,0,\\"655000234\\",0,0,null,0],\\"'
-        + id
-        + '\\"]",null,"generic"]]]'
-    )
-
-    headers = {
-        "Content-Type": "application/x-www-form-urlencoded;charset=utf-8",
-        "Referer": "https://news.google.com/",
+def get_decoding_params(gn_art_id):
+    response = requests.get(f"https://news.google.com/articles/{gn_art_id}")
+    response.raise_for_status()
+    soup = BeautifulSoup(response.text, "lxml")
+    div = soup.select_one("c-wiz > div")
+    
+    return {
+        "signature": div.get("data-n-a-sg"),
+        "timestamp": div.get("data-n-a-ts"),
+        "gn_art_id": gn_art_id,
     }
 
-    response = requests.post(
-        "https://news.google.com/_/DotsSplashUi/data/batchexecute?rpcids=Fbv4je",
-        headers=headers,
-        data={"f.req": s},
-    )
-
-    if response.status_code != 200:
-        raise Exception("Failed to fetch data from Google.")
-
-    text = response.text
-    header = '[\\"garturlres\\",\\"'
-    footer = '\\",'
-    if header not in text:
-        raise Exception(f"Header not found in response: {text}")
-    start = text.split(header, 1)[1]
-    if footer not in start:
-        raise Exception("Footer not found in response.")
-    url = start.split(footer, 1)[0]
-    return url
-
-
 def decode_google_news_url(source_url):
-    url = requests.utils.urlparse(source_url)
-    path = url.path.split("/")
-    if url.hostname == "news.google.com" and len(path) > 1 and path[-2] == "articles":
-        base64_str = path[-1]
-        decoded_bytes = base64.urlsafe_b64decode(base64_str + "==")
-        decoded_str = decoded_bytes.decode("latin1")
+  article = get_decoding_params(urlparse(source_url).path.split("/")[-1])
 
-        prefix = b"\x08\x13\x22".decode("latin1")
-        if decoded_str.startswith(prefix):
-            decoded_str = decoded_str[len(prefix) :]
+  articles_req = [
+    "Fbv4je",
+    f'["garturlreq",[["X","X",["X","X"],null,null,1,1,"US:en",null,1,null,null,null,null,null,0,1],"X","X",1,[1,1,1],1,1,null,0,0,null,0],"{article["gn_art_id"]}",{article["timestamp"]},"{article["signature"]}"]',
+  ]
 
-        suffix = b"\xd2\x01\x00".decode("latin1")
-        if decoded_str.endswith(suffix):
-            decoded_str = decoded_str[: -len(suffix)]
+  response = requests.post(
+    url="https://news.google.com/_/DotsSplashUi/data/batchexecute",
+    headers={"content-type": "application/x-www-form-urlencoded;charset=UTF-8"},
+    data=f"f.req={quote(json.dumps([[articles_req]]))}",
+  )
 
-        bytes_array = bytearray(decoded_str, "latin1")
-        length = bytes_array[0]
-        if length >= 0x80:
-            decoded_str = decoded_str[2 : length + 1]
-        else:
-            decoded_str = decoded_str[1 : length + 1]
+  response.raise_for_status()
 
-        if decoded_str.startswith("AU_yqL"):
-            return fetch_decoded_batch_execute(base64_str)
-
-        return decoded_str
-    else:
-        return source_url
+  return json.loads(json.loads(response.text.split("\n\n")[1])[:-2][0][2])[1]
