@@ -11,7 +11,14 @@ def scrape(url):
   page = newspaper.article(url)
   page.download()
   page.parse()
+
+  source = newspaper.build(url).brand
   
-  return page.publish_date, page.top_image, page.text.replace('\n', ''), page.movies
+  return (
+    source,
+    page.publish_date, 
+    page.top_image, 
+    page.text.replace('\n', ''), 
+    page.movies)
   
 
