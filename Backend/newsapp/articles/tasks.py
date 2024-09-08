@@ -33,14 +33,18 @@ class BackgroundClass:
 
     for entry in feed.entries:
 
-      # Condition to only fetch ten articles from the given Feed at a time
+      # Fetch only ten articles from the given Feed at a time
       if count >= 10:
         break
       
+      print(entry.link)
 
       try: 
+        
         # Scrape the article content and summarize it
         decoded_url = decode_google_news_url(entry.link) # Get the original link
+        print(f"Decoded URL: {decoded_url}")  # Add this line
+        
         date, top_image, content, media = scrape(decoded_url)
         title = entry.title.split(' - ')[0]
         summary = summarize(content, title)
@@ -64,6 +68,7 @@ class BackgroundClass:
 
       except Exception as e:
         print(f'error{e}')
+      
             
     count = 0
 
@@ -90,7 +95,7 @@ class BackgroundClass:
     }
     
     # Use ThreadPoolExecutor to fetch news articles from 7 categories at a time
-    with ThreadPoolExecutor(max_workers=7) as executor:
+    with ThreadPoolExecutor(max_workers=5) as executor:
       future_to_article = {
         executor.submit(BackgroundClass.fetch_articles, category, url): 
         category for category, url in urls.items()
