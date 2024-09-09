@@ -50,7 +50,7 @@ class BackgroundClass:
         summary = summarize(content, title)
         
         # If the summary is valid, create a new Article object in the database
-        if summary.strip() != 'INVALID':
+        if summary.strip() != 'INVALID' and len(summary.split(' ')) > 25:
           Article.objects.create(
             title=title,
             date=date,
