@@ -14,7 +14,7 @@ class Article(models.Model):
   category = models.CharField(max_length=20)
 
   class Meta:
-    unique_together = ('title', 'source')
+    unique_together = ('title', 'article_link')
 
   def __str__(self):
     return self.title
