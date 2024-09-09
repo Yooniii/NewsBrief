@@ -1,4 +1,4 @@
-import { Fragment, useState, useEffect } from 'react';
+import { Fragment, useState } from 'react';
 import './Card.css';
 import TimeAgo from 'timeago-react';
 import { useSpring, animated } from 'react-spring';
