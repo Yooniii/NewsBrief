@@ -49,8 +49,12 @@ class BackgroundClass:
         title = entry.title
         summary = summarize(content, title)
         
-        # If the summary is valid, create a new Article object in the database
-        if summary.strip() != 'INVALID' and len(summary.split(' ')) > 25:
+        # If the summary is valid, create a new Article object i n the database
+        if (
+          summary.strip() != 'INVALID' and 
+          len(content.split(' ')) > 25 and 
+          'CNN.com will feature photos submitted by iReporters in a weekly' not in content
+        ):
           Article.objects.create(
             title=title,
             date=date,
