@@ -12,7 +12,7 @@ def scrape(url):
   page.download()
   page.parse()
 
-  source = newspaper.build(url).brand
+  source = newspaper.build(url).brand.upper()
   
   return (
     source,
