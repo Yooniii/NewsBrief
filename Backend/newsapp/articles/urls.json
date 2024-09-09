@@ -1,6 +1,7 @@
 
 {
   "Top Stories": [
+    "https://feeds.bbci.co.uk/news/rss.xml",
     "https://search.cnbc.com/rs/search/combinedcms/view.xml?partnerId=wrss01&id=100003114", 
     "https://www.cbc.ca/webfeed/rss/rss-topstories", 
     "https://abcnews.go.com/abcnews/topstories", 
@@ -9,21 +10,26 @@
   ], 
     
   "World": [
+    "https://www.thestar.com/search/?f=rss&t=article&c=news/world*&l=50&s=start_time&sd=desc",
     "https://search.cnbc.com/rs/search/combinedcms/view.xml?partnerId=wrss01&id=100727362",
     "https://www.cbc.ca/webfeed/rss/rss-world", 
     "https://globalnews.ca/world/feed/", 
     "https://www.cbsnews.com/latest/rss/world", 
-    "https://www.ctvnews.ca/rss/ctvnews-ca-world-public-rss-1.822289"
+    "https://www.ctvnews.ca/rss/ctvnews-ca-world-public-rss-1.822289",
+    "https://feeds.bbci.co.uk/news/world/rss.xml"
   ], 
 
   "Business": [
+    "https://www.thestar.com/search/?f=rss&t=article&c=business*&l=50&s=start_time&sd=desc",
     "https://search.cnbc.com/rs/search/combinedcms/view.xml?partnerId=wrss01&id=10001147", 
     "https://www.cbc.ca/webfeed/rss/rss-business", 
+    "https://feeds.bbci.co.uk/news/business/rss.xml",
     "https://www.ctvnews.ca/rss/business/ctv-news-business-headlines-1.867648", 
     "https://abcnews.go.com/abcnews/moneyheadlines"
   ],
 
   "Tech": [
+    "https://feeds.bbci.co.uk/news/technology/rss.xml",
     "https://www.cbc.ca/webfeed/rss/rss-technology", 
     "https://search.cnbc.com/rs/search/combinedcms/view.xml?partnerId=wrss01&id=19854910", 
     "https://abcnews.go.com/abcnews/technologyheadlines", 
@@ -34,6 +40,7 @@
     "https://news.google.com/rss/topics/CAAqKggKIiRDQkFTRlFvSUwyMHZNREpxYW5RU0JXVnVMVWRDR2dKRFFTZ0FQAQ?hl=en-CA&gl=CA&ceid=CA%3Aen", 
     "https://www.cbsnews.com/latest/rss/entertainment", 
     "https://globalnews.ca/entertainment/feed/", 
+    "https://www.thestar.com/search/?f=rss&t=article&c=entertainment*&l=50&s=start_time&sd=desc",
     "https://abcnews.go.com/abcnews/entertainmentheadlines", 
     "https://www.ctvnews.ca/rss/ctvnews-ca-entertainment-public-rss-1.822292"
   ],
@@ -41,13 +48,16 @@
   "Politics": [
     "https://search.cnbc.com/rs/search/combinedcms/view.xml?partnerId=wrss01&id=10000113", 
     "https://abcnews.go.com/abcnews/politicsheadlines", 
+    "https://feeds.bbci.co.uk/news/politics/rss.xml",
     "https://www.cbc.ca/webfeed/rss/rss-politics", 
+    "https://www.thestar.com/search/?f=rss&t=article&c=politics*&l=50&s=start_time&sd=desc",
     "https://www.cbsnews.com/latest/rss/politics",
     "https://globalnews.ca/politics/feed/", 
     "https://www.ctvnews.ca/rss/ctvnews-ca-politics-public-rss-1.822302"
   ],
 
   "Sports": [
+    "https://www.thestar.com/search/?f=rss&t=article&c=sports*&l=50&s=start_time&sd=desc",
     "https://www.cbc.ca/webfeed/rss/rss-sports", 
     "https://www.espn.com/espn/rss/news",          
     "https://globalnews.ca/sports/feed/", 
@@ -55,13 +65,17 @@
   ],
 
   "Science": [
+    "https://feeds.bbci.co.uk/news/science_and_environment/rss.xml",
+    "https://feeds.bbci.co.uk/news/science_and_environment/rss.xml",
     "https://www.sciencedaily.com/rss/top/science.xml",
     "https://www.cbsnews.com/latest/rss/science", 
     "https://news.google.com/rss/topics/CAAqKggKIiRDQkFTRlFvSUwyMHZNRFp0Y1RjU0JXVnVMVWRDR2dKRFFTZ0FQAQ?hl=en-CA&gl=CA&ceid=CA%3Aen"
   ],
 
   "Health": [
+    "https://www.thestar.com/search/?f=rss&t=article&c=life/health-wellness&l=50&s=start_time&sd=desc",
     "https://abcnews.go.com/abcnews/healthheadlines", 
+    "https://feeds.bbci.co.uk/news/health/rss.xml",
     "https://www.cbsnews.com/latest/rss/health", 
     "https://www.sciencedaily.com/rss/top/health.xml",
     "https://www.cbc.ca/webfeed/rss/rss-health", 
