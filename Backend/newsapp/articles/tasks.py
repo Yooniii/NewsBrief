@@ -2,6 +2,7 @@ from articles.models import Article
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from .scrape import scrape
 from .summarize import summarize
+from .decode_url import decode_google_news_url
 import feedparser
 import json
 import os
@@ -14,8 +15,8 @@ class BackgroundClass:
   @staticmethod
   def fetch_articles(category, url):
     """
-    Fetch articles from a given RSS feed URL, scrape them, and save them to the 
-    database.
+    Fetches articles from a given RSS feed URL, scrapes them, and save them to 
+    the Django database.
 
     Args:
       category (str): The category of the articles to fetch
@@ -28,31 +29,33 @@ class BackgroundClass:
     print(f"Fetching articles from URL: {url}")
 
     count = 0
-
     feed = feedparser.parse(url)
 
     for entry in feed.entries:
-      # Fetch only ten articles from the Feed at a time
-      if count >= 3:
+
+      if count >= 4:
         break
       
       try: 
-        
-        # Scrape the article content and summarize it
-        # decoded_url = decode_google_news_url(entry.link) 
-        # print(f"DECODED URL: {decoded_url}")  
-        
-        source, date, top_image, content, media = scrape(entry.link)
+        # Scrape the article content 
+        link = entry.link
+
+        # if the URL is a Google Redirect link decode it to obtain the 
+        # original article link
+        if ('news.google' in url):
+          link = decode_google_news_url(link)
+
+        source, date, top_image, content, media = scrape(link)
         title = entry.title
         summary = summarize(content, title)
         
-        # If the summary is valid, save the article to the database
+        # If the summary is valid, create a new Article object in the database
         if summary.strip() != 'INVALID':
           Article.objects.create(
             title=title,
             date=date,
             source=source,
-            article_link=entry.link,
+            article_link=link,
             top_image=top_image, 
             media=media,
             content=content,
@@ -71,23 +74,38 @@ class BackgroundClass:
   @staticmethod
   def upload_data():
     """
-      Wrapper function that calls fetch_articles() concurrently for multiple news
-      categories.
+      Manages the concurrent fetching and processing of articles from multiple
+      RSS feed URLs.
 
       Returns: 
         None
     """
 
+    # Open the JSON file containing the RSS urls 
     current_directory = os.path.dirname(__file__)
     file_path = os.path.join(current_directory, 'urls.json')
 
     with open(file_path, 'r') as file:
       urls = json.load(file)
 
-    
-    # Use ThreadPoolExecutor to fetch news articles from 7 categories at a time
+    # Use ThreadPoolExecutor to fetch news articles concurrently
     with ThreadPoolExecutor(max_workers=5) as executor:
-      for category, url_arr in urls.items():
-        for url in url_arr:
-          executor.submit(BackgroundClass.fetch_articles, category, url)
+      future_to_article = {}
+        
+      for category, url_list in urls.items():
+        for url in url_list:
+          # For each URL submit a task to the executor
+          # executor.submit schedules the task to be executed by one of the threads
+          # Each submitted task returns a Future object representing the ongoing task
+          future = executor.submit(BackgroundClass.fetch_articles, category, url)
+          future_to_article[future] = (category, url)
+        
+        # Process the results as they complete
+        for future in as_completed(future_to_article):
+          category, url = future_to_article[future]
+          try:
+            future.result()
+          except Exception as e:
+            print(f'Failed to upload {category} - {url}: {e}')
+      
 
