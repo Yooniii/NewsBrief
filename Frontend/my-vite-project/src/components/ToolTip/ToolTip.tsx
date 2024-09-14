@@ -5,7 +5,6 @@ import { CiCircleQuestion } from "react-icons/ci";
 import { FaBook } from "react-icons/fa";
 import { PiSparkleFill } from "react-icons/pi";
 import { IoIosSearch } from "react-icons/io";
-import CloseModalComponent from '../Modal/CloseModal';
 
 /**
  * Renders the tooltip component when a word or phrase is highlighted.
@@ -30,7 +29,6 @@ const ToolTip = () => {
   const [showResponse, setShowResponse] = useState(false);
   const [gptPrompt, setGptPrompt] = useState('');
   const [gptResponse, setGptResponse] = useState('');
-  const [showCloseModal, setCloseModal] = useState(false);
 
   // Effect to handle text selection and position of the tooltip when displayed
   useEffect(() => {
@@ -73,7 +71,6 @@ const ToolTip = () => {
       ) {
         setShowForm(false);
         setIsVisible(false);
-        setCloseModal(true);
         setGptResponse('');
         setGptPrompt('');
       }
@@ -120,8 +117,9 @@ const ToolTip = () => {
  async function handleSearch(event: React.FormEvent) {
     event.preventDefault(); 
     const prompt = `Please perform the following instructions. If nonsensical
-    input is provided, do not return anything.
-    Here are the instructions: ${gptPrompt} and the corresponding input if needed: ${selectedText}`;
+    input is provided, do not return anything. Present the response in plain text
+    and avoid any use of asterisks. Here are the instructions: ${gptPrompt} and 
+    the corresponding input if needed: ${selectedText}`;
 
     generateResponse(prompt);
     setGptPrompt('');
@@ -148,19 +146,6 @@ const ToolTip = () => {
     const prompt = `${prompts[type as keyof typeof prompts]} ${disclaimer}`;
     generateResponse(prompt);
   };
-
-  //   const showGptResponse = () => {
-  //     const props = useSpring({
-  //       from: { opacity: 0, transform: 'translateY(10px)' },
-  //       to: { opacity: 1, transform: 'translateY(0px)' },
-  //     });
-      
-  //     return (
-  //     <animated.div className='response-container' style={props}>
-  //       <p className='response-text'>{gptResponse}</p>
-  //     </animated.div>
-  //   );
-  // };
 
   return (
     isVisible ? (
@@ -204,17 +189,7 @@ const ToolTip = () => {
           <div className='response-container'>
             <p className='response-text'>{gptResponse}</p>
           </div>
-          // showGptResponse()
         )}
-        {/* <div>{gptResponse}</div> */}
-
-        {/* {showCloseModal ? (
-          <CloseModalComponent
-            isOpen={showCloseModal}
-            onRequestClose={() => setCloseModal(false)}
-            // onCancel={handleCancel}
-            // onDiscard={handleDiscard}
-          />): null} */}
       </div>
     ) : null 
   );

@@ -43,7 +43,6 @@
 }
 
 .gpt-form {
-  background-color: transparent;
   display: absolute;
 }
 
@@ -69,7 +68,6 @@
   padding: 0;
   position: absolute;
   right: 1rem;
-
 }
 
 .response-container {
