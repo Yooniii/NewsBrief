@@ -2,7 +2,6 @@
 {
   "Top Stories": [
     "https://feeds.bbci.co.uk/news/rss.xml",
-    "https://search.cnbc.com/rs/search/combinedcms/view.xml?partnerId=wrss01&id=100003114", 
     "https://www.cbc.ca/webfeed/rss/rss-topstories", 
     "https://abcnews.go.com/abcnews/topstories", 
     "https://www.cbsnews.com/latest/rss/main", 
@@ -10,8 +9,8 @@
   ], 
     
   "World": [
+    "https://feeds.washingtonpost.com/rss/world?itid=lk_inline_manual_35",
     "https://www.thestar.com/search/?f=rss&t=article&c=news/world*&l=50&s=start_time&sd=desc",
-    "https://search.cnbc.com/rs/search/combinedcms/view.xml?partnerId=wrss01&id=100727362",
     "https://www.cbc.ca/webfeed/rss/rss-world", 
     "https://globalnews.ca/world/feed/", 
     "https://www.cbsnews.com/latest/rss/world", 
@@ -21,7 +20,6 @@
 
   "Business": [
     "https://www.thestar.com/search/?f=rss&t=article&c=business*&l=50&s=start_time&sd=desc",
-    "https://search.cnbc.com/rs/search/combinedcms/view.xml?partnerId=wrss01&id=10001147", 
     "https://www.cbc.ca/webfeed/rss/rss-business", 
     "https://feeds.bbci.co.uk/news/business/rss.xml",
     "https://www.ctvnews.ca/rss/business/ctv-news-business-headlines-1.867648", 
@@ -46,12 +44,12 @@
   ],
 
   "Politics": [
-    "https://search.cnbc.com/rs/search/combinedcms/view.xml?partnerId=wrss01&id=10000113", 
+    "https://www.washingtonpost.com/arcio/rss/category/politics/?itid=lk_inline_manual_2",
     "https://abcnews.go.com/abcnews/politicsheadlines", 
+    "https://www.cbsnews.com/latest/rss/politics",
     "https://feeds.bbci.co.uk/news/politics/rss.xml",
     "https://www.cbc.ca/webfeed/rss/rss-politics", 
     "https://www.thestar.com/search/?f=rss&t=article&c=politics*&l=50&s=start_time&sd=desc",
-    "https://www.cbsnews.com/latest/rss/politics",
     "https://globalnews.ca/politics/feed/", 
     "https://www.ctvnews.ca/rss/ctvnews-ca-politics-public-rss-1.822302"
   ],
@@ -66,7 +64,6 @@
 
   "Science": [
     "https://feeds.bbci.co.uk/news/science_and_environment/rss.xml",
-    "https://www.sciencedaily.com/rss/top/science.xml",
     "https://www.cbsnews.com/latest/rss/science", 
     "https://news.google.com/rss/topics/CAAqKggKIiRDQkFTRlFvSUwyMHZNRFp0Y1RjU0JXVnVMVWRDR2dKRFFTZ0FQAQ?hl=en-CA&gl=CA&ceid=CA%3Aen"
   ],
