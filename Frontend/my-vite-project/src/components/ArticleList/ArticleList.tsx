@@ -11,7 +11,7 @@ const ArticleList = () => {
   const location = useLocation();
   const { category } = useParams();
   const queryParams = new URLSearchParams(location.search);
-  const query = queryParams.get('query') || '';
+  const query = queryParams.get('query')?.toLowerCase();
 
   const [articles, setArticles] = useState<Article[]>([]);
   const [displayedArticles, setDisplayedArticles] = useState<Article[]>([]);
@@ -28,7 +28,8 @@ const ArticleList = () => {
 
         if (query) {
           filteredArticles = allArticles.filter((article: Article) =>
-            article.summary.toLowerCase().includes(query.toLowerCase())
+            article.summary.toLowerCase().includes(query) &&
+            article.title.toLowerCase().includes(query)
           );
         } else if (category) {
           filteredArticles = allArticles.filter((article: Article) =>
