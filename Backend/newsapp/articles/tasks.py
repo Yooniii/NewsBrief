@@ -40,8 +40,7 @@ class BackgroundClass:
         # Scrape the article content 
         link = entry.link
 
-        # if the URL is a Google Redirect link decode it to obtain the 
-        # original article link
+        # if the URL is a Google Redirect link decode it to obtain the OG link
         if ('news.google' in url):
           link = decode_google_news_url(link)
 
@@ -49,11 +48,10 @@ class BackgroundClass:
         title = entry.title
         summary = summarize(content, title)
         
-        # If the summary is valid, create a new Article object i n the database
+        # If the summary is valid, create a new Article object in the database
         if (
           summary.strip() != 'INVALID' and 
-          len(content.split(' ')) > 25 and 
-          'CNN.com will feature photos submitted by iReporters in a weekly' not in content
+          len(content.split(' ')) > 25 
         ):
           Article.objects.create(
             title=title,
@@ -93,23 +91,28 @@ class BackgroundClass:
       urls = json.load(file)
 
     # Use ThreadPoolExecutor to fetch news articles concurrently
-    with ThreadPoolExecutor(max_workers=5) as executor:
+    with ThreadPoolExecutor(max_workers=8) as executor:
       future_to_article = {}
+
+      max_len = max(len(url_list) for url_list in urls.values())
+
+      for i in range(max_len):
         
-      for category, url_list in urls.items():
-        for url in url_list:
-          # For each URL submit a task to the executor
-          # executor.submit schedules the task to be executed by one of the threads
-          # Each submitted task returns a Future object representing the ongoing task
-          future = executor.submit(BackgroundClass.fetch_articles, category, url)
-          future_to_article[future] = (category, url)
-        
+        for category, url_list in urls.items():
+            # For each URL submit a task to the executor
+            # executor.submit schedules the task to be executed by one of the threads
+            # Each submitted task returns a Future object representing the ongoing task
+            if i < len(url_list):
+              link = url_list[i]
+              future = executor.submit(BackgroundClass.fetch_articles, category, link)
+              future_to_article[future] = (category, link)
+              
         # Process the results as they complete
-        for future in as_completed(future_to_article):
-          category, url = future_to_article[future]
-          try:
-            future.result()
-          except Exception as e:
-            print(f'Failed to upload {category} - {url}: {e}')
+      for future in as_completed(future_to_article):
+        category, url = future_to_article[future]
+        try:
+          future.result()
+        except Exception as e:
+          print(f'Failed to upload {category} - {url}: {e}')
       
 
