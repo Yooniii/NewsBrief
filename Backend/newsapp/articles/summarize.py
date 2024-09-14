@@ -40,8 +40,8 @@ def clean_summary(summary, title):
     to the guidelines below:
       Begin with a 1-2 sentence preview that provides a concise overview of the 
       article. Then, organize the remaining details into bullet points, following
-      a chronological order. Ignore any incoherent or irrelevant text. If the
-      summary does not relate to the title, return 'INVALID'.
+      a chronological order. Ignore incoherent or irrelevant text. If the
+      provided text and title is nonsensical return 'INVALID'.
 
     This is the format to be followed:
       Sentence describing the article.
