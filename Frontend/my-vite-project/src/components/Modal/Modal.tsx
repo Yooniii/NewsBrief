@@ -1,6 +1,7 @@
 import './Modal.css'
 import { TwitterShare, FacebookShare } from 'react-share-kit';
 import { useEffect } from 'react'
+import { IoLinkSharp } from "react-icons/io5";
 
 /**
  * Social media share modal component 
@@ -41,6 +42,24 @@ const ModalComponent: React.FC<ModalComponentProps> = ({ isOpen, onRequestClose,
           </div>
           <p className='share'>Share this via</p>
           <div className='icon-container'>
+              <div style={{ 
+                  backgroundColor: '#c7c7c7', 
+                  borderRadius: '100%', 
+                  width: '75px', 
+                  height: '75px', 
+                  display: 'flex', 
+                  alignItems: 'center', 
+                  justifyContent: 'center',
+                  cursor: 'pointer',
+                }}>
+              <IoLinkSharp 
+                size={40}  // adjust size as needed
+                color='transparent' 
+                style={{backgroundColor: 'transparent'}}
+                onClick={async () => await window.navigator.clipboard.writeText(shareUrl)}
+              />
+            </div>
+            
             <FacebookShare url={shareUrl} round={true} size={75}/>
             <TwitterShare url={shareUrl} round={true} size={75}/>
           </div>
