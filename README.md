@@ -6,6 +6,8 @@ For more information, the model is available for download at: https://huggingfac
 
 This application also includes a tooltip feature that activates when users highlight text, allowing them to interact with AI by asking questions about the content. For example, users can request explanations of highlighted paragraphs or definitions of specific words.
 
+<br><br> 
+
 ## Getting Started
 
 ### Backend Setup (Django)
@@ -71,6 +73,8 @@ npm start
 
 Once both the Django and React development servers are running, you can access the NewsBrief application.
 
+<br><br> 
+
 # Example
 
 ## Homepage
@@ -81,7 +85,6 @@ Once both the Django and React development servers are running, you can access t
   </tr>
 <table>
  
-<br><br> 
 <br><br> 
 <br><br> 
 
