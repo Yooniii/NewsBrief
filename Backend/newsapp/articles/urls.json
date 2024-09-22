@@ -9,7 +9,6 @@
   ], 
     
   "World": [
-    "https://feeds.washingtonpost.com/rss/world?itid=lk_inline_manual_35",
     "https://www.thestar.com/search/?f=rss&t=article&c=news/world*&l=50&s=start_time&sd=desc",
     "https://www.cbc.ca/webfeed/rss/rss-world", 
     "https://globalnews.ca/world/feed/", 
@@ -44,7 +43,6 @@
   ],
 
   "Politics": [
-    "https://www.washingtonpost.com/arcio/rss/category/politics/?itid=lk_inline_manual_2",
     "https://abcnews.go.com/abcnews/politicsheadlines", 
     "https://www.cbsnews.com/latest/rss/politics",
     "https://feeds.bbci.co.uk/news/politics/rss.xml",
