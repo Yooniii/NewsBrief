@@ -7,11 +7,16 @@ request an explanation, or get a definition of the selected text.
 ## Getting Started
 
 ### Backend Setup (Django)
+
+#### Cloning the Repo
 ```
 git clone https://github.com/yourusername/newsBrief.git
+```
+
+#### Creating a Virtual Environment
+```
 cd newsBrief
 
-# Create a virtual environment
 echo '.env'  >> .gitignore
 echo '.venv' >> .gitignore
 
@@ -22,22 +27,26 @@ source venv/bin/activate (`venv\Scripts\activate` for Window users) # activate t
 # Install the required dependencies
 
 pip install -r requirements.txt
+```
 
-# Set up the database
+#### Set up the database
 
+```
 python manage.py migrate
 
 # Create a superuser (admin account for accessing Django admin panel)
-
 python manage.py createsuperuser
+```
 
-# Configure environment variables
+#### Configure environment variables
+```
 # Create a .env file in the project root containing your API key to GeminiAI.
 
 API_KEY='YOUR API KEY'
+```
 
-# Run the development server
-
+#### Running the development server
+```
 python manage.py runserver
 ```  
  
