@@ -53,7 +53,7 @@ API_KEY='YOUR API KEY'
 # This will scrape articles from various sources (in the urls.json file) every 3 minutes
 python manage.py runserver
 ```  
- 
+<br><br> 
 ### Frontend Setup (React)
 ```
 cd frontend
@@ -84,7 +84,6 @@ Once both the Django and React development servers are running, you can access t
   </tr>
 <table>
  
-<br><br> 
 <br><br> 
 
 ## News Summaries and Tooltip Feature
