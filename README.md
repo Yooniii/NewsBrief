@@ -4,11 +4,7 @@ into a few bullet points across various categories. It also includes a tooltip
 feature that appears when text is highlighted, enabling users to ask AI a question, 
 request an explanation, or get a definition of the selected text.
 
-## Installation
-Make sure you have the following installed on your system:
-* Python 
-* Node.js and npm
-* Django
+## Getting Started
 
 ### Backend Setup (Django)
 1. Clone the repository  
