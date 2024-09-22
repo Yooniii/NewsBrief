@@ -7,30 +7,34 @@ request an explanation, or get a definition of the selected text.
 ## Getting Started
 
 ### Backend Setup (Django)
-1. Clone the repository  
-```git clone https://github.com/yourusername/newsBrief.git```  
-```cd newsBrief```
+```
+git clone https://github.com/yourusername/newsBrief.git
+cd newsBrief
 
-3. Create a virtual environment  
-```python3 -m venv venv```  
-source venv/bin/activate (`venv\Scripts\activate` for Window users)
+# Create a virtual environment
+echo '.env'  >> .gitignore
+echo '.venv' >> .gitignore
 
-4. Install the required Python packages listed in requirements.txt  
-```pip install -r requirements.txt```
+python3 -m venv venv # create the virtual env
+source venv/bin/activate (`venv\Scripts\activate` for Window users) # activate the env
 
-5. Set up the Database  
-Apply the database migrations   
-```python manage.py migrate```
+# Install the required dependencies
+pip install -r requirements.txt
 
-5. Create a superuser (admin account for accessing Django admin panel)  
-```python manage.py createsuperuser```
+# Set up the database
+python manage.py migrate
 
-6. Configure Environment Variables  
-Create a .env file in the project root containing your API key to GeminiAI.
+# Create a superuser (admin account for accessing Django admin panel)
+python manage.py createsuperuser
+
+# Configure environment variables
+# Create a .env file in the project root containing your API key to GeminiAI.
 API_KEY='YOUR API KEY'
 
-7. Run the development server  
-```python manage.py runserver```
+# Run the development server
+python manage.py runserver
+```  
+ 
 
 ### Frontend Setup (React)
 1. Navigate to the Frontend Directory  
