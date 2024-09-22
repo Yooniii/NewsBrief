@@ -1,5 +1,5 @@
 # NewsBrief
-NewsBrief is a website that scrapes the latest news articles from various sources and condenses them into brief bullet points using Machine Learning. 
+NewsBrief is a website that scrapes the latest news articles from various sources and summaries them into brief bullet points using Machine Learning. 
 The ML model used for this is a model I fine-tuned from the Facebook-Bart-Large-CNN article summarizer on the Hugging Face Library, optimized to generate more detailed and contextually rich summaries. For more information, the model is available for download at: (https://huggingface.co/Yooniii/Article_summarizer)
 
 This application also includes a tooltip feature that activates when users highlight text, allowing them to interact with AI by asking questions about the content. For example, users can request explanations of highlighted paragraphs or definitions of specific words.
