@@ -1,53 +1,95 @@
 # NewsBrief
-NewsBrief is a website that fetches and presents the latest news, summarized 
-into a few bullet points across various categories. It also includes a tooltip 
-feature that appears when text is highlighted, enabling users to ask AI a question, 
-request an explanation, or get a definition of the selected text.
+NewsBrief is a website that scrapes the latest news articles from various sources and summarizes them into bullet points using Machine Learning. 
+The ML model used for this is a model I fine-tuned from the Facebook-Bart-Large-CNN article summarizer on the Hugging Face Library, optimized to generate more detailed and contextually rich summaries. 
 
-## Installation
-Make sure you have the following installed on your system:
-* Python 
-* Node.js and npm
-* Django
+For more information, the model is available for download at: https://huggingface.co/Yooniii/Article_summarizer
+
+This application also includes a tooltip feature that activates when users highlight text, allowing them to interact with AI by asking questions about the content. For example, users can request explanations of highlighted paragraphs or definitions of specific words.
+<br><br> 
+
+## Getting Started
 
 ### Backend Setup (Django)
-1. Clone the repository  
-```git clone https://github.com/yourusername/newsBrief.git```  
-```cd newsBrief```
 
-3. Create a virtual environment  
-```python3 -m venv venv```  
-source venv/bin/activate (`venv\Scripts\activate` for Window users)
+#### Clone the Repo
+```
+git clone https://github.com/yourusername/newsBrief.git
+```
 
-4. Install the required Python packages listed in requirements.txt  
-```pip install -r requirements.txt```
+#### Create a Virtual Environment
+```
+cd newsBrief
 
-5. Set up the Database  
-Apply the database migrations   
-```python manage.py migrate```
+echo '.env'  >> .gitignore
+echo '.venv' >> .gitignore
 
-5. Create a superuser (admin account for accessing Django admin panel)  
-```python manage.py createsuperuser```
+python3 -m venv venv # create the virtual env
 
-6. Configure Environment Variables  
-Create a .env file in the project root containing your API key to GeminiAI.
+source venv/bin/activate (`venv\Scripts\activate` for Window users) # activate the env
+
+# Install the required dependencies
+
+pip install -r requirements.txt
+```
+
+#### Set up the database
+```
+python manage.py migrate
+
+# Create a superuser (admin account for accessing Django admin panel)
+python manage.py createsuperuser
+```
+
+#### Configure environment variables
+```
+# Create a .env file in the project root containing your API key to GeminiAI.
+
 API_KEY='YOUR API KEY'
+```
 
-7. Run the development server  
-```python manage.py runserver```
+#### Run the development server
+```
+# This will scrape articles from various sources (in the urls.json file) every 3 minutes
+python manage.py runserver
+```  
 
 ### Frontend Setup (React)
-1. Navigate to the Frontend Directory  
-```cd frontend```
+```
+cd frontend
 
-2. Install the required npm packages listed in the package.json  
-```npm install```
+// Install the required npm packages listed in the package.json
+npm install
+```
 
-3. Configure Environment Variables  
-Create a .env file in the frontend directory with your API key to GeminiAI
+#### Configure environment variables
+```
+// Create a .env file in the frontend directory with your API key to GeminiAI
 
-4. Start the React development server  
-```npm start```
+// Start the React development server
+npm start
+```
 
-Once both the Django and React development servers are running, 
-you can access the NewsBrief application.
+Once both the Django and React development servers are running, you can access the NewsBrief application.
+<br><br> 
+## Example
+
+### Homepage
+<table>
+  <tr>
+    <td><img width="700" alt="Screen Shot 2024-09-22 at 2 36 29 PM" src="https://github.com/user-attachments/assets/95a3eda2-9758-4517-b2fd-683d29f0664e"></td>
+    <td><img width="700" alt="Screen Shot 2024-09-22 at 2 36 19 PM" src="https://github.com/user-attachments/assets/5a42f6a1-ee8c-4695-add1-0a36497d2849"></td>
+  </tr>
+<table>
+
+  
+### News Summaries and Tooltip Feature
+ <table>
+  <tr>
+    <td><img width="700" alt="Screen Shot 2024-09-22 at 2 36 48 PM" src="https://github.com/user-attachments/assets/5d15e859-61ab-4ff3-9f85-17cd9c8f669c"></td>
+    <td><img width="700" alt="Screen Shot 2024-09-22 at 2 38 40 PM" src="https://github.com/user-attachments/assets/d1b1ee07-75d3-4059-bee8-439a269a0cc5"></td>
+  </tr>
+</table>
+
+
+
+
