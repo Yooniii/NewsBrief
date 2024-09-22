@@ -70,7 +70,6 @@ npm start
 ```
 
 Once both the Django and React development servers are running, you can access the NewsBrief application.
-
 <br><br> 
 ## Example
 
@@ -82,6 +81,7 @@ Once both the Django and React development servers are running, you can access t
   </tr>
 <table>
 <br><br> 
+  
 ### News Summaries and Tooltip Feature
  <table>
   <tr>
