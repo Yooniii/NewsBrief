@@ -81,6 +81,7 @@ Once both the Django and React development servers are running, you can access t
   </tr>
 <table>
 
+
 ## News Summaries and Tooltip Feature
  <table>
   <tr>
