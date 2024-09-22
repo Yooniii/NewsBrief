@@ -102,10 +102,9 @@ class BackgroundClass:
             # For each URL submit a task to the executor
             # executor.submit schedules the task to be executed by one of the threads
             # Each submitted task returns a Future object representing the ongoing task
-            if i < len(url_list):
-              link = url_list[i]
-              future = executor.submit(BackgroundClass.fetch_articles, category, link)
-              future_to_article[future] = (category, link)
+            link = url_list[i]
+            future = executor.submit(BackgroundClass.fetch_articles, category, link)
+            future_to_article[future] = (category, link)
               
         # Process the results as they complete
       for future in as_completed(future_to_article):
