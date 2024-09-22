@@ -80,7 +80,7 @@ Once both the Django and React development servers are running, you can access t
     <td><img width="700" alt="Screen Shot 2024-09-22 at 2 36 19 PM" src="https://github.com/user-attachments/assets/5a42f6a1-ee8c-4695-add1-0a36497d2849"></td>
   </tr>
 <table>
-<br><br> 
+
   
 ### News Summaries and Tooltip Feature
  <table>
