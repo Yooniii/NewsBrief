@@ -8,12 +8,12 @@ request an explanation, or get a definition of the selected text.
 
 ### Backend Setup (Django)
 
-#### Cloning the Repo
+#### Clone the Repo
 ```
 git clone https://github.com/yourusername/newsBrief.git
 ```
 
-#### Creating a Virtual Environment
+#### Create a Virtual Environment
 ```
 cd newsBrief
 
@@ -45,7 +45,7 @@ python manage.py createsuperuser
 API_KEY='YOUR API KEY'
 ```
 
-#### Running the development server
+#### To run the development server
 ```
 python manage.py runserver
 ```  
@@ -56,8 +56,10 @@ cd frontend
 
 // Install the required npm packages listed in the package.json
 npm install
+```
 
-// Configure Environment Variables  
+#### Configure environment variables
+```
 // Create a .env file in the frontend directory with your API key to GeminiAI
 
 // Start the React development server
