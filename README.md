@@ -15,7 +15,7 @@ This application also includes a tooltip feature that activates when users highl
 ```
 git clone https://github.com/yourusername/newsBrief.git
 ```
-<br><br> 
+
 #### Create a Virtual Environment
 ```
 cd newsBrief
@@ -31,7 +31,7 @@ source venv/bin/activate (`venv\Scripts\activate` for Window users) # activate t
 
 pip install -r requirements.txt
 ```
-<br><br> 
+
 #### Set up the database
 ```
 python manage.py migrate
@@ -39,20 +39,20 @@ python manage.py migrate
 # Create a superuser (admin account for accessing Django admin panel)
 python manage.py createsuperuser
 ```
-<br><br> 
+
 #### Configure environment variables
 ```
 # Create a .env file in the project root containing your API key to GeminiAI.
 
 API_KEY='YOUR API KEY'
 ```
-<br><br> 
+
 #### Run the development server
 ```
 # This will scrape articles from various sources (in the urls.json file) every 3 minutes
 python manage.py runserver
 ```  
-<br><br> 
+
 ### Frontend Setup (React)
 ```
 cd frontend
@@ -60,7 +60,7 @@ cd frontend
 // Install the required npm packages listed in the package.json
 npm install
 ```
-<br><br> 
+
 #### Configure environment variables
 ```
 // Create a .env file in the frontend directory with your API key to GeminiAI
@@ -71,7 +71,6 @@ npm start
 
 Once both the Django and React development servers are running, you can access the NewsBrief application.
 
-<br><br> 
 
 # Example
 
