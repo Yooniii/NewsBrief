@@ -5,7 +5,6 @@ The ML model used for this is a model I fine-tuned from the Facebook-Bart-Large-
 For more information, the model is available for download at: https://huggingface.co/Yooniii/Article_summarizer
 
 This application also includes a tooltip feature that activates when users highlight text, allowing them to interact with AI by asking questions about the content. For example, users can request explanations of highlighted paragraphs or definitions of specific words.
-
 <br><br> 
 
 ## Getting Started
