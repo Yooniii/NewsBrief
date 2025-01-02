@@ -1,17 +1,16 @@
-import './ToolTip.css'
 import { useState, useEffect, useRef } from 'react'
 import { GoogleGenerativeAI } from '@google/generative-ai'; 
 import { CiCircleQuestion } from "react-icons/ci";
 import { FaBook } from "react-icons/fa";
 import { PiSparkleFill } from "react-icons/pi";
 import { IoIosSearch } from "react-icons/io";
+import './ToolTip.css'
 
-/**
- * Renders the tooltip component when a word or phrase is highlighted.
- */
+// Renders the tooltip component when a word or phrase is highlighted.
 
 // Load the GeminiAI model
-const genAI = new GoogleGenerativeAI('AIzaSyCNA7BjxzDJz2UGz5GAyWqryzthajGAGzo');
+const apiKey =  process.env.GENAI_API_KEY!;
+const genAI = new GoogleGenerativeAI(apiKey);
 const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
 
 /**
@@ -36,21 +35,21 @@ const ToolTip = () => {
       const text = window.getSelection()?.toString().trim(); // Get selected text
 
       if (text) {
-        // Get the range and bounding rectangle of the selected text
+        // Get range and bounding rectangle of the selected text
         const range = window.getSelection()?.getRangeAt(0);
         const rectangle = range?.getBoundingClientRect();
 
         setSelectedText(text);
-        setIsVisible(true); // Show the tooltip
+        setIsVisible(true); // Show tooltip
 
         if (rectangle) {
-          // Calculate the top and left position for the tooltip
+          // Calculate top and left position for the tooltip
           let topPosition = rectangle.bottom + window.scrollY + 10; 
           let leftPosition = rectangle.left + window.scrollX;
 
           const tooltipWidth = 400;
 
-          // Adjust the tooltip position if it overflows the window
+          // Adjust tooltip position if it overflows the window
           if (leftPosition + tooltipWidth > window.innerWidth) {
             leftPosition = window.innerWidth - tooltipWidth - 60; 
           }
@@ -63,7 +62,7 @@ const ToolTip = () => {
       } 
     };
 
-    // Hides the tooltip display if clicks outside of it are detected.
+    // Hides tooltip display if clicks outside of it are detected.
     const handleClickOutside = (event: MouseEvent) => {
       if (
         toolTipRef.current &&
@@ -147,51 +146,48 @@ const ToolTip = () => {
     generateResponse(prompt);
   };
 
-  return (
-    isVisible ? (
-      <div 
-        ref={toolTipRef}
-        className='tool-tip-container'
-        style={{ 
-          top: `${position.top}px`, 
-          left: `${position.left}px`,
-        }}
-      >
-        <div className='gpt-options'>
-          <button className='ai-btn'onClick={() => setShowForm(true)}>
-            <PiSparkleFill /> Ask AI </button>
-          <button className='explain-btn' onClick={() => handleClick('explain')}>
-            <CiCircleQuestion /> Explain This 
-          </button>
-          <button className='define-btn' onClick={() => handleClick('define')}>
-            <FaBook />Define This</button>
-        </div>
+  return ( isVisible ? (
+    <div 
+      ref={toolTipRef}
+      className='tool-tip-container'
+      style={{ 
+        top: `${position.top}px`, 
+        left: `${position.left}px`,
+      }} >
 
-        {showForm && (
-          <div className='search-wrapper'>
-            <form className='gpt-form' onSubmit={handleSearch} > 
-              <input 
-                id='gpt-input'
-                className='gpt-input'
-                type='search'
-                placeholder='Ask AI to generate...'
-                value={gptPrompt} 
-                onChange={(e) => setGptPrompt(e.target.value)} 
-              />
-              <button className='ai-search-btn' type='submit'>
-                <IoIosSearch />
-              </button>
-            </form>
-            
-          </div> )}
-
-        {showResponse && (
-          <div className='response-container'>
-            <p className='response-text'>{gptResponse}</p>
-          </div>
-        )}
+      <div className='gpt-options'>
+        <button className='ai-btn'onClick={() => setShowForm(true)}>
+          <PiSparkleFill /> Ask AI </button>
+        <button className='explain-btn' onClick={() => handleClick('explain')}>
+          <CiCircleQuestion /> Explain This 
+        </button>
+        <button className='define-btn' onClick={() => handleClick('define')}>
+          <FaBook />Define This</button>
       </div>
-    ) : null 
+
+      {showForm && (
+        <div className='search-wrapper'>
+          <form className='gpt-form' onSubmit={handleSearch} > 
+            <input 
+              id='gpt-input'
+              className='gpt-input'
+              type='search'
+              placeholder='Ask AI to generate...'
+              value={gptPrompt} 
+              onChange={(e) => setGptPrompt(e.target.value)} />
+            <button className='ai-search-btn' type='submit'>
+            <IoIosSearch />
+            </button>
+          </form>
+        </div> )}
+
+      {showResponse && (
+        <div className='response-container'>
+          <p className='response-text'>{gptResponse}</p>
+        </div>
+      )}
+    </div>
+  ) : null 
   );
 };
 

@@ -1,5 +1,5 @@
-import { Fragment } from 'react'
 import CustomSkeleton from './Skeleton';
+import { Fragment } from 'react'
 import '../Home/Home.css'
 
 const HeadlineLoadingCard = () => {

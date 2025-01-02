@@ -1,13 +1,12 @@
-import './Modal.css'
 import { TwitterShare, FacebookShare } from 'react-share-kit';
 import { useEffect } from 'react'
 import { IoLinkSharp } from "react-icons/io5";
+import './Modal.css'
 
 /**
  * Social media share modal component 
  * Allows the user to share a news article via Facebook or Twitter
  */
-
 interface ModalComponentProps {
   isOpen: boolean;
   onRequestClose: () => void;
@@ -59,7 +58,6 @@ const ModalComponent: React.FC<ModalComponentProps> = ({ isOpen, onRequestClose,
                 onClick={async () => await window.navigator.clipboard.writeText(shareUrl)}
               />
             </div>
-            
             <FacebookShare url={shareUrl} round={true} size={75}/>
             <TwitterShare url={shareUrl} round={true} size={75}/>
           </div>

@@ -1,14 +1,14 @@
-import './Home.css';
-import { Link } from 'react-router-dom';
-import { useState, useEffect, Fragment } from 'react';
 import axios from 'axios';
 import Slider from 'react-slick';
-import {Article} from '../Card/Card'
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
 import HomeLoadingCard from '../Loading/HomeLoadingCard';
 import HeadlineLoadingCard from '../Loading/HeadlineLoadingCard'
 import SectionLoadingCard from '../Loading/SectionLoadingCard'
+import { Link } from 'react-router-dom';
+import { useState, useEffect, Fragment } from 'react';
+import { Article } from '../Card/Card'
+import './Home.css';
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 
 /**
  * Homepage for the Newsbrief website.
@@ -48,9 +48,7 @@ const HomePage: React.FC = () => {
       }
     };
 
-    /**
-     * Wrapper method that fetches all articles to be displayed on the homepage.
-     */
+    // Wrapper method that fetches all articles to be displayed on the homepage.
     const fetchAllArticles = async () => {
       const [worldNews, topStories, sportsNews, politicalNews] = await Promise.all([
         fetchArticles('World', 4),

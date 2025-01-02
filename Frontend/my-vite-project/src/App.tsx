@@ -6,9 +6,7 @@ import ToolTip from './components/ToolTip/ToolTip';
 import { Route, Routes } from 'react-router-dom';
 import './App.css'
 
-
 function App() {
-
   return (
     <div className='app'>
       <Header />
