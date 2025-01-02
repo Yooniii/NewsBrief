@@ -40,7 +40,7 @@ class BackgroundClass:
         # Scrape the article content 
         link = entry.link
 
-        # if the URL is a Google Redirect link decode it to obtain the OG link
+        # Decode URL if it's a Google Redirect link 
         if ('news.google' in url):
           link = decode_google_news_url(link)
 
@@ -48,7 +48,7 @@ class BackgroundClass:
         title = entry.title
         summary = summarize(content, title)
         
-        # If the summary is valid, create a new Article object in the database
+        # If valid summary, create a new Article object in the database
         if (
           summary.strip() != 'INVALID' and 
           len(content.split(' ')) > 25 
@@ -83,7 +83,7 @@ class BackgroundClass:
         None
     """
 
-    # Open the JSON file containing the RSS urls 
+    # Open JSON file containing the RSS urls 
     current_directory = os.path.dirname(__file__)
     file_path = os.path.join(current_directory, 'urls.json')
 
@@ -106,7 +106,7 @@ class BackgroundClass:
             future = executor.submit(BackgroundClass.fetch_articles, category, link)
             future_to_article[future] = (category, link)
               
-        # Process the results as they complete
+        # Process results as they complete
       for future in as_completed(future_to_article):
         category, url = future_to_article[future]
         try:
