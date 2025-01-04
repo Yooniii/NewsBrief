@@ -9,18 +9,18 @@ import './ToolTip.css'
 // Renders the tooltip component when a word or phrase is highlighted.
 
 // Load the GeminiAI model
-const apiKey =  process.env.GENAI_API_KEY!;
-const genAI = new GoogleGenerativeAI(apiKey);
+// const apiKey =  process.env.GENAI_API_KEY!;
+const genAI = new GoogleGenerativeAI('AIzaSyCNA7BjxzDJz2UGz5GAyWqryzthajGAGzo');
 const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
 
 /**
- * Tooltip component.
- * @returns {JSX.Element} The JSX element representing the tooltip.
+ * Tooltip component
+ * @returns {JSX.Element} JSX element representing the tooltip
  */
 const ToolTip = () => {
-  const toolTipRef = useRef<HTMLDivElement>(null); // Ref to the tooltip display
+  const toolTipRef = useRef<HTMLDivElement>(null); // Ref to tooltip display
 
-  // State variables for managing the tooltip behaviour and data
+  // State variables for managing tooltip behaviour and data
   const [selectedText, setSelectedText] = useState('');
   const [position, setPosition] = useState({ top: 0, left: 0 });
   const [isVisible, setIsVisible] = useState(false);
@@ -29,18 +29,18 @@ const ToolTip = () => {
   const [gptPrompt, setGptPrompt] = useState('');
   const [gptResponse, setGptResponse] = useState('');
 
-  // Effect to handle text selection and position of the tooltip when displayed
+  // Effect to handle text selection and position of tooltip when visible
   useEffect(() => {
     const handleMouseUp = () => {
       const text = window.getSelection()?.toString().trim(); // Get selected text
 
       if (text) {
-        // Get range and bounding rectangle of the selected text
+        // Get range and bounding rectangle of selected text
         const range = window.getSelection()?.getRangeAt(0);
         const rectangle = range?.getBoundingClientRect();
 
         setSelectedText(text);
-        setIsVisible(true); // Show tooltip
+        setIsVisible(true); // Display tooltip
 
         if (rectangle) {
           // Calculate top and left position for the tooltip
@@ -62,7 +62,7 @@ const ToolTip = () => {
       } 
     };
 
-    // Hides tooltip display if clicks outside of it are detected.
+    // Hides tooltip display if clicks outside are detected
     const handleClickOutside = (event: MouseEvent) => {
       if (
         toolTipRef.current &&
@@ -94,7 +94,7 @@ const ToolTip = () => {
 
   /**
    * Generates a response from GeminiAI.
-   * @param {String} prompt - The specific prompt to pass to the AI model.
+   * @param {String} prompt - Specific prompt to pass to the AI model
    */
   async function generateResponse(prompt: string){
     try {
@@ -109,10 +109,9 @@ const ToolTip = () => {
   }
 
   /**
-   * Handles the 'AI Search' option on the tooltip by calling
-   * generateResponse with a specific prompt.
-   * @param {React.FormEvent} event - The event obj from the form submission
-   */
+  * Handles the 'AI Search' option on the tooltip by calling generateResponse with a specific prompt.
+  * @param {React.FormEvent} event - The event obj from the form submission
+  */
  async function handleSearch(event: React.FormEvent) {
     event.preventDefault(); 
     const prompt = `Please perform the following instructions. If nonsensical
@@ -125,10 +124,10 @@ const ToolTip = () => {
   };
 
   /**
-   * Function that handles the 'Explain' or 'Define' option on the tooltip by
-   * calling generateResponse with the corresponding prompt.
-   * @param {String} type - The user's selected option ('explain' or 'define') 
-   */
+   * Handles 'Explain' or 'Define' option on tooltip by
+   * calling generateResponse() with the appropriate prompt.
+   * @param {String} type - User's selected option ('explain' or 'define') 
+  */
   async function handleClick(type: string){
 
     const prompts = {
@@ -146,7 +145,7 @@ const ToolTip = () => {
     generateResponse(prompt);
   };
 
-  return ( isVisible ? (
+  return (isVisible ? (
     <div 
       ref={toolTipRef}
       className='tool-tip-container'

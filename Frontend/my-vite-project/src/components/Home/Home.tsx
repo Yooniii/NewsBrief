@@ -11,14 +11,13 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
 /**
- * Homepage for the Newsbrief website.
- * @returns {React.FC} The HomePage component.
- */
-
+ * Newsbrief homepage
+ * @returns {React.FC} HomePage component
+*/
 const HomePage: React.FC = () => {
   const [loaded, setLoaded] = useState(false);
 
-  // Dictionary that holds various articles to be displayed.
+  // Dictionary containing articles to be displayed
   const [articles, setArticles] = useState({
     worldNews: [] as Article[],
     sportsNews: [] as Article[],
@@ -27,18 +26,17 @@ const HomePage: React.FC = () => {
   });
 
   /**
-   * Uses Axios to retrieve articles from a specific category.
-   * @param {string} category - The category of articles to retrieve.
-   * @param {number} articleCount - The number of articles to retrieve.
-   * @returns {Promise<Array>} A promise that resolves to an array of articles
-   * or an empty array if none are found.
+   * Uses Axios to retrieve articles from a specific category
+   * @param {string} category - Article category
+   * @param {number} articleCount - Number of articles to retrieve
+   * @returns {Promise<Array>} - Promise that resolves to an array of articles (empty) if none found
    */
   useEffect(() => {
     const fetchArticles = async (category: string, articleCount: number) => {
       try {
         const response = await axios.get('http://127.0.0.1:8000/articles/');
         const articles = response.data
-          .filter((article: Article) => article.category === category && article.top_image)
+          .filter((article: Article) => article.category === category && article.top_image) 
           .slice(0, articleCount)
         return articles;
 
@@ -48,7 +46,7 @@ const HomePage: React.FC = () => {
       }
     };
 
-    // Wrapper method that fetches all articles to be displayed on the homepage.
+    // Wrapper method fetching articles to be displayed on the homepage.
     const fetchAllArticles = async () => {
       const [worldNews, topStories, sportsNews, politicalNews] = await Promise.all([
         fetchArticles('World', 4),
@@ -64,8 +62,7 @@ const HomePage: React.FC = () => {
     fetchAllArticles();
   }, []);
 
-  // Settings object for carousel component.
-  const settings = {
+  const settings = {   // Settings object for carousel component
     dots: true,
     infinite: true,
     speed: 500,
@@ -78,11 +75,10 @@ const HomePage: React.FC = () => {
   };
 
   /**
-   * Displays a row of four article cards. Each card displays the image, 
-   * title, and source.
-   * @param {Article[]} articles - An array containing Article objects
-   * @param {String} category - The category of the articles
-   * @returns {JSX.Element} The JSX element representing the row of article cards.
+   * Displays row of four article cards; each displays the image, title, and source
+   * @param {Article[]} articles - Array containing Article objects
+   * @param {String} category - Article category
+   * @returns {JSX.Element} JSX element representing article card row
    */
   const renderArticleRow = (articles: Article[], category: string) => (
     <div className={`${category.toLowerCase()}-news`}>
@@ -102,7 +98,7 @@ const HomePage: React.FC = () => {
           ) : (
            articles.map((article, index) => (
             <div key={index} className='article-box'>
-              <img src={article.top_image} alt={article.title}/>
+              <img src={article.top_image} alt={article.title}/> 
               <div className='article-details'>
                 <p className='source'>{article.source}</p>
                 <p className='title'>{article.title}</p>
@@ -156,9 +152,7 @@ const HomePage: React.FC = () => {
             </div>
           )}
         </div>
-
         {renderArticleRow(articles.worldNews, 'World')}
-
         <div className='political-news'>
           <div className='text-box'>
             <h2 className='subheading'>Politics</h2>
@@ -201,9 +195,7 @@ const HomePage: React.FC = () => {
             )}
           </div>
         </div>
-
         {renderArticleRow(articles.sportsNews, 'Sports')}
-        
       </div>
       <footer></footer> 
     </div>

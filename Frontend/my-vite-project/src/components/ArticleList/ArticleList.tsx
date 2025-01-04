@@ -89,12 +89,12 @@ const ArticleList = () => {
       >
         {displayedArticles.map((article: Article) => (
           <Card
-            key={article.article_link}
+            key={article.link} // article_link
             title={article.title}
-            topImage={article.top_image}
+            topImage={article.top_image} // top_image
             media={article.media}
             source={article.source}
-            link={article.article_link}
+            link={article.link}
             date={article.date}
             summary={article.summary}
           />

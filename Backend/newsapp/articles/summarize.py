@@ -6,19 +6,16 @@ import google.generativeai as genai
 tokenizer = AutoTokenizer.from_pretrained("Yooniii/Article_summarizer")
 ml_model = AutoModelForSeq2SeqLM.from_pretrained("Yooniii/Article_summarizer")
 
+"""
+  Reformats and ensures the raw summary is coherent 
+  Args:
+    summary (str): Initial news summary
+    title (str): Article title
+  Returns:
+    cleaned_summary.text (str)
+"""
 def clean_summary(summary, title):
-  """
-    Reformats and ensures the raw summary is coherent 
-
-    Args:
-      summary (str): Initial news summary
-      title (str): News article title
-    
-    Returns:
-      cleaned_summary.text (str)
-  """
-
-  # Load the Gemini AI Model
+  # Load Gemini AI Model
   genai.configure(api_key=os.getenv('GENAI_API_KEY'))
 
   generation_config = {
@@ -34,7 +31,7 @@ def clean_summary(summary, title):
     generation_config=generation_config,
   )
 
-  # Pass in the prompt, raw summary, and title for context to GeminiAI
+  # Pass in prompt, raw summary, and title to GeminiAI
   cleaned_summary = genai_model.generate_content(
     f"""Please refine and reformat the following news article summary according
     to the guidelines below:
@@ -56,27 +53,20 @@ def clean_summary(summary, title):
     Present the summary in plain text and avoid any use of asterisks.
     Here is the title: {title} and the summary to be reformatted: {summary}"""
   )
-
   return cleaned_summary.text
 
-def summarize(input_text, title):
-  """
-  Returns a summary of input_text
 
+"""
+  Returns a summary of input_text
   Args:
     input_text(str): Raw article content
     title(str): News article title
-  
   Returns:
     summary(str)
-  
-  """
-
-  # Tokenize the input text to prepare it for the model
-  inputs = tokenizer(input_text, 
-                    return_tensors="pt", 
-                    max_length=1024, 
-                    truncation=True)
+"""
+def summarize(input_text, title):
+  # Tokenize input text for model
+  inputs = tokenizer(input_text, return_tensors="pt", max_length=1024, truncation=True)
   
   summary_ids = ml_model.generate(
     inputs['input_ids'], 
@@ -87,10 +77,10 @@ def summarize(input_text, title):
     early_stopping=True
   )
 
-  # Decode the generated summary back into human text, remove special tokens
+  # Decode generated summary back into human text, remove special tokens
   summary = tokenizer.decode(summary_ids[0], skip_special_tokens=True)
 
-  # Refine and reformat the summary
+  # Refine and reformat summary
   summary = clean_summary(summary, title)
 
   return summary

@@ -5,16 +5,16 @@ from bs4 import BeautifulSoup
 import requests
 
 def get_decoding_params(gn_art_id):
-    response = requests.get(f"https://news.google.com/articles/{gn_art_id}")
-    response.raise_for_status()
-    soup = BeautifulSoup(response.text, "lxml")
-    div = soup.select_one("c-wiz > div")
+  response = requests.get(f"https://news.google.com/articles/{gn_art_id}")
+  response.raise_for_status()
+  soup = BeautifulSoup(response.text, "lxml")
+  div = soup.select_one("c-wiz > div")
     
-    return {
-        "signature": div.get("data-n-a-sg"),
-        "timestamp": div.get("data-n-a-ts"),
-        "gn_art_id": gn_art_id,
-    }
+  return {
+    "signature": div.get("data-n-a-sg"),
+    "timestamp": div.get("data-n-a-ts"),
+    "gn_art_id": gn_art_id,
+  }
 
 
 def decode_google_news_url(source_url):

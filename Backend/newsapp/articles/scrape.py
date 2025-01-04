@@ -1,13 +1,12 @@
 import newspaper
 
-def scrape(url):
-  """
-  Scrapes the image, date, raw text, and possibly videos from the given news url
+"""
+  Scrapes image, date, text, and possibly videos from the given news url
 
   Args:
-    url: the news article URL
-    
-  """
+    url: News article URL
+"""
+def scrape(url):
   page = newspaper.article(url)
   page.download()
   page.parse()
@@ -20,5 +19,3 @@ def scrape(url):
     page.top_image, 
     page.text.replace('\n', ''), 
     page.movies)
-  
-
