@@ -43,13 +43,12 @@ python manage.py createsuperuser
 #### Configure environment variables
 ```
 # Create a .env file in the project root containing your API key to GeminiAI.
-
 API_KEY='YOUR API KEY'
 ```
 
 #### Run the development server
 ```
-# This will scrape articles from various sources (in the urls.json file) every 3 minutes
+# This will scrape articles from several news sources (in the urls.json file) every minute
 python manage.py runserver
 ```  
 
@@ -66,7 +65,7 @@ npm install
 // Create a .env file in the frontend directory with your API key to GeminiAI
 
 // Start the React development server
-npm start
+npm run dev
 ```
 
 Once both the Django and React development servers are running, you can access the NewsBrief application.
