@@ -66,7 +66,7 @@ npm install
 // Create a .env file in the frontend directory with your API key to GeminiAI
 
 // Start the React development server
-npm start
+npm run dev
 ```
 
 Once both the Django and React development servers are running, you can access the NewsBrief application.
