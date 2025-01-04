@@ -6,15 +6,12 @@ import { PiSparkleFill } from "react-icons/pi";
 import { IoIosSearch } from "react-icons/io";
 import './ToolTip.css'
 
-// Renders the tooltip component when a word or phrase is highlighted.
-
-// Load the GeminiAI model
 const apiKey = import.meta.env.VITE_API_KEY;
-const genAI = new GoogleGenerativeAI(apiKey);
+const genAI = new GoogleGenerativeAI(apiKey);   // Load GeminiAI model
 const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
 
 /**
- * Tooltip component
+ * Renders tooltip component when a word or phrase is highlighted.
  * @returns {JSX.Element} - JSX element representing the tooltip
  */
 const ToolTip = () => {
