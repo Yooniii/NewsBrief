@@ -9,13 +9,13 @@ import './ToolTip.css'
 // Renders the tooltip component when a word or phrase is highlighted.
 
 // Load the GeminiAI model
-// const apiKey =  process.env.GENAI_API_KEY!;
-const genAI = new GoogleGenerativeAI('AIzaSyCNA7BjxzDJz2UGz5GAyWqryzthajGAGzo');
+const apiKey = import.meta.env.VITE_API_KEY;
+const genAI = new GoogleGenerativeAI(apiKey);
 const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
 
 /**
  * Tooltip component
- * @returns {JSX.Element} JSX element representing the tooltip
+ * @returns {JSX.Element} - JSX element representing the tooltip
  */
 const ToolTip = () => {
   const toolTipRef = useRef<HTMLDivElement>(null); // Ref to tooltip display
