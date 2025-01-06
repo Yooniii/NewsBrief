@@ -78,7 +78,7 @@ npm run dev
 ```
 Once both the Django and React development servers are running, you can access the NewsBrief application.
 
-## Example
+# Example
 
 ### Homepage
 <table>
