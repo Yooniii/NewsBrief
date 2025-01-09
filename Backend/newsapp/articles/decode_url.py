@@ -1,4 +1,3 @@
-
 import json
 from urllib.parse import quote, urlparse
 from bs4 import BeautifulSoup
@@ -15,7 +14,6 @@ def get_decoding_params(gn_art_id):
     "timestamp": div.get("data-n-a-ts"),
     "gn_art_id": gn_art_id,
   }
-
 
 def decode_google_news_url(source_url):
   article = get_decoding_params(urlparse(source_url).path.split("/")[-1])
