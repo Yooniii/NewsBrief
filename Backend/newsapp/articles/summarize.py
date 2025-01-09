@@ -1,6 +1,6 @@
 import os
-from transformers import AutoTokenizer, AutoModelForSeq2SeqLM
 import google.generativeai as genai
+from transformers import AutoTokenizer, AutoModelForSeq2SeqLM
 
 # Load the tokenizer and ML model from HuggingFace
 tokenizer = AutoTokenizer.from_pretrained("Yooniii/Article_summarizer")
@@ -61,8 +61,6 @@ def clean_summary(summary, title):
   Args:
     input_text(str): Raw article content
     title(str): News article title
-  Returns:
-    summary(str)
 """
 def summarize(input_text, title):
   # Tokenize input text for model
