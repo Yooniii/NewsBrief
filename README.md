@@ -14,7 +14,7 @@ The summaries are generated using a fine-tuned version of the Facebook-Bart-Larg
 * **Tooltip feature:** appears when users highlight text, offering definitions/explanations to help them understand unfamiliar words /phrases without needing to search elsewhere.
 
 
-# The Process
+# The Process: My First Experience with Machine Learning
 ## Data Collection and Preparation
 First, I curated various datasets with human-produced summaries from multiple sources: three from Hugging Face and one from Kaggle. Each dataset contained original article text and corresponding human-generated summaries. I combined these datasets into a comprehensive dataset and created a preprocessing function to prepare the data for training and evaluation. The function prefixes the input with the task instruction (summarize) and tokenizes the inputs and outputs (labels).
 I then split the dataset into 80% training and 20% testing data and applied the preprocessing function using map.
