@@ -14,7 +14,7 @@ The summaries are generated using a fine-tuned version of the Facebook-Bart-Larg
 * **Tooltip feature:** appears when users highlight text, offering definitions/explanations to help them understand unfamiliar words /phrases without needing to search elsewhere.
 
 
-# The Process: My First Experience with Machine Learning
+# The Process
 ## Data Collection and Preparation
 First, I curated various datasets with human-produced summaries from multiple sources: three from Hugging Face and one from Kaggle. Each dataset contained original article text and corresponding human-generated summaries. I combined these datasets into a comprehensive dataset and created a preprocessing function to prepare the data for training and evaluation. The function prefixes the input with the task instruction (summarize) and tokenizes the inputs and outputs (labels).
 I then split the dataset into 80% training and 20% testing data and applied the preprocessing function using map.
@@ -103,7 +103,9 @@ Once both the Django and React development servers are running, you can access t
   </tr>
 </table>
 
-# Reflection
-This was my first experience with NLP and ML, so I spent significant time researching and understanding each component of the process. It was also my first time creating a cohesive application with Django and React, and I learnt alot about these frameworks and how they interact to create a seamless interface. This project was an excellent introduction to both of these topics, and in particular, deepened my interest in learning more about Machine Learning and its applications.
+# Reflection: My First Experience with Machine Learning
+This project marked my first experience into Natural Language Processing (NLP) and ML. I dedicated significant time to understanding the intricacies of each process involved - from tokenization and model training to evaluating performance. I explored key concepts like fine-tuning training arguments to achieve an optimal balance between training and validation loss to prevent over/underfitting. The journey involved considerable trial and error, but each challenge strengthened my problem-solving skills and deepened my technical understanding.
 
+It was also my first time building a full-stack application using Django and React. I gained hands-on experience in integrating these frameworks to create a seamless interface, learning how front-end and back-end systems work together in a production environment.
 
+Overall, this project was an invaluable learning experience and an excellent introduction to these topics, reinforcing my interest in ML and its applications.
