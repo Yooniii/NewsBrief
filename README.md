@@ -5,7 +5,7 @@ One unique feature of Newsbrief is the tooltip functionality, which was inspired
 
 The summaries are generated using a fine-tuned version of the Facebook-Bart-Large-CNN article summarizer from the Hugging Face Library. I fine-tuned this model using Google Colab to improve upon the original, which often generated overly brief (1-3 sentence) summaries that missed key details.
 
-# Features
+# Key Features
 * **Multithreading:** Scrapes news content from multiple categories simultaneously, greatly enhancing performance.
 (URLs of RSS feeds from different news sources are defined in the URLS.json)
 * **Asynchronous Summarization:** A summarize function processes multiple articles simultaneously, speeding up the summarization process.
