@@ -8,25 +8,25 @@ import json
 import os
 
 def save_article_to_db(article_data):
-    """
-      Adds the article to the database.
-    """
-    try:
-      Article.objects.create(
-        title=article_data["title"],
-        date=article_data["date"],
-        source=article_data["source"],
-        article_link=article_data["link"],
-        top_image=article_data["top_image"],
-        media=article_data["media"],
-        content=article_data["content"],
-        summary=article_data["summary"],
-        category=article_data["category"],
-      )
-      print(f"Successfully saved article: {article_data['title']}")
+  """
+    Adds the article to the database.
+  """
+  try:
+    Article.objects.create(
+      title=article_data["title"],
+      date=article_data["date"],
+      source=article_data["source"],
+      article_link=article_data["link"],
+      top_image=article_data["top_image"],
+      media=article_data["media"],
+      content=article_data["content"],
+      summary=article_data["summary"],
+      category=article_data["category"],
+    )
+    print(f"Successfully saved article: {article_data['title']}")
       
-    except Exception as e:
-      print(f"ERROR saving article to Database: {e}")
+  except Exception as e:
+    print(f"ERROR saving article to Database: {e}")
 
 
 def add_summary(article):
