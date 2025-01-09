@@ -26,9 +26,6 @@ Compute_metrics takes as input a tuple containing the model outputs (predictions
 
 For more details, the completed model is available at: https://huggingface.co/Yooniii/Article_summarizer
 
-# Reflection
-This was my first experience with NLP and ML, so I spent significant time researching and understanding each component of the process. This project was an excellent introduction to these fields, and I think it has really deepened my interest in learning more about Machine Learning and its applications.
-
 # Getting Started
 
 ### Backend Setup (Django)
@@ -105,4 +102,8 @@ Once both the Django and React development servers are running, you can access t
     <td><img width="700" alt="Screen Shot 2024-09-22 at 2 38 40 PM" src="https://github.com/user-attachments/assets/d1b1ee07-75d3-4059-bee8-439a269a0cc5"></td>
   </tr>
 </table>
+
+# Reflection
+This was my first experience with NLP and ML, so I spent significant time researching and understanding each component of the process. It was also my first time creating a cohesive application with Django and React, and I learnt alot about these frameworks and how they interact to create a seamless interface. This project was an excellent introduction to both of these topics, and in particular, deepened my interest in learning more about Machine Learning and its applications.
+
 
