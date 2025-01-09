@@ -8,21 +8,21 @@ The summaries are generated using a fine-tuned version of the Facebook-Bart-Larg
 # Features
 * **Multithreading:** Scrapes news content from multiple categories simultaneously, greatly enhancing performance.
 (URLs of RSS feeds from different news sources are defined in the URLS.json)
-* **Asynchronous Summarization:** The summarize() function processes multiple articles simultaneously, speeding up the summarization process.
-* **Modular Design:** The backend is split into independent functions for scraping, summarizing, validating data, and saving articles to the database, promoting low coupling. This principle was also applied to the front-end, which is structured into separate React components and combined together to form a cohesive interface.
-* **Custom ML Model:** summaries are generated using a fine-tuned ML model. More details about the process are below.
+* **Asynchronous Summarization:** A summarize function processes multiple articles simultaneously, speeding up the summarization process.
+* **Modular Design:** The backend is split into independent functions for scraping, summarizing, validating data, and saving articles to the database, promoting low coupling. This principle was also applied to the front end, which is structured into separate React components and combined to form a cohesive interface.
+* **Custom ML Model:** Summaries are generated using a fine-tuned ML model. I've included more details about the process below.
 * **Tooltip feature:** appears when users highlight text, offering definitions/explanations to help them understand unfamiliar words /phrases without needing to search elsewhere.
 
 
 # The Process
 ## Data Collection and Preparation
-First, I curated various datasets with human-produced summaries from multiple sources: three from Hugging Face and one from Kaggle. Each dataset contained original article text and corresponding human-generated summaries. I combined these datasets into a single comprehensive dataset and created a preprocessing function to prepare the data for training and evaluation. The function prefixes the input with the task instruction (summarize) and tokenizes the inputs and outputs (labels).
+First, I curated various datasets with human-produced summaries from multiple sources: three from Hugging Face and one from Kaggle. Each dataset contained original article text and corresponding human-generated summaries. I combined these datasets into a comprehensive dataset and created a preprocessing function to prepare the data for training and evaluation. The function prefixes the input with the task instruction (summarize) and tokenizes the inputs and outputs (labels).
 I then split the dataset into 80% training and 20% testing data and applied the preprocessing function using map.
 
 ## Model Training
-I defined my training arguments (Seq2SeqTrainingArguments) by specificying key parameters such as the learning rate and optimization, number of training epochs, and logging settings. I also used the (Seq2Seq) Trainer class which handled the training and evaluation process. The Trainer also used a compute_metrics function to evaluate model performance.
+I defined my training arguments (Seq2SeqTrainingArguments) by specifying key parameters such as the learning rate and optimization, the number of training epochs, and logging settings. I also used the (Seq2Seq) Trainer class which handled the training and evaluation process. The Trainer also used a compute_metrics function to evaluate model performance.
 
-Compute_metrics takes as input a tuple containing the model outputs (predictions) and desired outcomes (labels). The function decodes the predictions and labels into text, and then calculates the ROUGE score (rounded to 4 decimal places). This score measured the overlap between the generated summaries (predictions) and reference summaries (labels).
+Compute_metrics takes as input a tuple containing the model outputs (predictions) and desired outcomes (labels). The function decodes the predictions and labels into text and then calculates the ROUGE score (rounded to 4 decimal places). This score measured the overlap between the generated summaries (predictions) and reference summaries (labels).
 
 For more details, the completed model is available at: https://huggingface.co/Yooniii/Article_summarizer
 
