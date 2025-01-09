@@ -9,7 +9,7 @@ The summaries are generated using a fine-tuned version of the Facebook-Bart-Larg
 * **Multithreading:** Scrapes news content from multiple categories simultaneously, greatly enhancing performance.
 (URLs of RSS feeds from different news sources are defined in the URLS.json)
 * **Asynchronous Summarization:** A summarize function processes multiple articles simultaneously, speeding up the summarization process.
-* **Modular Design:** The backend is split into independent functions for scraping, summarizing, validating data, and saving articles to the database, promoting low coupling. This principle was also applied to the front end, which is structured into separate React components and combined to form a cohesive interface.
+* **Modular Design:** The backend is split into independent functions for scraping, summarizing, validating data, and saving articles to the database, ensuring low coupling. This principle was also applied to the front end, which is structured into separate React components and combined to form a cohesive interface.
 * **Custom ML Model:** Summaries are generated using a fine-tuned ML model. I've included more details about the process below.
 * **Tooltip feature:** appears when users highlight text, offering definitions/explanations to help them understand unfamiliar words /phrases without needing to search elsewhere.
 
