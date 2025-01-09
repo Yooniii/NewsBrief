@@ -3,7 +3,16 @@ NewsBrief is a website that scrapes the latest news articles from various source
 
 One unique feature of Newsbrief is the tooltip functionality, which was inspired by Notion. When users highlight text, a tooltip appears, allowing them to request definitions or explanations of the selected text.
 
-The ML model used to generate the summaries is a fine-tuned version of the Facebook-Bart-Large-CNN article summarizer from the Hugging Face Library. I fine-tuned this model using Google Colab to address some limitations of the original, such as the overly brief (1-3 sentence) summaries that often missed key highlights of the articles.
+The summaries are generated using a fine-tuned version of the Facebook-Bart-Large-CNN article summarizer from the Hugging Face Library. I fine-tuned this model using Google Colab to improve upon the original, which often generated overly brief (1-3 sentence) summaries that missed key details.
+
+# Features
+* Multithreading: Scrapes news content from multiple categories simultaneously, greatly enhancing performance.
+(URLs of RSS feeds from different news sources are defined in the URLS.json)
+* Asynchronous Summarization: The summarize() function processes multiple articles simultaneously, speeding up the summarization process.
+* Modular Design: The backend is split into independent functions for scraping, summarizing, validating data, and saving articles to the database, promoting low coupling. This principle was also applied to the front-end, which is structured into separate React components and combined together to form a cohesive interface.
+* Custom ML Model: summaries are generated using a fine-tuned ML model. More details about the process are below.
+* Tooltip feature: appears when users highlight text, offering definitions/explanations to help them understand unfamiliar words /phrases without needing to search elsewhere.
+
 
 # The Process
 ## Data Collection and Preparation
