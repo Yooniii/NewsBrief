@@ -1,30 +1,29 @@
 # NewsBrief
-NewsBrief is a website that scrapes the latest news articles from various sources and summarizes them into concise bullet points using Machine Learning. 
+NewsBrief is a website that scrapes the latest news articles from RSS feeds and summarizes them into concise bullet points using Machine Learning. 
 
-One unique feature of Newsbrief is the tooltip functionality, which was inspired by Notion. When users highlight text, a tooltip appears, allowing them to request definitions or explanations of the selected text.
+One unique feature of Newsbrief is the tooltip functionality, inspired by Notion. When users highlight text, a tooltip appears, allowing them to request definitions or explanations of the selected text.
 
-The summaries are generated using a fine-tuned version of the Facebook-Bart-Large-CNN article summarizer from the Hugging Face Library. I fine-tuned this model using Google Colab to improve upon the original, which often generated overly brief (1-3 sentence) summaries that missed key details.
+The summaries are generated using a fine-tuned version of the Facebook-Bart-Large-CNN article summarizer from the Hugging Face Library. I fine-tuned this model using Google Colab to improve upon the original, which generated overly brief (1-3 sentence) summaries that missed key details.
 
 # Key Features
-* **Multithreading:** Scrapes news content from multiple categories simultaneously, greatly enhancing performance.
-(URLs of RSS feeds from different news sources are defined in the URLS.json)
-* **Asynchronous Summarization:** A summarize function processes multiple articles simultaneously, speeding up the summarization process.
+* **Multithreading:** Scrapes news content from different sources concurrently, reducing data processing times.
+* **Asynchronous Summarization:** A summarize function processes multiple articles in parallel, speeding up the summarization process.
 * **Modular Design:** The backend is split into independent functions for scraping, summarizing, validating data, and saving articles to the database, ensuring low coupling. This principle was also applied to the front end, which is structured into separate React components and combined to form a cohesive interface.
-* **Custom ML Model:** Summaries are generated using a fine-tuned ML model. I've included more details about the process below.
-* **Tooltip feature:** appears when users highlight text, offering definitions/explanations to help them understand unfamiliar words /phrases without needing to search elsewhere.
+* **Custom ML Model:** Summaries are generated using a fine-tuned ML model. More details about this process are below.
+* **Tooltip feature:** Appears when users highlight text, offering definitions/explanations to help them understand unfamiliar terms without needing to search elsewhere.
 
 
 # The Process
 ## Data Collection and Preparation
-First, I curated various datasets with human-produced summaries from multiple sources: three from Hugging Face and one from Kaggle. Each dataset contained original article text and corresponding human-generated summaries. I combined these datasets into a comprehensive dataset and created a preprocessing function to prepare the data for training and evaluation. The function prefixes the input with the task instruction (summarize) and tokenizes the inputs and outputs (labels).
-I then split the dataset into 80% training and 20% testing data and applied the preprocessing function using map.
+First, I curated various datasets with human-produced summaries from multiple sources: three from Hugging Face and one from Kaggle. Each dataset contained original article text and human-generated summaries. I combined these datasets into a comprehensive dataset and created a preprocessing function to prepare the data for training and evaluation. The function prefixes the input with the task instruction (summarize) and tokenizes the inputs and outputs (labels).
 
 ## Model Training
+The dataset was split as 80% training and 20% testing.
 I defined my training arguments (Seq2SeqTrainingArguments) by specifying key parameters such as the learning rate and optimization, the number of training epochs, and logging settings. I also used the (Seq2Seq) Trainer class which handled the training and evaluation process. The Trainer also used a compute_metrics function to evaluate model performance.
 
-Compute_metrics takes as input a tuple containing the model outputs (predictions) and desired outcomes (labels). The function decodes the predictions and labels into text and then calculates the ROUGE score (rounded to 4 decimal places). This score measured the overlap between the generated summaries (predictions) and reference summaries (labels).
+Compute_metrics takes a tuple of the model outputs (predictions) and desired outcomes (labels) as input. The function decodes the predictions and labels into text and then calculates the ROUGE score (rounded to 4 decimal places). This score measured the overlap between the generated summaries (predictions) and reference summaries (labels).
 
-For more details, the completed model is available at: https://huggingface.co/Yooniii/Article_summarizer
+The completed model is available at: https://huggingface.co/Yooniii/Article_summarizer
 
 # Getting Started
 
@@ -104,7 +103,7 @@ Once both the Django and React development servers are running, you can access t
 </table>
 
 # Reflection: My First Experience with Machine Learning
-This project marked my first experience into Natural Language Processing (NLP) and ML. I dedicated significant time to understanding the intricacies of each process involved - from tokenization and model training to evaluating performance. I explored key concepts like fine-tuning training arguments to achieve an optimal balance between training and validation loss to prevent over/underfitting. The journey involved considerable trial and error, but each challenge strengthened my problem-solving skills and deepened my technical understanding.
+This project was my first experience with Natural Language Processing (NLP) and ML. I dedicated a lot of time to understanding each step of the process - from tokenization and model training to evaluating performance. I explored key concepts like fine-tuning training arguments to achieve an optimal balance between training and validation loss to prevent over/underfitting. The journey involved considerable trial and error, but each challenge strengthened my problem-solving skills and deepened my technical understanding.
 
 It was also my first time building a full-stack application using Django and React. I gained hands-on experience in integrating these frameworks to create a seamless interface, learning how front-end and back-end systems work together in a production environment.
 
