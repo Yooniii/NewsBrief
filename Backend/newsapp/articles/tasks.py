@@ -94,7 +94,6 @@ def upload_data():
   """
     Fetches and processes articles from multiple RSS feed URLs concurrently.
   """
-
   # Load JSON file containing RSS URLs
   current_directory = os.path.dirname(__file__)
   file_path = os.path.join(current_directory, 'urls.json')
@@ -115,7 +114,7 @@ def upload_data():
         article_type, link = future_to_category_url[future]
         try:
           future.result()      
-          print(f"Successfully processed articles for {article_type} from {link}")
+          # print(f"Successfully processed articles for {article_type} from {link}")
         except Exception as e:
           print(f"Failed to process {article_type} - {link}: {e}")
 
