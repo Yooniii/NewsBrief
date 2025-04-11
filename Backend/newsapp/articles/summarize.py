@@ -18,7 +18,7 @@ ml_model = AutoModelForSeq2SeqLM.from_pretrained("Yooniii/Article_summarizer")
 def clean_summary(summary, title):
   load_dotenv()
   # Load Gemini AI Model
-  print('GENAI_API_KEY' in os.environ)
+  # print('GENAI_API_KEY' in os.environ)
   genai.configure(api_key=os.getenv('GENAI_API_KEY'))
 
   generation_config = {
