@@ -21,7 +21,6 @@ const ModalComponent: React.FC<ModalComponentProps> = ({ isOpen, onRequestClose,
       document.body.classList.add('no-scroll');
     } else {
       document.body.classList.remove('no-scroll');
-
     }
   }, [isOpen, onRequestClose]);
 
@@ -52,10 +51,18 @@ const ModalComponent: React.FC<ModalComponentProps> = ({ isOpen, onRequestClose,
                   cursor: 'pointer',
                 }}>
               <IoLinkSharp 
-                size={40}  // adjust size as needed
-                color='transparent' 
-                style={{backgroundColor: 'transparent'}}
-                onClick={async () => await window.navigator.clipboard.writeText(shareUrl)}
+                size={40}
+                color="#333" 
+                style={{ backgroundColor: 'transparent', cursor: 'pointer' }}
+                onClick={async () => {
+                  try {
+                    await navigator.clipboard.writeText(shareUrl);
+                    alert("Link copied!");
+                  } catch (err) {
+                    console.error("Copy failed:", err);
+                    alert("Copy failed.");
+                  }
+                }}
               />
             </div>
             <FacebookShare url={shareUrl} round={true} size={75}/>
@@ -66,5 +73,4 @@ const ModalComponent: React.FC<ModalComponentProps> = ({ isOpen, onRequestClose,
     </div>
   )
 }
-
 export default ModalComponent;
