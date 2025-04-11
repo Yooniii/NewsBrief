@@ -1,13 +1,14 @@
 import os
 import google.generativeai as genai
 from transformers import AutoTokenizer, AutoModelForSeq2SeqLM
+from dotenv import load_dotenv
 
 # Load the tokenizer and ML model from HuggingFace
 tokenizer = AutoTokenizer.from_pretrained("Yooniii/Article_summarizer")
 ml_model = AutoModelForSeq2SeqLM.from_pretrained("Yooniii/Article_summarizer")
 
 """
-  Reformats and ensures the raw summary is coherent 
+  Reformats and ensures summary is coherent 
   Args:
     summary (str): Initial news summary
     title (str): Article title
@@ -15,7 +16,9 @@ ml_model = AutoModelForSeq2SeqLM.from_pretrained("Yooniii/Article_summarizer")
     cleaned_summary.text (str)
 """
 def clean_summary(summary, title):
+  load_dotenv()
   # Load Gemini AI Model
+  # print('GENAI_API_KEY' in os.environ)
   genai.configure(api_key=os.getenv('GENAI_API_KEY'))
 
   generation_config = {
@@ -33,14 +36,14 @@ def clean_summary(summary, title):
 
   # Pass in prompt, raw summary, and title to GeminiAI
   cleaned_summary = genai_model.generate_content(
-    f"""Please refine and reformat the following news article summary according
+    f"""Refine and reformat the following news article summary according
     to the guidelines below:
       Begin with a 1-2 sentence preview that provides a concise overview of the 
       article. Then, organize the remaining details into bullet points, following
       a chronological order. Ignore incoherent or irrelevant text. If the
       provided text and title is nonsensical return 'INVALID'.
 
-    This is the format to be followed:
+    The format to be followed:
       Sentence describing the article.
       - Bullet point 1
       - Bullet point 2
@@ -77,8 +80,5 @@ def summarize(input_text, title):
 
   # Decode generated summary back into human text, remove special tokens
   summary = tokenizer.decode(summary_ids[0], skip_special_tokens=True)
-
-  # Refine and reformat summary
-  summary = clean_summary(summary, title)
-
+  summary = clean_summary(summary, title)   # Refine and reformat summary
   return summary

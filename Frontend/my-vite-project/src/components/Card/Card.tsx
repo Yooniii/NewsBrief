@@ -27,7 +27,7 @@ export interface Article {
 /**
  * Renders an article card component
  * @param {Object} param0 
- * @param {string} param0.key - Unique key for the article.
+ * @param {string} param0.key - Article key.
  * @param {string} param0.title - Article headline
  * @param {string} param0.topImage - URL to article image
  * @param {string} param0.media - URL to media content (e.g. video)
@@ -38,7 +38,7 @@ export interface Article {
  * @returns {JSX.Element} - JSX element representing the article card
  */
 const ArticleCard: React.FC<Article> = 
-({ key, title, topImage, media, source, link, date, summary }) => {
+({ title, topImage, media, source, link, date, summary }) => {
   const [showMore, setShowMore] = useState(false)
   const [showModal, setShowModal] = useState(false)   
 
@@ -73,7 +73,6 @@ const ArticleCard: React.FC<Article> =
       </div>
     )
   }
-
    return (
     <Fragment>
       <div className='article-container'>

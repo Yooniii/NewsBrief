@@ -1,7 +1,7 @@
 import json
+import requests
 from urllib.parse import quote, urlparse
 from bs4 import BeautifulSoup
-import requests
 
 def get_decoding_params(gn_art_id):
   response = requests.get(f"https://news.google.com/articles/{gn_art_id}")

@@ -23,7 +23,6 @@ const ArticleList = () => {
       try {
         const response = await axios.get('http://127.0.0.1:8000/articles/');                                                                                                                          
         const allArticles = response.data;
-
         let filteredArticles = allArticles;
 
         if (query) {
@@ -36,7 +35,6 @@ const ArticleList = () => {
             article.category === category
           );
         }
-
         setArticles(filteredArticles);
         setHasMore(filteredArticles.length > 3);
         setDisplayedArticles(filteredArticles.slice(0, 3));
@@ -45,19 +43,16 @@ const ArticleList = () => {
         console.error('Error fetching articles:', error);
       }
     };
-
     fetchData();
   }, [category, query]);
 
   const fetchMoreData = () => {
     if (!hasMore) return;
-
     const nextIndex = index + 3;
 
     if (nextIndex > articles.length) {
       setDisplayedArticles(articles);
       setHasMore(false);
-      
     } else {
       setDisplayedArticles(articles.slice(0, nextIndex));
       setIndex(nextIndex);
@@ -87,18 +82,21 @@ const ArticleList = () => {
           </div>
         }
       >
-        {displayedArticles.map((article: Article) => (
+      {displayedArticles.map((article: Article) => {
+        return (
           <Card
-            key={article.link} // article_link
+            key={article.link} 
             title={article.title}
-            topImage={article.top_image} // top_image
+            topImage={article.top_image} 
+            category={article.category}
             media={article.media}
             source={article.source}
-            link={article.link}
+            link={article.article_link}
             date={article.date}
             summary={article.summary}
           />
-        ))}
+        );
+      })}
       </InfiniteScroll>
     </div>
   );

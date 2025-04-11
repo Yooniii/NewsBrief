@@ -2,7 +2,6 @@ import newspaper
 
 """
   Scrapes image, date, text, and possibly videos from the given news url
-
   Args:
     url: News article URL
 """
