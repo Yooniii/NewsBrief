@@ -4,8 +4,7 @@
     "https://feeds.bbci.co.uk/news/rss.xml",
     "https://www.cbc.ca/webfeed/rss/rss-topstories", 
     "https://abcnews.go.com/abcnews/topstories", 
-    "https://www.cbsnews.com/latest/rss/main", 
-    "https://www.ctvnews.ca/rss/ctvnews-ca-top-stories-public-rss-1.822009"
+    "https://www.cbsnews.com/latest/rss/main"
   ], 
     
   "World": [
@@ -21,7 +20,6 @@
     "https://www.thestar.com/search/?f=rss&t=article&c=business*&l=50&s=start_time&sd=desc",
     "https://www.cbc.ca/webfeed/rss/rss-business", 
     "https://feeds.bbci.co.uk/news/business/rss.xml",
-    "https://www.ctvnews.ca/rss/business/ctv-news-business-headlines-1.867648", 
     "https://abcnews.go.com/abcnews/moneyheadlines"
   ],
 
@@ -48,16 +46,14 @@
     "https://feeds.bbci.co.uk/news/politics/rss.xml",
     "https://www.cbc.ca/webfeed/rss/rss-politics", 
     "https://www.thestar.com/search/?f=rss&t=article&c=politics*&l=50&s=start_time&sd=desc",
-    "https://globalnews.ca/politics/feed/", 
-    "https://www.ctvnews.ca/rss/ctvnews-ca-politics-public-rss-1.822302"
+    "https://globalnews.ca/politics/feed/"
   ],
 
   "Sports": [
     "https://www.thestar.com/search/?f=rss&t=article&c=sports*&l=50&s=start_time&sd=desc",
     "https://www.cbc.ca/webfeed/rss/rss-sports", 
     "https://www.espn.com/espn/rss/news",          
-    "https://globalnews.ca/sports/feed/", 
-    "https://www.ctvnews.ca/rss/sports/ctv-news-sports-1.3407726"
+    "https://globalnews.ca/sports/feed/"
   ],
 
   "Science": [
@@ -73,7 +69,6 @@
     "https://www.cbsnews.com/latest/rss/health", 
     "https://www.sciencedaily.com/rss/top/health.xml",
     "https://www.cbc.ca/webfeed/rss/rss-health", 
-    "https://globalnews.ca/health/feed/", 
-    "https://www.ctvnews.ca/rss/ctvnews-ca-health-public-rss-1.822299"
+    "https://globalnews.ca/health/feed/"
   ]
 }
