@@ -1,20 +1,17 @@
+import feedparser
+import json
+import os
 from articles.models import Article
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from .scrape import scrape
 from .summarize import summarize
 from .decode_url import decode_google_news_url
-import feedparser
-import json
-import os
 
 # Handles background tasks related to fetching and uploading articles
 class BackgroundClass:
 
   @staticmethod
-  def save_article_to_db(article_data):
-    """
-      Adds the article to the database.
-    """
+  def save_article_to_db(article_data): 
     try:
       Article.objects.create(
         title=article_data["title"],
@@ -32,11 +29,11 @@ class BackgroundClass:
     except Exception as e:
       print(f"ERROR saving article to Database: {e}")
   
+  
   @staticmethod
   def fetch_article_data(entry, category, url):
     try:
       link = entry.link
-      
       if 'news.google' in url:  # Decode URL if a Google Redirect link
         link = decode_google_news_url(link)
 
@@ -59,15 +56,16 @@ class BackgroundClass:
       print(f"ERROR processing article: {e}")
     return None
   
+  
   @staticmethod
   def add_summary(article):
     article["summary"] = summarize(article["content"], article["title"])
+    return article
 
+
+  # Fetches articles from a given RSS feed and processes them.
   @staticmethod
   def fetch_articles(category, url):
-    """
-      Fetches articles from a given RSS feed and processes them.
-    """
     print(f"Fetching articles from URL: {url}")
     feed = feedparser.parse(url)
     summarized_articles = []
@@ -77,10 +75,8 @@ class BackgroundClass:
     # Fetch and scrape article data
     for entry in feed.entries:
       if (valid_article_count >= 4): break
-
       else: 
         article_data = BackgroundClass.fetch_article_data(entry, category, url)
-
         if article_data:
           articles_to_process.append(article_data)
           valid_article_count += 1
@@ -94,11 +90,9 @@ class BackgroundClass:
       BackgroundClass.save_article_to_db(article)
 
 
+  # Fetches and processes articles from multiple RSS feed URLs concurrently.  
   @staticmethod
   def upload_data():
-    """
-      Fetches and processes articles from multiple RSS feed URLs concurrently.
-    """
     print("Upload_data starting..")
 
     # Load JSON file containing RSS URLs
@@ -109,7 +103,7 @@ class BackgroundClass:
       file = json.load(file)
     
     # Use ThreadPoolExecutor to fetch articles from feeds
-    with ThreadPoolExecutor(max_workers=10) as executor:
+    with ThreadPoolExecutor(max_workers=7) as executor:
       future_to_category_url = {}
 
       for category, urls in file.items():
