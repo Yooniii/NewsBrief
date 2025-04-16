@@ -10,10 +10,7 @@ import './Home.css';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
-/**
- * Newsbrief homepage
- * @returns {React.FC} HomePage component
-*/
+// Newsbrief homepage
 const HomePage: React.FC = () => {
   const [loaded, setLoaded] = useState(false);
 
@@ -62,7 +59,7 @@ const HomePage: React.FC = () => {
     fetchAllArticles();
   }, []);
 
-  const settings = {   // Settings object for carousel component
+  const settings = { // Settings object for carousel component
     dots: true,
     infinite: true,
     speed: 500,
