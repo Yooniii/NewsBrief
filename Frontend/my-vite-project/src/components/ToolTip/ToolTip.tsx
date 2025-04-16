@@ -31,14 +31,15 @@ const ToolTip = () => {
     const handleMouseUp = () => {
       const text = window.getSelection()?.toString().trim(); // Get selected text
 
-      if (text) { // Get range and bounding rectangle of selected text
+      if (text) { // Get range and bounding region of selected text
         const range = window.getSelection()?.getRangeAt(0);
         const rectangle = range?.getBoundingClientRect();
 
         setSelectedText(text);
-        setIsVisible(true); // Display tooltip
+        setIsVisible(true); 
 
-        if (rectangle) { // Calculate top and left position for the tooltip
+        // Calculate top and left position for the tooltip
+        if (rectangle) { 
           let topPosition = rectangle.bottom + window.scrollY + 10; 
           let leftPosition = rectangle.left + window.scrollX;
 
@@ -104,7 +105,7 @@ const ToolTip = () => {
   }
 
   /**
-  * Handles the 'AI Search' option on the tooltip by calling generateResponse with a specific prompt.
+  * Handles the 'AI Search' option on the tooltip by calling generateResponse with a specific prompt
   * @param {React.FormEvent} event - The event obj from the form submission
   */
  async function handleSearch(event: React.FormEvent) {
@@ -124,7 +125,6 @@ const ToolTip = () => {
    * @param {String} type - User's selected option ('explain' or 'define') 
   */
   async function handleClick(type: string){
-
     const prompts = {
       explain: `Please provide a simple explanation for the following text: ${selectedText}.`,
       define: `Please provide a simple definition for the following term: ${selectedText}.`,
@@ -148,7 +148,7 @@ const ToolTip = () => {
         top: `${position.top}px`, 
         left: `${position.left}px`,
       }} >
-
+        
       <div className='gpt-options'>
         <button className='ai-btn'onClick={() => setShowForm(true)}>
           <PiSparkleFill /> Ask AI </button>
