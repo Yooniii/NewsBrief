@@ -15,7 +15,6 @@ const HeadlineLoadingCard = () => {
           </div>
         </div>
       </div>
-
       <div className='headline-col'>
         <Fragment>
           <div className='headline-col-box'>
