@@ -1,122 +1,114 @@
+from articles.models import Article
+from concurrent.futures import ThreadPoolExecutor, as_completed
+from .summarize import summarize
+from .decode_url import decode_google_news_url
+from random import shuffle
+import newspaper
 import feedparser
 import json
 import os
-from articles.models import Article
-from concurrent.futures import ThreadPoolExecutor, as_completed
-from .scrape import scrape
-from .summarize import summarize
-from .decode_url import decode_google_news_url
 
-# Handles background tasks related to fetching and uploading articles
 class BackgroundClass:
-
-  @staticmethod
-  def save_article_to_db(article_data): 
-    try:
-      Article.objects.create(
-        title=article_data["title"],
-        date=article_data["date"],
-        source=article_data["source"],
-        article_link=article_data["link"],
-        top_image=article_data["top_image"],
-        media=article_data["media"],
-        content=article_data["content"],
-        summary=article_data["summary"],
-        category=article_data["category"],
-      )
-      print(f"Successfully saved article: {article_data['title']}")
-      
-    except Exception as e:
-      print(f"ERROR saving article to Database: {e}")
-  
   
   @staticmethod
-  def fetch_article_data(entry, category, url):
-    try:
-      link = entry.link
-      if 'news.google' in url:  # Decode URL if a Google Redirect link
-        link = decode_google_news_url(link)
+  def scrape(url):
+    page = newspaper.article(url)
+    page.download()
+    page.parse()
 
-      source, date, top_image, content, media = scrape(link)
-      title = entry.title
+    source = newspaper.build(url).brand.upper()
+    
+    return (
+      source,
+      page.publish_date, 
+      page.top_image, 
+      page.text.replace('\n', ''), 
+      page.movies)
 
-      if len(content.split(' ')) > 25:  # Ensure scraped text is valid
-        return {
-          "title": title,
-          "date": date,
-          "source": source,
-          "link": link,
-          "top_image": top_image,
-          "media": media,
-          "content": content,
-          "category": category,
-        }
-      
-    except Exception as e:
-      print(f"ERROR processing article: {e}")
-    return None
-  
-  
-  @staticmethod
-  def add_summary(article):
-    article["summary"] = summarize(article["content"], article["title"])
-    return article
-
-
-  # Fetches articles from a given RSS feed and processes them.
   @staticmethod
   def fetch_articles(category, url):
     print(f"Fetching articles from URL: {url}")
+
+    count = 0
     feed = feedparser.parse(url)
-    summarized_articles = []
-    articles_to_process = []
-    valid_article_count = 0
 
-    # Fetch and scrape article data
     for entry in feed.entries:
-      if (valid_article_count >= 4): break
-      else: 
-        article_data = BackgroundClass.fetch_article_data(entry, category, url)
-        if article_data:
-          articles_to_process.append(article_data)
-          valid_article_count += 1
 
-    # Parallelize summarization with ThreadPoolExecutor
-    with ThreadPoolExecutor() as executor:
-      summarized_articles = list(executor.map(BackgroundClass.add_summary, articles_to_process))
+      if count >= 4:
+        break
+      
+      try: 
+        # Scrape the article content 
+        link = entry.link
 
-    # Save summarized articles to the database
-    for article in summarized_articles:
-      BackgroundClass.save_article_to_db(article)
+        # if the URL is a Google Redirect link decode it to obtain the OG link
+        if ('news.google' in url):
+          link = decode_google_news_url(link)
 
+        source, date, top_image, content, media = BackgroundClass.scrape(link)
+        title = entry.title
+        summary = summarize(content, title)
+        
+        # If the summary is valid, create a new Article object in the database
+        if (
+          summary.strip() != 'INVALID' and 
+          len(content.split(' ')) > 25 
+        ):
+          Article.objects.create(
+            title=title,
+            date=date,
+            source=source,
+            article_link=link,
+            top_image=top_image, 
+            media=media,
+            content=content,
+            summary=summary,
+            category=category 
+          )
 
-  # Fetches and processes articles from multiple RSS feed URLs concurrently.  
+          count+=1
+          print('Successfully added new article')    
+
+      except Exception as e:
+        print(f'ERROR: error{e}')
+                  
+    count = 0
+
   @staticmethod
   def upload_data():
-    print("Upload_data starting..")
+    """
+      Manages the concurrent fetching and processing of articles from multiple
+      RSS feed URLs.
 
-    # Load JSON file containing RSS URLs
+      Returns: 
+        None
+    """
+
+    # Open the JSON file containing the RSS urls 
     current_directory = os.path.dirname(__file__)
     file_path = os.path.join(current_directory, 'urls.json')
 
     with open(file_path, 'r') as file:
-      file = json.load(file)
-    
-    # Use ThreadPoolExecutor to fetch articles from feeds
-    with ThreadPoolExecutor(max_workers=7) as executor:
-      future_to_category_url = {}
+      urls = json.load(file)
 
-      for category, urls in file.items():
-        for url in urls:
-          future = executor.submit(BackgroundClass.fetch_articles, category, url)
-          future_to_category_url[future] = (category, url)
-            
-        for future in as_completed(future_to_category_url):
-          article_type, link = future_to_category_url[future]
-          try:
-            future.result()      
-            print(f"Successfully processed articles for {article_type} from {link}")
-          except Exception as e:
-            print(f"Failed to process {article_type} - {link}: {e}")
-
-          
+    # Use ThreadPoolExecutor to fetch news articles concurrently
+    with ThreadPoolExecutor(max_workers=8) as executor:
+      future_to_article = {}
+      category_url_pairs = []
+      for category, url_list in urls.items():
+          for url in url_list:
+              category_url_pairs.append((category, url))
+      shuffle(category_url_pairs)
+        
+      for category, link in category_url_pairs:
+        future = executor.submit(BackgroundClass.fetch_articles, category, link)
+        future_to_article[future] = (category, link)
+              
+      # Process the results as they complete
+      for future in as_completed(future_to_article):
+        category, url = future_to_article[future]
+        try:
+          future.result()
+        except Exception as e:
+          print(f'Failed to upload {category} - {url}: {e}')
+      
