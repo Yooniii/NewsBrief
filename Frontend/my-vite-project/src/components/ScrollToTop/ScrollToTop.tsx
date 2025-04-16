@@ -12,7 +12,6 @@ const ScrollToTop = () => {
   const handleScrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth'});
   }
-
   return (
     <Fragment>
       <button onClick={handleScrollToTop}>
@@ -26,7 +25,6 @@ const ScrollToTop = () => {
         }} /> 
       </button>
     </Fragment>
-    
   );
 };
 
