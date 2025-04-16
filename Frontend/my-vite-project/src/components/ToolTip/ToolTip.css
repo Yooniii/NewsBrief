@@ -1,3 +1,7 @@
+* {
+  background-color: white;
+}
+
 .tool-tip-container {
   position: absolute; 
   color: #4c4c4c;
@@ -13,7 +17,6 @@
 
 .gpt-options {
   box-shadow: 0 0 0.4rem rgba(210, 206, 206, 0.5);
-  background-color: #fbfbfb;
   display: flex;
   justify-content: center;
   align-items: center;
