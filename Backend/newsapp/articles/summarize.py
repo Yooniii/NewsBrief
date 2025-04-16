@@ -17,9 +17,7 @@ ml_model = AutoModelForSeq2SeqLM.from_pretrained("Yooniii/Article_summarizer")
 """
 def clean_summary(summary, title):
   load_dotenv()
-  # Load Gemini AI Model
-  # print('GENAI_API_KEY' in os.environ)
-  genai.configure(api_key=os.getenv('GENAI_API_KEY'))
+  genai.configure(api_key=os.getenv('GENAI_API_KEY'))   # Load Gemini AI Model
 
   generation_config = {
     "temperature": 1,
@@ -44,17 +42,17 @@ def clean_summary(summary, title):
       provided text and title is nonsensical return 'INVALID'.
 
     The format to be followed:
-      Sentence describing the article.
+      Brief sentence describing the article.
       - Bullet point 1
       - Bullet point 2
       ...
       - Bullet point N
 
-    Write the summary from the perspective of the article itself, avoiding 
-    phrases like "This article" and instead focusing on presenting the 
-    information as if it is coming directly from the source.
-    Present the summary in plain text and avoid any use of asterisks.
-    Here is the title: {title} and the summary to be reformatted: {summary}"""
+    Avoid phrases like "This article" and instead present the information as if 
+    it's coming directly from the source.
+    Present the summary in plain text, do not use special symbols such as asterisks.
+    Article title: {title} 
+    Summary to be reformatted: {summary}"""
   )
   return cleaned_summary.text
 
