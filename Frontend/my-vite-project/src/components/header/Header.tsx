@@ -4,20 +4,17 @@ import { IoIosMenu, IoIosSearch } from "react-icons/io";
 import './Header.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 
-/**
- * Header component for the NewsBrief website.
- * Contains the logo, category dropdown, and search functionality.
- */
+// Header component for the NewsBrief website.
+// Logo, category dropdown, and searchbar.
 const Header = () => {
-  // Manages the input value of the search bar.
   const [inputValue, setInputValue] = useState(''); 
   const [openMenu, setOpenMenu] = useState(false)
 
-  // Ref to detect clicks outside the category dropdown.
+  // Ref to detect clicks outside the category dropdown
   const navRef = useRef<HTMLDivElement>(null); 
-  const navigate = useNavigate(); // React Router's nav hook.
+  const navigate = useNavigate(); // React Router's nav hook
 
-  // Closes the menu dropdown if a click outside is detected.
+  // Closes the menu dropdown if a click outside is detected
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
 
@@ -27,7 +24,7 @@ const Header = () => {
     }
     document.addEventListener('mousedown', handleClickOutside);
 
-    // Cleanup event listener on component unmount.
+    // Cleanup event listener on component unmount
     return () => {
       document.removeEventListener('mousedown', handleClickOutside);
     };
@@ -57,7 +54,6 @@ const Header = () => {
     <Fragment>
       <div className='header'> 
         <Link to="/home" className="logo">NewsBrief</Link>
-
         <div className='nav-toggle' onClick={() => setOpenMenu((prev) => !prev)}> 
           <IoIosMenu size={27} style={{backgroundColor: 'transparent'}}/>
         
@@ -73,7 +69,6 @@ const Header = () => {
                   onClick={(e) => e.stopPropagation()}
                 />
               </form>
-
               <Link to="/home" style={linkStyle} className="link">Home</Link>
               <Link to='/Top Stories' style={linkStyle}>Top Stories</Link>
               <Link to='/World' style={linkStyle}>World</Link>
@@ -87,14 +82,12 @@ const Header = () => {
             </div>
           )}
         </div>
-
         <div className='right-section'>
           <Link to="/home" className="link">Home</Link>
           <div className="dropdown">
             <a className="btn" data-bs-toggle="dropdown" aria-expanded="false">
               Categories
             </a>
-
             <ul className="dropdown-menu">
               <li><Link to='/Top Stories' style={linkStyle}>Top Stories</Link></li>
               <li><Link to='/World' style={linkStyle}>World</Link></li>
@@ -107,7 +100,6 @@ const Header = () => {
               <li><Link to='/Health' style={linkStyle}>Health</Link></li>
             </ul>
           </div>
-          
           <form onSubmit={handleSearch}>
             <input 
               className='search-bar'
@@ -116,7 +108,6 @@ const Header = () => {
               value={inputValue} 
               onChange={(e) => setInputValue(e.target.value)} 
             />
-
             <button type='submit'>
               <IoIosSearch style={{
                 marginLeft: '-3.6rem', backgroundColor: 'transparent'}}/>
@@ -127,5 +118,4 @@ const Header = () => {
     </Fragment>    
   );
 }
-
 export default Header;
