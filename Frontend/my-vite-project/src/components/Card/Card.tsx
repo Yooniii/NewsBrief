@@ -7,12 +7,10 @@ import ModalComponent from '../Modal/Modal';
 import { GoLinkExternal } from "react-icons/go";
 import { IoShareSocialOutline } from "react-icons/io5";
 
-/**
- * Card component for the Newsbrief website. 
-*/
 
-// Article object
-export interface Article {
+// Card component for the Newsbrief website
+
+export interface Article { // Define shape of Article object
   key: string;
   title: string;
   date: string;
@@ -42,7 +40,7 @@ const ArticleCard: React.FC<Article> =
   const [showMore, setShowMore] = useState(false)
   const [showModal, setShowModal] = useState(false)   
 
-  // Props object to enable smooth animation when clicking 'read more'
+  // Props object for smooth animation when clicking 'read more'
   const props = useSpring({
     opacity: showMore ? 1 : 0,
     maxHeight: showMore ? '800px' : '0px',
@@ -50,15 +48,13 @@ const ArticleCard: React.FC<Article> =
     config: { duration: 400 },
   });
 
-  // Split and reformats summary into lines for displaying
+  // Split and reformat summary into lines for displaying
   const lines = summary.split("\n-")
   const description = lines[0];
   const displayedLines = showMore ? lines : lines.slice(0, 1);
 
-  /**
-   * Displays the media content (e.g. video) if article has one.
-   * @returns {JSX.Element|null} JSX element for media content or null.
-   */
+
+  // Display media content if article has one.
   const renderMediaContent = () => {
     media = media.replace('[', '').replace(']', '')
     return (
@@ -118,5 +114,4 @@ const ArticleCard: React.FC<Article> =
     </Fragment>
   );
 }
-
 export default ArticleCard;
