@@ -31,22 +31,20 @@ const ToolTip = () => {
     const handleMouseUp = () => {
       const text = window.getSelection()?.toString().trim(); // Get selected text
 
-      if (text) {
-        // Get range and bounding rectangle of selected text
+      if (text) { // Get range and bounding rectangle of selected text
         const range = window.getSelection()?.getRangeAt(0);
         const rectangle = range?.getBoundingClientRect();
 
         setSelectedText(text);
         setIsVisible(true); // Display tooltip
 
-        if (rectangle) {
-          // Calculate top and left position for the tooltip
+        if (rectangle) { // Calculate top and left position for the tooltip
           let topPosition = rectangle.bottom + window.scrollY + 10; 
           let leftPosition = rectangle.left + window.scrollX;
 
           const tooltipWidth = 400;
 
-          // Adjust tooltip position if it overflows the window
+          // Adjust tooltip position if overflow
           if (leftPosition + tooltipWidth > window.innerWidth) {
             leftPosition = window.innerWidth - tooltipWidth - 60; 
           }
@@ -59,7 +57,7 @@ const ToolTip = () => {
       } 
     };
 
-    // Hides tooltip display if clicks outside are detected
+    // Hide tooltip display when clicks outside are detected
     const handleClickOutside = (event: MouseEvent) => {
       if (
         toolTipRef.current &&
@@ -163,14 +161,16 @@ const ToolTip = () => {
 
       {showForm && (
         <div className='search-wrapper'>
-          <form className='gpt-form' onSubmit={handleSearch} > 
+          <form className='gpt-form' onSubmit={handleSearch} autoComplete="off"> 
             <input 
               id='gpt-input'
               className='gpt-input'
               type='search'
               placeholder='Ask AI to generate...'
               value={gptPrompt} 
-              onChange={(e) => setGptPrompt(e.target.value)} />
+              onChange={(e) => setGptPrompt(e.target.value)}
+              autoComplete="off" 
+            />
             <button className='ai-search-btn' type='submit'>
             <IoIosSearch />
             </button>
