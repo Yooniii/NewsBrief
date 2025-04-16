@@ -3,10 +3,9 @@ import { useEffect } from 'react'
 import { IoLinkSharp } from "react-icons/io5";
 import './Modal.css'
 
-/**
- * Social media share modal component 
- * Allows the user to share a news article via Facebook or Twitter
- */
+
+// Social media share modal component 
+// Lets the user share a news article 
 interface ModalComponentProps {
   isOpen: boolean;
   onRequestClose: () => void;
