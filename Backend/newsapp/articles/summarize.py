@@ -7,14 +7,7 @@ from dotenv import load_dotenv
 tokenizer = AutoTokenizer.from_pretrained("Yooniii/Article_summarizer")
 ml_model = AutoModelForSeq2SeqLM.from_pretrained("Yooniii/Article_summarizer")
 
-"""
-  Reformats and ensures summary is coherent 
-  Args:
-    summary (str): Initial news summary
-    title (str): Article title
-  Returns:
-    cleaned_summary.text (str)
-"""
+# Reformats and cleans summary 
 def clean_summary(summary, title):
   load_dotenv()
   genai.configure(api_key=os.getenv('GENAI_API_KEY'))   # Load Gemini AI Model
@@ -32,7 +25,7 @@ def clean_summary(summary, title):
     generation_config=generation_config,
   )
 
-  # Pass in prompt, raw summary, and title to GeminiAI
+  # Pass in input to GeminiAI
   cleaned_summary = genai_model.generate_content(
     f"""Refine and reformat the following news article summary according
     to the guidelines below:
@@ -57,12 +50,7 @@ def clean_summary(summary, title):
   return cleaned_summary.text
 
 
-"""
-  Returns a summary of input_text
-  Args:
-    input_text(str): Raw article content
-    title(str): News article title
-"""
+# Returns a summary of input_text
 def summarize(input_text, title):
   # Tokenize input text for model
   inputs = tokenizer(input_text, return_tensors="pt", max_length=1024, truncation=True)
