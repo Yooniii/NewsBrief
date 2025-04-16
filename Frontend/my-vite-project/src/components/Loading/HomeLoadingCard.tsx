@@ -16,5 +16,4 @@ const HomeLoadingCard = () => {
     </Fragment>
   );
 }
-
 export default HomeLoadingCard
