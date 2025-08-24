@@ -1,7 +1,7 @@
-import os
-import google.generativeai as genai
 from transformers import AutoTokenizer, AutoModelForSeq2SeqLM
-from dotenv import load_dotenv
+from newsapp.settings import GENAI_API_KEY
+import google.generativeai as genai
+import os
 
 # Load the tokenizer and ML model from HuggingFace
 tokenizer = AutoTokenizer.from_pretrained("Yooniii/Article_summarizer")
@@ -9,8 +9,7 @@ ml_model = AutoModelForSeq2SeqLM.from_pretrained("Yooniii/Article_summarizer")
 
 # Reformats and cleans summary 
 def clean_summary(summary, title):
-  load_dotenv()
-  genai.configure(api_key=os.getenv('GENAI_API_KEY'))   # Load Gemini AI Model
+  genai.configure(api_key=GENAI_API_KEY)   # Load Gemini AI Model
 
   generation_config = {
     "temperature": 1,
