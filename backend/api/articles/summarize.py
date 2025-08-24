@@ -1,5 +1,5 @@
 from transformers import AutoTokenizer, AutoModelForSeq2SeqLM
-from newsapp.settings import GENAI_API_KEY
+from core.settings import GENAI_API_KEY
 import google.generativeai as genai
 import os
 

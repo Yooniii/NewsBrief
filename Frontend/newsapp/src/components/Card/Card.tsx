@@ -15,9 +15,9 @@ export interface Article { // Define shape of Article object
   title: string;
   date: string;
   source: string;
-  topImage: string;
+  top_image: string;
   media: string;
-  link: string;
+  article_link: string;
   summary: string;
   category: string;
 }
@@ -36,7 +36,7 @@ export interface Article { // Define shape of Article object
  * @returns {JSX.Element} - JSX element representing the article card
  */
 const ArticleCard: React.FC<Article> = 
-({ title, topImage, media, source, link, date, summary }) => {
+({ title, top_image, media, source, article_link, date, summary }) => {
   const [showMore, setShowMore] = useState(false)
   const [showModal, setShowModal] = useState(false)   
 
@@ -73,7 +73,7 @@ const ArticleCard: React.FC<Article> =
     <Fragment>
       <div className='article-container'>
         <div className='preview'>
-          <img className={`article-img${topImage ? '' : '-no-img'}`} src={topImage}/>
+          <img className={`article-img${top_image ? '' : '-no-img'}`} src={top_image}/>
           <div className='text'>
             <p className='source'>{source}</p>
             <h2 className='article-title'>{title}</h2>
@@ -96,7 +96,7 @@ const ArticleCard: React.FC<Article> =
         </div>
 
         <div className='btn-container'>
-          <a href={link} target='_blank'>
+          <a href={article_link} target='_blank'>
             <GoLinkExternal size={20}/>
           </a>
           <button className='share-btn' onClick={() => setShowModal(true)}>
@@ -108,7 +108,7 @@ const ArticleCard: React.FC<Article> =
           onRequestClose={() => setShowModal(false)}
           articleTitle={title}
           source={source}
-          shareUrl={link}
+          shareUrl={article_link}
         />
       </div>
     </Fragment>
