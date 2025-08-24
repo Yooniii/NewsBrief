@@ -1,6 +1,5 @@
 Django>=4.2.0
 djangorestframework
-django-cors-headers
 lxml_html_clean
 torch
 transformers
@@ -8,3 +7,6 @@ newspaper4k
 requests
 beautifulsoup4
 python-dotenv
+django-cors-headers
+apscheduler
+google-generativeai
