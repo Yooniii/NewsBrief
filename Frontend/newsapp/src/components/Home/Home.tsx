@@ -1,11 +1,11 @@
 import axios from 'axios';
 import Slider from 'react-slick';
-import HomeLoadingCard from '../Loading/HomeLoadingCard';
-import HeadlineLoadingCard from '../Loading/HeadlineLoadingCard'
-import SectionLoadingCard from '../Loading/SectionLoadingCard'
+import HomeLoadingCard from '../loading/HomeLoadingCard';
+import HeadlineLoadingCard from '../loading/HeadlineLoadingCard'
+import SectionLoadingCard from '../loading/SectionLoadingCard'
 import { Link } from 'react-router-dom';
 import { useState, useEffect, Fragment } from 'react';
-import { Article } from '../Card/Card'
+import { Article } from '../card/Card'
 import './Home.css';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -22,42 +22,42 @@ const HomePage: React.FC = () => {
     politicalNews: [] as Article[],
   });
 
-  /**
-   * Uses Axios to retrieve articles from a specific category
-   * @param {string} category - Article category
-   * @param {number} articleCount - Number of articles to retrieve
-   * @returns {Promise<Array>} - Promise that resolves to an array of articles (empty) if none found
-   */
-  useEffect(() => {
-    const fetchArticles = async (category: string, articleCount: number) => {
-      try {
-        const response = await axios.get('http://127.0.0.1:8000/articles/');
-        const articles = response.data
-          .filter((article: Article) => article.category === category && article.top_image) 
-          .slice(0, articleCount)
-        return articles;
+  // /**
+  //  * Uses Axios to retrieve articles from a specific category
+  //  * @param {string} category - Article category
+  //  * @param {number} articleCount - Number of articles to retrieve
+  //  * @returns {Promise<Array>} - Promise that resolves to an array of articles (empty) if none found
+  //  */
+  // useEffect(() => {
+  //   const fetchArticles = async (category: string, articleCount: number) => {
+  //     try {
+  //       const response = await axios.get('http://127.0.0.1:8000/articles/');
+  //       const articles = response.data
+  //         .filter((article: Article) => article.category === category && article.top_image) 
+  //         .slice(0, articleCount)
+  //       return articles;
 
-      } catch (error) {
-        console.error('Error fetching articles:', error);
-        return [];
-      }
-    };
+  //     } catch (error) {
+  //       console.error('Error fetching articles:', error);
+  //       return [];
+  //     }
+  //   };
 
     // Wrapper method fetching articles to be displayed on the homepage.
-    const fetchAllArticles = async () => {
-      const [worldNews, topStories, sportsNews, politicalNews] = await Promise.all([
-        fetchArticles('World', 4),
-        fetchArticles('Top Stories', 4),
-        fetchArticles('Sports', 4),
-        fetchArticles('Politics', 10),
-      ]);
+  //   const fetchAllArticles = async () => {
+  //     const [worldNews, topStories, sportsNews, politicalNews] = await Promise.all([
+  //       fetchArticles('World', 4),
+  //       fetchArticles('Top Stories', 4),
+  //       fetchArticles('Sports', 4),
+  //       fetchArticles('Politics', 10),
+  //     ]);
       
-      setArticles({ worldNews, sportsNews, topStories, politicalNews });
-      setLoaded(true);
-    };
+  //     setArticles({ worldNews, sportsNews, topStories, politicalNews });
+  //     setLoaded(true);
+  //   };
 
-    fetchAllArticles();
-  }, []);
+  //   fetchAllArticles();
+  // }, []);
 
   const settings = { // Settings object for carousel component
     dots: true,

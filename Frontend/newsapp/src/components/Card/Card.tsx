@@ -3,7 +3,7 @@ import './Card.css';
 import TimeAgo from 'timeago-react';
 import { useSpring, animated } from 'react-spring';
 import ReactPlayer from 'react-player';
-import ModalComponent from '../Modal/Modal';
+import ModalComponent from '../modal/Modal';
 import { GoLinkExternal } from "react-icons/go";
 import { IoShareSocialOutline } from "react-icons/io5";
 

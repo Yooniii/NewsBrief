@@ -1,8 +1,8 @@
-import Header from './components/Header/Header';
-import ArticleList from './components/ArticleList/ArticleList'
-import HomePage from './components/Home/Home';
-import ScrollToTop from './components/ScrollToTop/ScrollToTop'
-import ToolTip from './components/ToolTip/ToolTip';
+import Header from './components/header/Header';
+import ArticleList from './components/article-list/ArticleList'
+import HomePage from './components/home/Home';
+import ScrollToTop from './components/scroll-to-top/ScrollToTop'
+import ToolTip from './components/tool-tip/ToolTip';
 import { Route, Routes } from 'react-router-dom';
 import './App.css'
 

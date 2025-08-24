@@ -1,12 +1,20 @@
 from articles.models import Article
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from .summarize import summarize
-from .decode_url import decode_google_news_url
+from .helpers import decode_google_news_url
 from random import shuffle
 import newspaper
 import feedparser
 import json
 import os
+
+# Open the JSON file containing the RSS urls once
+current_directory = os.path.dirname(__file__)
+file_path = os.path.join(current_directory, 'urls.json')
+
+with open(file_path, 'r') as file:
+  urls = json.load(file)
+
 
 class BackgroundClass:
   
@@ -83,13 +91,6 @@ class BackgroundClass:
       Returns: 
         None
     """
-
-    # Open the JSON file containing the RSS urls 
-    current_directory = os.path.dirname(__file__)
-    file_path = os.path.join(current_directory, 'urls.json')
-
-    with open(file_path, 'r') as file:
-      urls = json.load(file)
 
     # Use ThreadPoolExecutor to fetch news articles concurrently
     with ThreadPoolExecutor(max_workers=8) as executor:

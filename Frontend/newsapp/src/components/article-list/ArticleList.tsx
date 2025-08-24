@@ -1,10 +1,10 @@
 import axios from 'axios';
-import Card from '../Card/Card';
+import Card from '../card/Card';
 import { useState, useEffect, Fragment } from 'react';
-import { Article } from '../Card/Card';
+import { Article } from '../card/Card';
 import { useParams, useLocation } from 'react-router-dom';
 import InfiniteScroll from 'react-infinite-scroll-component';
-import LoadingCard from '../Loading/LoadingCard';
+import LoadingCard from '../loading/LoadingCard';
 import './ArticleList.css';
 
 const ArticleList = () => {

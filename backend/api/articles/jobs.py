@@ -3,6 +3,7 @@ from .tasks import BackgroundClass
 
 def start():
   scheduler = BackgroundScheduler()
-  scheduler.add_job(BackgroundClass.upload_data, 'interval', minutes=1)
+  # Scrape and upload articles every 5 minutes
+  scheduler.add_job(BackgroundClass.upload_data, 'interval', minutes=5)
   scheduler.start()
   

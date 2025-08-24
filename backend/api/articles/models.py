@@ -1,7 +1,6 @@
 from django.db import models
 from django.utils import timezone
 
-# Defining the structure of an article
 class Article(models.Model):
   title = models.CharField(max_length=225, unique=True)
   date = models.DateTimeField(default=timezone.now)

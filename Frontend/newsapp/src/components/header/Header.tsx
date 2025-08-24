@@ -2,7 +2,7 @@ import React, { Fragment, useState, useRef, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { IoIosMenu, IoIosSearch } from "react-icons/io";
 import './Header.css';
-import 'bootstrap/dist/js/bootstrap.bundle.min.js';
+import 'bootstrap/dist/js/bootstrap.bundle.min';
 
 // Header component for the NewsBrief website.
 // Logo, category dropdown, and searchbar.
