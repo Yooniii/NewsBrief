@@ -1,4 +1,4 @@
-import { Fragment, useState } from 'react';
+import { useState } from 'react';
 import './Card.css';
 import TimeAgo from 'timeago-react';
 import { useSpring, animated } from 'react-spring';
@@ -70,48 +70,46 @@ const ArticleCard: React.FC<Article> =
     )
   }
    return (
-    <Fragment>
-      <div className='article-container'>
-        <div className='preview'>
-          <img className={`article-img${top_image ? '' : '-no-img'}`} src={top_image}/>
-          <div className='text'>
-            <p className='source'>{source}</p>
-            <h2 className='article-title'>{title}</h2>
-            <TimeAgo className='date' datetime={date} />
-            <p className='summary'>{description} {' '}
-              <a className="read-more" onClick={() => setShowMore(!showMore)}>
-                {showMore ? 'Read Less' : 'Read More'}
-              </a>
-            </p>
-          </div>
+    <div className='article-container'>
+      <div className='preview'>
+        <img className={`article-img${top_image ? '' : '-no-img'}`} src={top_image}/>
+        <div className='text'>
+          <p className='source'>{source}</p>
+          <h2 className='article-title'>{title}</h2>
+          <TimeAgo className='date' datetime={date} />
+          <p className='summary'>{description} {' '}
+            <a className="read-more" onClick={() => setShowMore(!showMore)}>
+              {showMore ? 'Read Less' : 'Read More'}
+            </a>
+          </p>
         </div>
-        
-        <div className={`expand-container ${showMore ? 'show-more' : ''}`}>
-          <animated.ul style={props} className='summary'>
-            {showMore ? displayedLines.slice(1).map((line, index) => (
-              <li key={index} className='summary'>{line}</li>
-            )) : null }
-          </animated.ul>
-          {ReactPlayer.canPlay(media) ? renderMediaContent() : null }
-        </div>
-
-        <div className='btn-container'>
-          <a href={article_link} target='_blank'>
-            <GoLinkExternal size={20}/>
-          </a>
-          <button className='share-btn' onClick={() => setShowModal(true)}>
-            <IoShareSocialOutline size={21} style={{marginBottom: '0.01rem'}}/>
-          </button>
-        </div>
-        <ModalComponent 
-          isOpen={showModal} 
-          onRequestClose={() => setShowModal(false)}
-          articleTitle={title}
-          source={source}
-          shareUrl={article_link}
-        />
       </div>
-    </Fragment>
+      
+      <div className={`expand-container ${showMore ? 'show-more' : ''}`}>
+        <animated.ul style={props} className='summary'>
+          {showMore ? displayedLines.slice(1).map((line, index) => (
+            <li key={index} className='summary'>{line}</li>
+          )) : null }
+        </animated.ul>
+        {ReactPlayer.canPlay(media) ? renderMediaContent() : null }
+      </div>
+
+      <div className='btn-container'>
+        <a href={article_link} target='_blank'>
+          <GoLinkExternal size={20}/>
+        </a>
+        <button className='share-btn' onClick={() => setShowModal(true)}>
+          <IoShareSocialOutline size={21} style={{marginBottom: '0.01rem'}}/>
+        </button>
+      </div>
+      <ModalComponent 
+        isOpen={showModal} 
+        onRequestClose={() => setShowModal(false)}
+        articleTitle={title}
+        source={source}
+        shareUrl={article_link}
+      />
+    </div>
   );
 }
 export default ArticleCard;

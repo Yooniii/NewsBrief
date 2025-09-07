@@ -1,19 +1,19 @@
-import { Fragment } from 'react'
 import CustomSkeleton from './Skeleton';
+import '../home/Home.css';
 
 const HomeLoadingCard = () => {
   return (
-    <Fragment>
-      <div className='loading-wrapper' >
-        <div className='loading-box'>
-          <CustomSkeleton width={285} height={150} variant="rounded"/>
-          <div className='loading-text'>
-            <CustomSkeleton width={285} height={24} variant="rounded"/>
-            <CustomSkeleton width={285} height={100} variant="rounded"/>
-          </div>
-        </div>
+    <div className='article-card'>
+      <div className='article-image'>
+        <CustomSkeleton width="100%" height={200} variant="rounded"/>
       </div>
-    </Fragment>
+      <div className='article-content'>
+        <CustomSkeleton width="30%" height={16} variant="rounded"/>
+        <CustomSkeleton width="90%" height={24} variant="rounded" style={{ margin: '0.8rem 0' }}/>
+        <CustomSkeleton width="100%" height={60} variant="rounded"/>
+      </div>
+    </div>
   );
 }
-export default HomeLoadingCard
+
+export default HomeLoadingCard;

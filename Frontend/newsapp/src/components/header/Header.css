@@ -18,6 +18,11 @@
   cursor: pointer;
   font-family: 'Inter-ExtraBold';
   font-size: 1.7rem;
+  outline: none;
+}
+
+.logo:focus {
+  outline: none;
 }
 
 .right-section {
@@ -33,12 +38,22 @@
   font-size: 1rem;
   text-decoration: none;
   color: #4f4f4f;
+  outline: none;
+}
+
+.link:focus {
+  outline: none;
 }
 
 a.btn {
   background-color: transparent;
   color: #4f4f4f;
-  border: none; 
+  border: none;
+  outline: none;
+}
+
+a.btn:focus {
+  outline: none;
 }
 
 ul.dropdown-menu {  
@@ -54,6 +69,14 @@ ul.dropdown-menu {
   justify-content: flex-start;
   padding: 0.55rem 0.4rem;
   background-color: white;
+}
+
+.dropdown-menu li a {
+  outline: none;
+}
+
+.dropdown-menu li a:focus {
+  outline: none;
 }
 
 form {
@@ -83,6 +106,11 @@ form {
 button {
   border: none;
   background-color: transparent;
+  outline: none;
+}
+
+button:focus {
+  outline: none;
 }
 
 .nav-toggle {
@@ -90,6 +118,11 @@ button {
   display: none;
   background-color: transparent;
   position: relative;
+  outline: none;
+}
+
+.nav-toggle:focus {
+  outline: none;
 }
 
 @media (max-width: 1024px) {
@@ -133,5 +166,6 @@ button {
     padding-bottom: 1.5rem;
     left: -14rem;
     top: 3rem;
+    z-index: 1000;
   }
 }

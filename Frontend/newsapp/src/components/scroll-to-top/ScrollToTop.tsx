@@ -1,4 +1,4 @@
-import { useEffect, Fragment } from 'react';
+import { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import { IoIosArrowUp } from "react-icons/io";
 
@@ -13,18 +13,16 @@ const ScrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth'});
   }
   return (
-    <Fragment>
-      <button onClick={handleScrollToTop}>
-         <IoIosArrowUp size={35} style={{
-          zIndex: '1',
-          position: 'fixed',
-          bottom: '2rem',
-          right: '2.5rem',
-          cursor: 'pointer',
-          backgroundColor: 'transparent'
-        }} /> 
-      </button>
-    </Fragment>
+    <button onClick={handleScrollToTop}>
+        <IoIosArrowUp size={35} style={{
+        zIndex: '1',
+        position: 'fixed',
+        bottom: '2rem',
+        right: '2.5rem',
+        cursor: 'pointer',
+        backgroundColor: 'transparent'
+      }} /> 
+    </button>
   );
 };
 

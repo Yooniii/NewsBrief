@@ -1,6 +1,6 @@
 import axios from 'axios';
 import Card from '../card/Card';
-import { useState, useEffect, Fragment } from 'react';
+import { useState, useEffect } from 'react';
 import { Article } from '../card/Card';
 import { useParams, useLocation } from 'react-router-dom';
 import InfiniteScroll from 'react-infinite-scroll-component';
@@ -70,10 +70,10 @@ const ArticleList = () => {
         next={fetchMoreData}
         hasMore={hasMore}
         loader={
-          <Fragment>
+          <div>
             <LoadingCard />
             <LoadingCard />
-          </Fragment>
+          </div>
         }
         scrollThreshold={1}
         endMessage={

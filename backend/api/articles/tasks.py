@@ -1,4 +1,3 @@
-from articles.models import Article
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from .summarize import summarize
 from .helpers import decode_google_news_url
@@ -35,6 +34,9 @@ class BackgroundClass:
 
   @staticmethod
   def fetch_articles(category, url):
+    # Import Article here to avoid circular import issues
+    from articles.models import Article
+    
     print(f"Fetching articles from URL: {url}")
 
     count = 0

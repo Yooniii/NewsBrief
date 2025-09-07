@@ -1,0 +1,42 @@
+[
+  {
+    "name": "Home",
+    "link": "/home"
+  },
+  {
+    "name": "Top Stories",
+    "link": "/Top Stories"
+  },
+  {
+    "name": "World",
+    "link": "/World"
+  },
+  {
+    "name": "Business",
+    "link": "/Business"
+  },
+  {
+    "name": "Tech",
+    "link": "/Tech"
+  },
+  {
+    "name": "Entertainment",
+    "link": "/Entertainment"
+  },
+  {
+    "name": "Politics",
+    "link": "/Politics"
+  },
+  {
+    "name": "Sports",
+    "link": "/Sports"
+  },
+  {
+    "name": "Science",
+    "link": "/Science"
+  },
+  {
+    "name": "Health",
+    "link": "/Health"
+  }
+]

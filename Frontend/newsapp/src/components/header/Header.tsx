@@ -1,121 +1,122 @@
-import React, { Fragment, useState, useRef, useEffect } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import React, { useState, useRef, useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import { IoIosMenu, IoIosSearch } from "react-icons/io";
-import './Header.css';
-import 'bootstrap/dist/js/bootstrap.bundle.min';
+import menuOptions from "./menu-options.json";
+import "./Header.css";
+import "bootstrap/dist/js/bootstrap.bundle.min";
 
-// Header component for the NewsBrief website.
-// Logo, category dropdown, and searchbar.
 const Header = () => {
-  const [inputValue, setInputValue] = useState(''); 
-  const [openMenu, setOpenMenu] = useState(false)
+  const [inputValue, setInputValue] = useState("");
+  const [openMenu, setOpenMenu] = useState(false);
+  const menuRef = useRef<HTMLDivElement | null>(null);
 
-  // Ref to detect clicks outside the category dropdown
-  const navRef = useRef<HTMLDivElement>(null); 
-  const navigate = useNavigate(); // React Router's nav hook
+  const navigate = useNavigate();
 
-  // Closes the menu dropdown if a click outside is detected
-  useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
-
-      if (navRef.current && !navRef.current.contains(event.target as Node)) {
-        setOpenMenu(false)
-      }
-    }
-    document.addEventListener('mousedown', handleClickOutside);
-
-    // Cleanup event listener on component unmount
-    return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
-    };
-  }, [openMenu])
-
-  /**
-   * Handles form submission for the search bar. Navigates to the search
-   * results page with the input query.
-   * @param {React.FormEvent} event - The form submission event.
-   */
   const handleSearch = (event: React.FormEvent) => {
-    event.preventDefault(); 
-    if (inputValue.trim() !== '') {
+    event.preventDefault();
+    if (inputValue.trim() !== "") {
       navigate(`/search?query=${encodeURIComponent(inputValue)}`);
     }
-    setInputValue('');
+    setInputValue("");
   };
 
-  // Style object for the nav links.
+  // Close menu when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (menuRef.current && !menuRef.current.contains(event.target as Node)) {
+        setOpenMenu(false);
+      }
+    };
+
+    if (openMenu) {
+      document.addEventListener("mousedown", handleClickOutside);
+    } else {
+      document.removeEventListener("mousedown", handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [openMenu]);
+
   const linkStyle = {
-    textDecoration: 'none',
-    color: '#6b6b6b',
-    backgroundColor: 'transparent'
+    textDecoration: "none",
+    color: "#6b6b6b",
+    backgroundColor: "transparent",
   };
 
   return (
-    <Fragment>
-      <div className='header'> 
-        <Link to="/home" className="logo">NewsBrief</Link>
-        <div className='nav-toggle' onClick={() => setOpenMenu((prev) => !prev)}> 
-          <IoIosMenu size={27} style={{backgroundColor: 'transparent'}}/>
-        
+    <div>
+      <div className="header">
+        <Link to="/home" className="logo">
+          NewsBrief
+        </Link>
+
+        <div className="nav-toggle" ref={menuRef}>
+          <IoIosMenu
+            size={27}
+            style={{ backgroundColor: "transparent" }}
+            onClick={() => setOpenMenu((prev) => !prev)}
+          />
+
           {openMenu && (
-            <div className='menu-container' ref={navRef}>
+            <div className="menu-container">
               <form onSubmit={handleSearch}>
-                <input 
-                  className='toggle-search'
-                  type='search'
-                  placeholder='Search...'
-                  value={inputValue} 
-                  onChange={(e) => setInputValue(e.target.value)} 
+                <input
+                  className="toggle-search"
+                  type="search"
+                  placeholder="Search News..."
+                  value={inputValue}
+                  onChange={(e) => setInputValue(e.target.value)}
                   onClick={(e) => e.stopPropagation()}
                 />
               </form>
-              <Link to="/home" style={linkStyle} className="link">Home</Link>
-              <Link to='/Top Stories' style={linkStyle}>Top Stories</Link>
-              <Link to='/World' style={linkStyle}>World</Link>
-              <Link to='/Business' style={linkStyle}>Business</Link>
-              <Link to='/Tech' style={linkStyle}>Tech</Link>
-              <Link to='/Entertainment' style={linkStyle}>Entertainment</Link>
-              <Link to='/Politics' style={linkStyle}>Politics</Link>
-              <Link to='/Sports' style={linkStyle}>Sports</Link>
-              <Link to='/Science' style={linkStyle}>Science</Link>
-              <Link to='/Health' style={linkStyle}>Health</Link>
+              {menuOptions.map((option) => (
+                <Link to={option.link} style={linkStyle}>
+                  {option.name}
+                </Link>
+              ))}
             </div>
           )}
         </div>
-        <div className='right-section'>
-          <Link to="/home" className="link">Home</Link>
+
+        <div className="right-section">
           <div className="dropdown">
             <a className="btn" data-bs-toggle="dropdown" aria-expanded="false">
-              Categories
+              Topics
             </a>
             <ul className="dropdown-menu">
-              <li><Link to='/Top Stories' style={linkStyle}>Top Stories</Link></li>
-              <li><Link to='/World' style={linkStyle}>World</Link></li>
-              <li><Link to='/Business' style={linkStyle}>Business</Link></li>
-              <li> <Link to='/Tech' style={linkStyle}>Tech</Link></li>
-              <li><Link to='/Entertainment' style={linkStyle}>Entertainment</Link></li>
-              <li><Link to='/Politics' style={linkStyle}>Politics</Link></li>
-              <li><Link to='/Sports' style={linkStyle}>Sports</Link></li>
-              <li><Link to='/Science' style={linkStyle}>Science</Link></li>
-              <li><Link to='/Health' style={linkStyle}>Health</Link></li>
+              {menuOptions.map((option) => (
+                <li key={option.name}>
+                  <Link to={option.link} style={linkStyle}>
+                    {option.name}
+                  </Link>
+                </li>
+              ))}
             </ul>
           </div>
+
           <form onSubmit={handleSearch}>
-            <input 
-              className='search-bar'
-              type='search'
-              placeholder='Search...'
-              value={inputValue} 
-              onChange={(e) => setInputValue(e.target.value)} 
+            <input
+              className="search-bar"
+              type="search"
+              placeholder="Search..."
+              value={inputValue}
+              onChange={(e) => setInputValue(e.target.value)}
             />
-            <button type='submit'>
-              <IoIosSearch style={{
-                marginLeft: '-3.6rem', backgroundColor: 'transparent'}}/>
+            <button type="submit">
+              <IoIosSearch
+                style={{
+                  marginLeft: "-3.6rem",
+                  backgroundColor: "transparent",
+                }}
+              />
             </button>
           </form>
         </div>
       </div>
-    </Fragment>    
+    </div>
   );
-}
+};
+
 export default Header;

@@ -1,34 +1,24 @@
-import { Fragment } from 'react'
 import CustomSkeleton from './Skeleton';
-import '../Home/Home.css'
+import '../home/Home.css';
 
 const SectionLoadingCard = () => {
-
-  const gridBoxes = Array(3).fill(null); 
-  const gridCols = Array(2).fill(null); 
-
   return (
-     <Fragment>
-      <div className='article-grid' style={{gap: '1.8rem'}}>
-        {gridCols.map((_, colIndex) => (
-          <div key={colIndex} className='grid-col'>
-            {gridBoxes.map((_, boxIndex) => (
-              <div key={boxIndex} className='grid-box'>
-                <CustomSkeleton width={300} height={19} variant="rounded" />
-                <CustomSkeleton width={300} height={70} variant="rounded" />
-              </div>
-            ))}
+    <div className='politics-content'>
+      <div className='politics-grid'>
+        {Array.from({ length: 6 }).map((_, index) => (
+          <div key={index} className='politics-item'>
+            <CustomSkeleton width="40%" height={16} variant="rounded"/>
+            <CustomSkeleton width="100%" height={48} variant="rounded" style={{ margin: '0.8rem 0 0' }}/>
           </div>
         ))}
       </div>
-      
-      <div className='carousel-component' style={{marginLeft: '1.5rem'}}>
-        <div className='carousel-slide'>
-          <CustomSkeleton width={550} height={384} variant="rounded"/>
+      <div className='politics-carousel'>
+        <div className='politics-slide'>
+          <CustomSkeleton width="100%" height={400} variant="rounded"/>
         </div>
       </div>
-    </Fragment>
+    </div>
   );
 }
 
-export default SectionLoadingCard
+export default SectionLoadingCard;
