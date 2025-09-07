@@ -346,6 +346,32 @@
   }
 }
 
+@media (max-width: 900px) {
+  .hero-content {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+  
+  .hero-image {
+    height: 350px;
+  }
+  
+  .hero-sidebar {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+  }
+  
+  .hero-sidebar-item {
+    height: 100px;
+  }
+  
+  .hero-sidebar-item img {
+    width: 100px;
+    height: 70px;
+  }
+}
+
 @media (max-width: 768px) {
   .home-container {
     padding: 1rem 0.5rem;
@@ -355,8 +381,60 @@
     font-size: 1.3rem;
   }
   
+  /* Hero Section Mobile Improvements */
+  .hero-content {
+    gap: 1.5rem;
+  }
+  
+  .hero-image {
+    height: 300px;
+    border-radius: 15px;
+  }
+  
+  .hero-overlay {
+    padding: 1.2rem 1.5rem 1.5rem;
+  }
+  
   .hero-title {
-    font-size: 1.7rem;
+    font-size: 1.4rem;
+    line-height: 1.3;
+    margin: 0.8rem 0;
+  }
+  
+  .hero-summary {
+    font-size: 0.85rem;
+    line-height: 1.5;
+  }
+  
+  .hero-source {
+    font-size: 0.8rem;
+  }
+  
+  /* Hero Sidebar Mobile */
+  .hero-sidebar {
+    gap: 1rem;
+  }
+  
+  .hero-sidebar-item {
+    flex-direction: row;
+    height: auto;
+    padding: 1rem;
+    border-radius: 12px;
+  }
+  
+  .hero-sidebar-item img {
+    width: 80px;
+    height: 60px;
+    border-radius: 8px;
+  }
+  
+  .hero-sidebar-title {
+    font-size: 0.85rem;
+    line-height: 1.3;
+  }
+  
+  .hero-sidebar-source {
+    font-size: 0.65rem;
   }
   
   .article-grid {
@@ -367,30 +445,81 @@
   .politics-grid {
     grid-template-columns: 1fr;
   }
-  
-  .hero-sidebar-item {
-    flex-direction: column;
-  }
-  
-  .hero-sidebar-item img {
-    width: 100%;
-    height: 150px;
-  }
 }
 
 @media (max-width: 480px) {
+  .home-container {
+    padding: 0.75rem 0.25rem;
+  }
+  
   .section-header {
     flex-direction: column;
     align-items: flex-start;
+    gap: 0.75rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  .section-title {
+    font-size: 1.2rem;
+  }
+  
+  /* Hero Section Small Mobile */
+  .hero-section {
+    margin-bottom: 3rem;
+  }
+  
+  .hero-content {
     gap: 1rem;
+    margin-top: 1.5rem;
+  }
+  
+  .hero-image {
+    height: 250px;
+    border-radius: 12px;
   }
   
   .hero-overlay {
-    padding: 2rem 1rem 1rem;
+    padding: 1rem 1.2rem 1.2rem;
   }
   
   .hero-title {
-    font-size: 1.4rem;
+    font-size: 1.2rem;
+    line-height: 1.2;
+    margin: 0.6rem 0;
+  }
+  
+  .hero-summary {
+    font-size: 0.8rem;
+    line-height: 1.4;
+  }
+  
+  .hero-source {
+    font-size: 0.75rem;
+  }
+  
+  /* Hero Sidebar Small Mobile */
+  .hero-sidebar {
+    gap: 0.75rem;
+  }
+  
+  .hero-sidebar-item {
+    padding: 0.75rem;
+    border-radius: 10px;
+  }
+  
+  .hero-sidebar-item img {
+    width: 70px;
+    height: 50px;
+    border-radius: 6px;
+  }
+  
+  .hero-sidebar-title {
+    font-size: 0.8rem;
+    line-height: 1.2;
+  }
+  
+  .hero-sidebar-source {
+    font-size: 0.6rem;
   }
   
   .article-content {
