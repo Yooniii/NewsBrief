@@ -1,66 +1,18 @@
-import axios from 'axios';
 import HomeLoadingCard from '../loading/HomeLoadingCard';
 import HeadlineLoadingCard from '../loading/HeadlineLoadingCard'
 import SectionLoadingCard from '../loading/SectionLoadingCard'
 import { CCarousel, CCarouselItem, CImage } from '@coreui/react';
 
 import { Link } from 'react-router-dom';
-import { useState, useEffect } from 'react';
+import { useFetchArticles } from './useFetchArticles';
 import { Article } from '../card/Card'
 import './Home.css';
 
 // Newsbrief homepage
-const HomePage: React.FC = () => {
-  const [loaded, setLoaded] = useState(false);
+function HomePage() {
+  const { articles, isLoading } = useFetchArticles();
 
-  // Dictionary containing articles to be displayed
-  const [articles, setArticles] = useState({
-    worldNews: [] as Article[],
-    sportsNews: [] as Article[],
-    topStories: [] as Article[],
-    politicalNews: [] as Article[],
-  });
-
-  /**
-   * Uses Axios to retrieve articles from a specific category
-   * @param {string} category - Article category
-   * @param {number} articleCount - Number of articles to retrieve
-   * @returns {Promise<Array>} - Promise that resolves to an array of articles (empty) if none found
-   */
-  useEffect(() => {
-    const fetchArticles = async (category: string, articleCount: number) => {
-      try {
-        const response = await axios.get('http://127.0.0.1:8000/articles/');
-        const articles = response.data
-          .filter((article: Article) => article.category === category && article.top_image) 
-          .slice(0, articleCount)
-        return articles;
-
-      } catch (error) {
-        console.error('Error fetching articles:', error);
-        return [];
-      }
-    };
-
-    // Wrapper method fetching articles to be displayed on the homepage.
-    const fetchAllArticles = async () => {
-      const [worldNews, topStories, sportsNews, politicalNews] = await Promise.all([
-        fetchArticles('World', 3),
-        fetchArticles('Top Stories', 3),
-        fetchArticles('Sports', 3),
-        fetchArticles('Politics', 10),
-      ]);
-      
-      setArticles({ worldNews, sportsNews, topStories, politicalNews });
-      setLoaded(true);
-    };
-
-    fetchAllArticles();
-  }, []);
-
-  /**
-   * Renders a section header with title and see all link
-   */
+  // Section header with title and see all link
   const SectionHeader = ({ title, link }: { title: string; link: string }) => (
     <div className="section-header">
       <h2 className="section-title">{title}</h2>
@@ -68,22 +20,18 @@ const HomePage: React.FC = () => {
     </div>
   );
 
-  /**
-   * Handles clicking on an article to open it in a new window
-   */
+  // Handles clicking on an article to open it in a new window
   const handleArticleClick = (articleLink: string) => {
     if (articleLink) {
       window.open(articleLink, '_blank', 'noopener,noreferrer');
     }
   };
 
-  /**
-   * Renders the hero section with featured story
-   */
+  // Hero section with featured story
   const HeroSection = () => (
     <section className="hero-section">
       <SectionHeader title="Top Stories" link="/Top Stories" />
-      {!loaded ? (
+      {isLoading ? (
         <HeadlineLoadingCard />
       ) : (
         <div className="hero-content">
@@ -122,14 +70,12 @@ const HomePage: React.FC = () => {
     </section>
   );
 
-  /**
-   * Renders a grid of article cards
-   */
+  // Renders a grid of article cards
   const ArticleGrid = ({ articles, category, link }: { articles: Article[]; category: string; link: string }) => (
     <section className="article-section">
       <SectionHeader title={category} link={link} />
       <div className="article-grid">
-        {!loaded ? (
+        {isLoading ? (
           Array.from({ length: 3 }).map((_, index) => (
             <HomeLoadingCard key={index} />
           ))
@@ -157,14 +103,12 @@ const HomePage: React.FC = () => {
     </section>
   );
 
-  /**
-   * Renders the politics section with grid and carousel
-   */
+  // Renders the politics section with grid and carousel
   function PoliticsSection() {
     return (
       <section className="politics-section">
         <SectionHeader title="Politics" link="/Politics" />
-        {!loaded ? (
+        {isLoading ? (
           <SectionLoadingCard />
         ) : (
           <div className="politics-content">
@@ -218,6 +162,6 @@ const HomePage: React.FC = () => {
       </div>
     </div>
   );
-};
+}
 
 export default HomePage;
