@@ -6,6 +6,10 @@ import newspaper
 import feedparser
 import json
 import os
+import logging
+
+logger = logging.getLogger(__name__)
+
 
 # Open the JSON file containing the RSS urls once
 current_directory = os.path.dirname(__file__)
@@ -18,7 +22,7 @@ with open(file_path, 'r') as file:
 class BackgroundClass:
   
   @staticmethod
-  def scrape(url):
+  def extract_article_data(url):
     page = newspaper.article(url)
     page.download()
     page.parse()
@@ -33,37 +37,31 @@ class BackgroundClass:
       page.movies)
 
   @staticmethod
-  def fetch_articles(category, url):
-    # Import Article here to avoid circular import issues
+  def process_feed(category, url):
     from articles.models import Article
     
-    print(f"Fetching articles from URL: {url}")
+    logger.info(f"Fetching articles from URL: {url}")
 
     count = 0
     feed = feedparser.parse(url)
 
     for entry in feed.entries:
-
       if count >= 4:
         break
       
       try: 
-        # Scrape the article content 
         link = entry.link
 
         # if the URL is a Google Redirect link decode it to obtain the OG link
         if ('news.google' in url):
           link = decode_google_news_url(link)
 
-        source, date, top_image, content, media = BackgroundClass.scrape(link)
+        source, date, top_image, content, media = BackgroundClass.extract_article_data(link)
         title = entry.title
         summary = summarize(content, title)
         
         # If the summary is valid, create a new Article object in the database
-        if (
-          summary.strip() != 'INVALID' and 
-          len(content.split(' ')) > 25 
-        ):
+        if (summary.strip() != 'INVALID' and len(content.split(' ')) > 25):
           Article.objects.create(
             title=title,
             date=date,
@@ -77,21 +75,18 @@ class BackgroundClass:
           )
 
           count+=1
-          print('Successfully added new article')    
+          logger.info('Successfully added new article')    
 
       except Exception as e:
-        print(f'ERROR: error{e}')
+        logger.error(f'ERROR: error{e}')
                   
     count = 0
 
   @staticmethod
-  def upload_data():
+  def run_feed_ingestion():
     """
-      Manages the concurrent fetching and processing of articles from multiple
-      RSS feed URLs.
-
-      Returns: 
-        None
+      Manages the concurrent fetching and processing of articles 
+      from multiple RSS feed URLs.
     """
 
     # Use ThreadPoolExecutor to fetch news articles concurrently
@@ -104,7 +99,7 @@ class BackgroundClass:
       shuffle(category_url_pairs)
         
       for category, link in category_url_pairs:
-        future = executor.submit(BackgroundClass.fetch_articles, category, link)
+        future = executor.submit(BackgroundClass.process_feed, category, link)
         future_to_article[future] = (category, link)
               
       # Process the results as they complete
@@ -113,5 +108,5 @@ class BackgroundClass:
         try:
           future.result()
         except Exception as e:
-          print(f'Failed to upload {category} - {url}: {e}')
+          logger.error(f'Failed to upload {category} - {url}: {e}')
       

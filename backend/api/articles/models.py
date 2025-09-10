@@ -14,6 +14,14 @@ class Article(models.Model):
 
   class Meta:
     unique_together = ('title', 'article_link')
+    
+    indexes = [
+      # Sort articles by category and date
+      models.Index(fields=['category', '-date']),
+      models.Index(fields=['-date']),
+      # Sort articles by title
+      models.Index(fields=['title']),
+    ]
 
   def __str__(self):
     return self.title
