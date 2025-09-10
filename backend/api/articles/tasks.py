@@ -9,10 +9,10 @@ import os
 
 # Open the JSON file containing the RSS urls once
 current_directory = os.path.dirname(__file__)
-file_path = os.path.join(current_directory, 'urls.json')
+file_path = os.path.join(current_directory, 'rss_feeds.json')
 
 with open(file_path, 'r') as file:
-  urls = json.load(file)
+  feeds = json.load(file)
 
 
 class BackgroundClass:
@@ -98,9 +98,9 @@ class BackgroundClass:
     with ThreadPoolExecutor(max_workers=8) as executor:
       future_to_article = {}
       category_url_pairs = []
-      for category, url_list in urls.items():
-          for url in url_list:
-              category_url_pairs.append((category, url))
+      for category, url_list in feeds.items():
+        for url in url_list:
+          category_url_pairs.append((category, url))
       shuffle(category_url_pairs)
         
       for category, link in category_url_pairs:
