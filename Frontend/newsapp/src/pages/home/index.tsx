@@ -1,12 +1,12 @@
-import HomeLoadingCard from '../loading/HomeLoadingCard';
-import HeadlineLoadingCard from '../loading/HeadlineLoadingCard'
-import SectionLoadingCard from '../loading/SectionLoadingCard'
+import HomeLoadingCard from '../../components/loading/HomeLoadingCard';
+import HeadlineLoadingCard from '../../components/loading/HeadlineLoadingCard'
+import SectionLoadingCard from '../../components/loading/SectionLoadingCard'
 import { CCarousel, CCarouselItem, CImage } from '@coreui/react';
 
 import { Link } from 'react-router-dom';
-import { useFetchArticles } from './useFetchArticles';
-import { Article } from '../card/Card'
-import './Home.css';
+import { useFetchArticles } from '../../hooks/useFetchArticles';
+import { Article } from '../../components/card/Card'
+import './index.css';
 
 // Newsbrief homepage
 function HomePage() {

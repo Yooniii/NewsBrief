@@ -14,12 +14,13 @@ import {
   IoIosTrendingUp,
 } from "react-icons/io";
 import { GoChevronDown } from "react-icons/go";
+import Logo from "../../../public/logo.png"
 
-import menuOptions from "./menu-options.json";
-import "./Header.css";
+import menuOptions from "./categories.json";
+import "./index.css";
 import "bootstrap/dist/js/bootstrap.bundle.min";
 
-const Header = () => {
+export const Header = () => {
   const [inputValue, setInputValue] = useState("");
   const [openMenu, setOpenMenu] = useState(false);
   const menuRef = useRef<HTMLDivElement | null>(null);
@@ -155,5 +156,3 @@ const Header = () => {
     </div>
   );
 };
-
-export default Header;

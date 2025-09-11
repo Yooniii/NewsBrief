@@ -1,5 +1,4 @@
 import CustomSkeleton from './Skeleton';
-import '../home/Home.css';
 
 const SectionLoadingCard = () => {
   return (

@@ -1,40 +1,15 @@
 import { useState } from 'react';
-import './Card.css';
-import TimeAgo from 'timeago-react';
-import { useSpring, animated } from 'react-spring';
-import ReactPlayer from 'react-player';
-import ModalComponent from '../modal/Modal';
+import { useSpring, animated } from "react-spring";
 import { GoLinkExternal } from "react-icons/go";
 import { IoShareSocialOutline } from "react-icons/io5";
+import TimeAgo from 'timeago-react';
+import ReactPlayer from 'react-player';
+import ModalComponent from '../modal/Modal';
 
+import { Article } from "../../types"
+import "./Card.css";
 
-// Card component for the Newsbrief website
-
-export interface Article { // Define shape of Article object
-  key: string;
-  title: string;
-  date: string;
-  source: string;
-  top_image: string;
-  media: string;
-  article_link: string;
-  summary: string;
-  category: string;
-}
-
-/**
- * Renders an article card component
- * @param {Object} param0 
- * @param {string} param0.key - Article key.
- * @param {string} param0.title - Article headline
- * @param {string} param0.topImage - URL to article image
- * @param {string} param0.media - URL to media content (e.g. video)
- * @param {string} param0.source - Article source
- * @param {string} param0.link - URL to article
- * @param {string} param0.date - Article publish date
- * @param {string} param0.summary - Article summary
- * @returns {JSX.Element} - JSX element representing the article card
- */
+// Article card component
 const ArticleCard: React.FC<Article> = 
 ({ title, top_image, media, source, article_link, date, summary }) => {
   const [showMore, setShowMore] = useState(false)

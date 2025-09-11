@@ -1,11 +1,15 @@
-import axios from 'axios';
-import Card from '../card/Card';
 import { useState, useEffect } from 'react';
-import { Article } from '../card/Card';
-import { useParams, useLocation } from 'react-router-dom';
+import { useParams, useLocation } from "react-router-dom";
+
+import { Article } from '../../types';
+import Card from "../../components/card/Card";
+
 import InfiniteScroll from 'react-infinite-scroll-component';
-import LoadingCard from '../loading/LoadingCard';
-import './ArticleList.css';
+import LoadingCard from '../../components/loading/LoadingCard';
+import { useFetchArticlesByCategory } from '../../hooks/useArticleService';
+
+import "./index.css";
+
 
 const ArticleList = () => {
   const location = useLocation();
@@ -13,46 +17,25 @@ const ArticleList = () => {
   const queryParams = new URLSearchParams(location.search);
   const query = queryParams.get('query')?.toLowerCase();
 
-  const [articles, setArticles] = useState<Article[]>([]);
   const [displayedArticles, setDisplayedArticles] = useState<Article[]>([]);
-  const [hasMore, setHasMore] = useState<boolean>(true);
   const [index, setIndex] = useState(3);
 
+  if (!category) return;
+
+  const { articles, hasMore, loadMore } = useFetchArticlesByCategory({ category, query });
+    
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await axios.get('http://127.0.0.1:8000/articles/');                                                                                                                          
-        const allArticles = response.data;
-        let filteredArticles = allArticles;
-
-        if (query) {
-          filteredArticles = allArticles.filter((article: Article) =>
-            article.summary.toLowerCase().includes(query) &&
-            article.title.toLowerCase().includes(query)
-          );
-        } else if (category) {
-          filteredArticles = allArticles.filter((article: Article) =>
-            article.category === category
-          );
-        }
-        setArticles(filteredArticles);
-        setHasMore(filteredArticles.length > 3);
-        setDisplayedArticles(filteredArticles.slice(0, 3));
-
-      } catch (error) {
-        console.error('Error fetching articles:', error);
-      }
-    };
-    fetchData();
-  }, [category, query]);
+    // Reset displayed articles when articles change
+    setDisplayedArticles(articles.slice(0, 3));
+    setIndex(3);
+  }, [articles]);
 
   const fetchMoreData = () => {
     if (!hasMore) return;
     const nextIndex = index + 3;
 
-    if (nextIndex > articles.length) {
-      setDisplayedArticles(articles);
-      setHasMore(false);
+    if (nextIndex >= articles.length) {
+      loadMore();
     } else {
       setDisplayedArticles(articles.slice(0, nextIndex));
       setIndex(nextIndex);

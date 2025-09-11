@@ -1,20 +1,15 @@
-.header, .logo, form, form:hover input, form input, a {
-  background-color: transparent;
-}
-
 .header {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 1rem;
-  padding: 2.5rem 7rem;
+  margin-bottom: 5rem;
 }
 
 .logo {
   display: flex;
   justify-content: flex-start;
   text-decoration: none;
-  color: #181818;
+  color: black;
   cursor: pointer;
   font-family: 'Inter-ExtraBold';
   font-size: 1.7rem;
@@ -47,9 +42,11 @@
 
 /* Simple Dropdown Button */
 a.btn {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
   border: none;
   outline: none;
-  padding: 0.75rem 1.5rem;
   border-radius: 8px;
   font-weight: 500;
   font-size: 0.95rem;
@@ -166,12 +163,6 @@ button:focus {
   outline: none;
 }
 
-@media (max-width: 1024px) {
-  .header {
-    padding: 2.5rem 5rem;
-  }
-  }
-
 @media (max-width: 950px) {
   .menu-container {
     display: none;
@@ -179,7 +170,6 @@ button:focus {
 }
 
 @media (max-width: 949px) {
-
   .nav-toggle {
     display: block;
   }
