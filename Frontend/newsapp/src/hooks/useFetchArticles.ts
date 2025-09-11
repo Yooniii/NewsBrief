@@ -4,17 +4,17 @@ import { ArticlesByCategory } from "../types";
 // News categories and their slice limits 
 const CATEGORY_LIMITS: Record<string, number> = {
   "World": 3,
-  "Top Stories": 4,
+  "Top Stories": 3,
   "Sports": 3,
   "Politics": 10,
 };
 
 
 export const useFetchArticles = () => {
-  const worldHook = useFetchArticlesByCategory({category: "World", limit: CATEGORY_LIMITS["World"]});
-  const topStoriesHook = useFetchArticlesByCategory({category: "Top Stories", limit: CATEGORY_LIMITS["Top Stories"]});
-  const sportsHook = useFetchArticlesByCategory({category: "Sports", limit: CATEGORY_LIMITS["Sports"]});
-  const politicsHook = useFetchArticlesByCategory({category: "Politics", limit: CATEGORY_LIMITS["Politics"]});
+  const worldHook = useFetchArticlesByCategory({category: "World", pageSize: CATEGORY_LIMITS["World"]});
+  const topStoriesHook = useFetchArticlesByCategory({category: "Top Stories", pageSize: CATEGORY_LIMITS["Top Stories"]});
+  const sportsHook = useFetchArticlesByCategory({category: "Sports", pageSize: CATEGORY_LIMITS["Sports"]});
+  const politicsHook = useFetchArticlesByCategory({category: "Politics", pageSize: CATEGORY_LIMITS["Politics"]});
 
   const isLoading = worldHook.loading || topStoriesHook.loading || sportsHook.loading || politicsHook.loading;
   const error = worldHook.error || topStoriesHook.error || sportsHook.error || politicsHook.error;

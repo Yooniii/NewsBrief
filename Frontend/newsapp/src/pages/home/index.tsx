@@ -5,27 +5,29 @@ import { CCarousel, CCarouselItem, CImage } from '@coreui/react';
 
 import { Link } from 'react-router-dom';
 import { useFetchArticles } from '../../hooks/useFetchArticles';
-import { Article } from '../../components/card/Card'
+import { Article } from '../../types'
 import './index.css';
 
 // Newsbrief homepage
 function HomePage() {
   const { articles, isLoading } = useFetchArticles();
 
+  // Handles clicking on an article to open it in a new window
+  const handleArticleClick = (articleLink: string) => {
+    if (articleLink) {
+      window.open(articleLink, "_blank", "noopener,noreferrer");
+    }
+  };
+  
   // Section header with title and see all link
   const SectionHeader = ({ title, link }: { title: string; link: string }) => (
     <div className="section-header">
       <h2 className="section-title">{title}</h2>
-      <Link to={link} className="see-all-link">View All</Link>
+      <Link to={link} className="see-all-link">
+        View All
+      </Link>
     </div>
   );
-
-  // Handles clicking on an article to open it in a new window
-  const handleArticleClick = (articleLink: string) => {
-    if (articleLink) {
-      window.open(articleLink, '_blank', 'noopener,noreferrer');
-    }
-  };
 
   // Hero section with featured story
   const HeroSection = () => (
@@ -36,31 +38,38 @@ function HomePage() {
       ) : (
         <div className="hero-content">
           <div className="hero-main">
-            <div 
-              className="hero-image" 
-              onClick={() => handleArticleClick(articles.topStories[0]?.article_link)}
-              style={{ cursor: 'pointer' }}
+            <div
+              className="hero-image"
+              onClick={() =>
+                handleArticleClick(articles.topStories[0]?.article_link)
+              }
             >
-              <img src={articles.topStories[0]?.top_image} alt={articles.topStories[0]?.title} />
+              <img
+                src={articles.topStories[0]?.top_image}
+                alt={articles.topStories[0]?.title}
+              />
               <div className="hero-overlay">
-                <span className="hero-source">{articles.topStories[0]?.source}</span>
+                <span className="hero-source">
+                  {articles.topStories[0]?.source}
+                </span>
                 <h1 className="hero-title">{articles.topStories[0]?.title}</h1>
-                <p className="hero-summary">{articles.topStories[0]?.summary?.split('\n-')[0]}</p>
+                <p className="hero-summary">
+                  {articles.topStories[0]?.summary?.split("\n-")[0]}
+                </p>
               </div>
             </div>
           </div>
           <div className="hero-sidebar">
             {articles.topStories.slice(1, 4).map((article, index) => (
-              <div 
-                key={index} 
+              <div
+                key={index}
                 className="hero-sidebar-item"
                 onClick={() => handleArticleClick(article.article_link)}
-                style={{ cursor: 'pointer' }}
               >
-                <img src={article.top_image} alt={article.title} />
                 <div className="hero-sidebar-content">
                   <span className="hero-sidebar-source">{article.source}</span>
                   <h3 className="hero-sidebar-title">{article.title}</h3>
+                  <p className="hero-sidebar-summary">{article.summary}</p>
                 </div>
               </div>
             ))}
@@ -71,21 +80,27 @@ function HomePage() {
   );
 
   // Renders a grid of article cards
-  const ArticleGrid = ({ articles, category, link }: { articles: Article[]; category: string; link: string }) => (
+  const ArticleGrid = ({
+    articles,
+    category,
+    link,
+  }: {
+    articles: Article[];
+    category: string;
+    link: string;
+  }) => (
     <section className="article-section">
       <SectionHeader title={category} link={link} />
       <div className="article-grid">
-        {isLoading ? (
-          Array.from({ length: 3 }).map((_, index) => (
-            <HomeLoadingCard key={index} />
-          ))
-        ) : (
-          articles.map((article, index) => (
-            <article 
-              key={index} 
+        {isLoading
+          ? Array.from({ length: 3 }).map((_, index) => (
+              <HomeLoadingCard key={index} />
+            ))
+          : articles.map((article, index) => (
+            <article
+              key={index}
               className="article-card"
               onClick={() => handleArticleClick(article.article_link)}
-              style={{ cursor: 'pointer' }}
             >
               <div className="article-image">
                 <img src={article.top_image} alt={article.title} />
@@ -94,11 +109,12 @@ function HomePage() {
               <div className="article-content">
                 <span className="article-source">{article.source}</span>
                 <h3 className="article-title">{article.title}</h3>
-                <p className="article-summary">{article.summary?.split('\n-')[0]}</p>
+                <p className="article-summary">
+                  {article.summary?.split("\n-")[0]}
+                </p>
               </div>
             </article>
-          ))
-        )}
+          ))}
       </div>
     </section>
   );
@@ -113,31 +129,37 @@ function HomePage() {
         ) : (
           <div className="politics-content">
             <div className="politics-grid">
-              {articles.politicalNews.slice(0, 4).map((article, index) => (
-                <div 
-                  key={index} 
+              {articles.politicalNews.slice(0, 2).map((article, index) => (
+                <div
+                  key={index}
                   className="politics-item"
                   onClick={() => handleArticleClick(article.article_link)}
-                  style={{ cursor: 'pointer' }}
                 >
                   <span className="politics-source">{article.source}</span>
                   <h4 className="politics-title">{article.title}</h4>
+                  <p className="politics-summary">
+                    {article.summary?.split("\n-")[0]}
+                  </p>
                 </div>
               ))}
             </div>
             <div className="politics-carousel">
               <CCarousel controls indicators>
-                {articles.politicalNews.slice(4, 8).map((article, index) => (
-                  <CCarouselItem 
+                {articles.politicalNews.slice(2, 6).map((article, index) => (
+                  <CCarouselItem
                     key={index}
                     onClick={() => handleArticleClick(article.article_link)}
-                    style={{ cursor: 'pointer' }}
+                    style={{ cursor: "pointer" }}
                   >
-                    <CImage 
-                      className="d-block w-100" 
-                      src={article.top_image} 
+                    <CImage
+                      className="d-block w-100"
+                      src={article.top_image}
                       alt={article.title}
-                      style={{ height: '400px', objectFit: 'cover' }}
+                      style={{
+                        height: "400px",
+                        objectFit: "cover",
+                        borderRadius: "15px",
+                      }}
                     />
                     <div className="carousel-caption d-none d-md-block">
                       <h5 className="politics-slide-title">{article.title}</h5>
@@ -152,13 +174,22 @@ function HomePage() {
       </section>
     );
   }
+  
   return (
     <div className="home-page">
       <div className="home-container">
         <HeroSection />
-        <ArticleGrid articles={articles.worldNews} category="World News" link="/World" />
+        <ArticleGrid
+          articles={articles.worldNews}
+          category="World News"
+          link="/World"
+        />
         <PoliticsSection />
-        <ArticleGrid articles={articles.sportsNews} category="Sports" link="/Sports" />
+        <ArticleGrid
+          articles={articles.sportsNews}
+          category="Sports"
+          link="/Sports"
+        />
       </div>
     </div>
   );

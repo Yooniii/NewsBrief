@@ -1,21 +1,11 @@
-ul, .text, .source, .date, .summary, .read-more-btn, .btn-wrap, h2, 
-.article-container, .article-container-without-img, .btn-container,
-.top-section, .img-container, .link-icon, .expand-container, 
-.media, .media-container, image, .share-btn, .share-icon, font {
-  background-color: #fdfcfe;
-}
-
-.article-container {
+.card-container {
   display: flex;
   flex-direction: column;
   box-sizing: border-box;
   border-radius: 1rem;
   padding: 1.5rem;
   box-shadow: 0 0 0.4rem rgba(210, 206, 206, 0.5);
-  margin-top: 1rem;
-  margin-bottom: 3rem;
-  margin-left: 0.2rem;
-  margin-right: 0.2rem;
+  margin: 0 0.2rem;
 }
 
 .preview {
@@ -28,17 +18,17 @@ ul, .text, .source, .date, .summary, .read-more-btn, .btn-wrap, h2,
   min-height: 200px;
 }
 
-.article-img {
+.card-img {
   flex: 0 0 40%;
   max-width: 350px;
   min-width: 220px;
   height: 100%;
-  min-height: 200px;
+  min-height: 210px;
   border-radius: 1rem;
   object-fit: cover;
 }
 
-.article-img-no-img {
+.card-img-no-img {
   display: none;
 }
 
@@ -50,7 +40,7 @@ ul, .text, .source, .date, .summary, .read-more-btn, .btn-wrap, h2,
 }
 
 .source {
-  font-size: 1rem;
+  font-size: 0.9rem;
   color: #667eea;
   font-weight: 600;
   text-transform: uppercase;
@@ -88,7 +78,6 @@ li.summary {
   list-style-position: inside;
   padding-left: 0.5rem;
   display: list-item;
-  -webkit-line-clamp: unset;
   -webkit-box-orient: unset;
   overflow: visible;
   text-overflow: unset;
@@ -112,19 +101,51 @@ li.summary {
   color: #4c51bf;
 }
 
-.expand-container {
-  max-height: 0;
+.content-section {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+  flex-grow: 1;
 }
 
-.expand-container.show-more {
-  max-height: 35rem; 
-  margin-top: 1.3rem;  
+.expanded-content-full {
+  overflow: hidden;
+  width: 100%;
+  margin-top: 1rem;
+}
+
+.key-points {
+  margin-top: 0;
+  padding: 1rem;
+  background-color: #f8f9fa;
+  border-radius: 0.5rem;
+  border-left: 4px solid #667eea;
+}
+
+.key-points-title {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #4a5568;
+  margin: 0 0 0.5rem 0;
+  background-color: transparent;
+}
+
+.summary-item {
+  color: #4a5568;
+  line-height: 1.6;
+  font-size: 0.9rem;
+  margin-bottom: 0.4rem;
+  background-color: transparent;
 }
 
 .media-wrapper {
   display: flex;
   justify-content: center;
   background-color: #fdfcfe;
+  margin-top: 1rem;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  background-color: #f8f9fa;
 }
 
 .react-player {
@@ -140,22 +161,12 @@ li.summary {
 }
 
 .summary-list {
-  margin: 1.2rem 0 0.2rem 0;
-  padding-left: 1.5rem;
+  margin: 0;
+  padding-left: 1.2rem;
   color: #4a5568;
   font-size: 0.9rem;
-  line-height: 1.5;
-  list-style-type: disc;
-}
-
-.summary-list li.summary {
-  margin-bottom: 0.3rem;
-  line-height: 1.5;
-  font-size: 0.9rem;
-  background: none;
-  border: none;
-  padding: 0;
-  list-style-position: inside;
+  line-height: 1.6;
+  background-color: transparent;
 }
 
 @media (max-width: 1024px) {
@@ -163,7 +174,7 @@ li.summary {
     min-height: 180px;
   }
   
-  .article-img {
+  .card-img {
     flex: 0 0 40%;
     max-width: 300px;
     min-width: 200px;
@@ -173,6 +184,14 @@ li.summary {
   .text {
     flex: 1 1 55%;
     padding: 0.4rem 0;
+  }
+  
+  .key-points-title {
+    font-size: 0.9rem;
+  }
+  
+  .summary-item {
+    font-size: 0.85rem;
   }
   
   .article-title {
@@ -195,7 +214,7 @@ li.summary {
     gap: 1.5rem;
   }
   
-  .article-img {
+  .card-img {
     flex: 0 0 auto;
     width: 100%;
     max-width: 400px;
@@ -207,6 +226,14 @@ li.summary {
     justify-content: flex-start;
     padding: 0.3rem 0;
     gap: 0.4rem;
+  }
+  
+  .key-points-title {
+    font-size: 0.85rem;
+  }
+  
+  .summary-item {
+    font-size: 0.8rem;
   }
 
   .article-title {
@@ -220,7 +247,6 @@ li.summary {
   
   .summary {
     font-size: 0.85rem;
-    -webkit-line-clamp: 2;
   }
   
   li.summary {
@@ -233,10 +259,8 @@ li.summary {
 }
 
 @media (max-width: 480px) {
-  .article-container {
+  .card-container {
     padding: 1rem;
-    margin-left: 0.1rem;
-    margin-right: 0.1rem;
   }
   
   .preview {
@@ -244,13 +268,21 @@ li.summary {
     min-height: auto;
   }
   
-  .article-img {
+  .card-img {
     height: 150px;
   }
   
   .text {
     padding: 0.2rem 0;
     gap: 0.3rem;
+  }
+  
+  .key-points-title {
+    font-size: 0.8rem;
+  }
+  
+  .summary-item {
+    font-size: 0.75rem;
   }
   
   .article-title {
@@ -264,7 +296,6 @@ li.summary {
   
   .summary {
     font-size: 0.8rem;
-    -webkit-line-clamp: 2;
   }
   
   li.summary {

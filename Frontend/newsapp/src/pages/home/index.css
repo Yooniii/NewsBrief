@@ -5,7 +5,7 @@
   align-items: center;
   margin-bottom: 2rem;
   padding-bottom: 1rem;
-  border-bottom: 3px solid #e1e8ed;
+  border-bottom: 1px solid #e2e8f0;
 }
 
 .section-title {
@@ -54,6 +54,7 @@
   overflow: hidden;
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
   height: 430px;
+  cursor: pointer;
 }
 
 .hero-image img {
@@ -114,7 +115,6 @@
 .hero-sidebar-item {
   display: flex;
   gap: 0.8rem;
-  background: white;
   border-radius: 15px;
   padding: 1rem;
   box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
@@ -157,6 +157,7 @@
   margin-top: 0.5rem;
   display: -webkit-box;
   -webkit-line-clamp: 3;
+  line-clamp: 3;
   -webkit-box-orient: vertical;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -274,6 +275,7 @@
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.5px;
+  background: transparent;
 }
 
 .politics-title {
@@ -283,6 +285,7 @@
   color: #1a202c;
   margin-top: 0.5rem;
   flex-grow: 1;
+  background: transparent;
 }
 
 .politics-summary {
@@ -290,10 +293,9 @@
   line-height: 1.4;
   color: #4a5568;
   display: -webkit-box;
-  -webkit-line-clamp: 3;
-  -webkit-box-orient: vertical;
   overflow: hidden;
   text-overflow: ellipsis;
+  background: transparent;
 }
 
 .carousel-caption.d-none.d-md-block {
@@ -335,7 +337,7 @@
   background: transparent;
 }
 
-/* Responsive Design */
+/* Mobile Support */
 @media (max-width: 1200px) {
   .hero-content {
     grid-template-columns: 1fr;

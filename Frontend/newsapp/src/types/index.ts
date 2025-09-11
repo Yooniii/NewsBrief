@@ -23,17 +23,21 @@ export type ArticleCardProps = {
 
 export interface useFetchArticlesProps {
   category: string;
-  limit?: number;
+  pageSize?: number;
   query?: string | null | undefined
 }
 
 export interface FetchArticlesParams {
   category?: string;
-  search?: string;
-  limit?: number;
-  offset?: number;
+  query?: string | null | undefined;
+  page?: number;
+  page_size?: number;
 }
 
 export interface FetchArticlesResponse {
   results: Article[];
+  has_more: boolean;
+  count: number;
+  next: string;
+  previous: string;
 }
