@@ -1,9 +1,5 @@
-import axios, { AxiosError } from 'axios';
 import { FetchArticlesParams, FetchArticlesResponse } from '../types'
-
-// === Config ===
-const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
-const REQUEST_TIMEOUT = 10_000; // 10 seconds
+import { API_ENDPOINTS, buildApiUrlWithParams } from '../lib/api-config';
 
 
 /**
@@ -31,19 +27,25 @@ export const fetchArticles = async (params?: FetchArticlesParams): Promise<Fetch
       queryParams.append('page_size', params.page_size.toString());
     }
 
-    const url = `${API_BASE_URL}/articles/${queryParams.toString() ? `?${queryParams.toString()}` : ''}`;
+    const url = buildApiUrlWithParams(API_ENDPOINTS.ARTICLES, queryParams.toString());
     
     console.log('Fetching articles from:', url);
     
-    const response = await axios.get(url, {
-      timeout: REQUEST_TIMEOUT,
+    const response = await fetch(url, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+      },
     });
 
-    const data = response.data    
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+
+    const data = await response.json();
     return data;
   } catch (error) {
-    const axiosError = error as AxiosError;
-    console.error('Error fetching articles:', axiosError.message);
-    throw new Error(axiosError.message || 'Failed to fetch articles');
+    console.error('Error fetching articles:', error);
+    throw new Error('Failed to fetch articles');
   }
 };

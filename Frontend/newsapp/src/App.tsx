@@ -1,8 +1,8 @@
 import ArticleList from './pages/article-list'
 import HomePage from './pages/home';
 import ScrollToTop from './components/scroll-to-top/ScrollToTop'
-import ToolTip from './components/tool-tip/ToolTip';
 import RootLayout from "./components/layout/RootLayout";
+import { ToolTip } from "./components/tool-tip/ToolTip";
 import { Route, Routes } from 'react-router-dom';
 
 import './App.css'

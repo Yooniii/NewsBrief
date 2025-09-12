@@ -10,26 +10,42 @@
 
 .section-title {
   font-family: 'Inter-Bold', sans-serif;
-  font-size: 1.5rem;
+  font-size: 1.6rem;
   color: #1a202c;
   margin: 0;
   position: relative;
 }
 
 .see-all-link {
-  color: #667eea;
+  background-color: #f8f9fa;
+  color: #4a5568;
   text-decoration: none;
   font-family: 'Inter-Regular', sans-serif;
   font-size: 0.85rem;
   font-weight: 500;
-  padding: 0.2rem 0;
+  padding: 0.6rem 1.2rem;
+  border-radius: 20px;
   transition: all 0.2s ease;
-  border-bottom: 1px solid transparent;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
 }
 
 .see-all-link:hover {
-  color: #4c51bf;
-  border-bottom: 1px solid #667eea;
+  background-color: #e2e8f0;
+  color: #2d3748;
+  transform: translateY(-1px);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.see-all-link::after {
+  content: '›';
+  font-size: 1rem;
+  transition: transform 0.2s ease;
+}
+
+.see-all-link:hover::after {
+  transform: translateX(2px);
 }
 
 /* Hero Section */
