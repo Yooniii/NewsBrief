@@ -4,7 +4,9 @@
     "https://feeds.bbci.co.uk/news/rss.xml",
     "https://www.cbc.ca/webfeed/rss/rss-topstories", 
     "https://www.cbsnews.com/latest/rss/main",
-    "https://globalnews.ca/canada/feed/"
+    "https://globalnews.ca/canada/feed/",
+    "https://feedx.net/rss/ap.xml",
+    "https://www.euronews.com/rss"
   ], 
     
   "World": [
@@ -12,14 +14,16 @@
     "https://www.thestar.com/search/?f=rss&t=article&c=news/world*&l=50&s=start_time&sd=desc",
     "https://globalnews.ca/world/feed/", 
     "https://www.cbsnews.com/latest/rss/world", 
-    "https://feeds.bbci.co.uk/news/world/rss.xml"
+    "https://feeds.bbci.co.uk/news/world/rss.xml",
+    "https://feeds.nbcnews.com/nbcnews/public/news"
   ], 
 
   "Business": [
     "https://rss.nytimes.com/services/xml/rss/nyt/Business.xml",
     "https://www.thestar.com/search/?f=rss&t=article&c=business*&l=50&s=start_time&sd=desc",
     "https://www.cbc.ca/webfeed/rss/rss-business", 
-    "https://feeds.bbci.co.uk/news/business/rss.xml"
+    "https://feeds.bbci.co.uk/news/business/rss.xml",
+    "https://www.investing.com/rss/news.rss"
   ],
 
   "Tech": [
@@ -33,7 +37,8 @@
   "Entertainment": [
     "https://www.cbsnews.com/latest/rss/entertainment", 
     "https://globalnews.ca/entertainment/feed/", 
-    "https://www.thestar.com/search/?f=rss&t=article&c=entertainment*&l=50&s=start_time&sd=desc"
+    "https://www.thestar.com/search/?f=rss&t=article&c=entertainment*&l=50&s=start_time&sd=desc",
+    "https://www.etonline.com/news/rss"
   ],
 
   "Politics": [
@@ -41,7 +46,7 @@
     "https://www.cbsnews.com/latest/rss/politics",
     "https://feeds.bbci.co.uk/news/politics/rss.xml",
     "https://www.cbc.ca/webfeed/rss/rss-politics", 
-    "https://www.thestar.com/search/?f=rss&t=article&c=politics*&l=50&s=start_time&sd=desc",
+    "https://www.thenation.com/subject/politics/feed/",
     "https://globalnews.ca/politics/feed/"
   ],
 
@@ -50,13 +55,17 @@
     "https://www.thestar.com/search/?f=rss&t=article&c=sports*&l=50&s=start_time&sd=desc",
     "https://www.cbc.ca/webfeed/rss/rss-sports", 
     "https://www.espn.com/espn/rss/news",          
-    "https://globalnews.ca/sports/feed/"
+    "https://globalnews.ca/sports/feed/",
+    "https://www.skysports.com/rss/12040"
   ],
 
   "Science": [
     "https://rss.nytimes.com/services/xml/rss/nyt/Science.xml",
     "https://feeds.bbci.co.uk/news/science_and_environment/rss.xml",
-    "https://www.cbsnews.com/latest/rss/science"
+    "https://www.cbsnews.com/latest/rss/science",
+    "http://rss.sciam.com/ScientificAmerican-Global",
+    "https://www.newscientist.com/feed/home/?cmpid=RSS%7CNSNS-Home",
+    "https://www.space.com/feeds.xml"
   ],
 
   "Health": [
