@@ -78,15 +78,6 @@ npm run dev
 ## Visuals
 
 <table>
-  <tr>
-    <td><img width="700" alt="Screen Shot 2024-09-22 at 2 36 29 PM" src="https://github.com/user-attachments/assets/95a3eda2-9758-4517-b2fd-683d29f0664e"></td>
-    <td><img width="700" alt="Screen Shot 2024-09-22 at 2 36 19 PM" src="https://github.com/user-attachments/assets/5a42f6a1-ee8c-4695-add1-0a36497d2849"></td>
-  </tr>
-<table>
-
- <table>
-  <tr>
-    <td><img width="700" alt="Screen Shot 2024-09-22 at 2 36 48 PM" src="https://github.com/user-attachments/assets/5d15e859-61ab-4ff3-9f85-17cd9c8f669c"></td>
-    <td><img width="700" alt="Screen Shot 2024-09-22 at 2 38 40 PM" src="https://github.com/user-attachments/assets/d1b1ee07-75d3-4059-bee8-439a269a0cc5"></td>
-  </tr>
+<img width="2400" height="5173" alt="localhost_5173_home (1)" src="https://github.com/user-attachments/assets/79f5a632-fdca-4ae2-b930-21e88b4aed5a" />
+<img width="1405" height="731" alt="Screenshot 2025-09-13 at 9 18 17 PM" src="https://github.com/user-attachments/assets/bd77b572-12a8-4d95-89eb-ac7f6fdbc0fd" />
 </table>
