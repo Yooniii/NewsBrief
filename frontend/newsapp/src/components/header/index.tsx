@@ -2,8 +2,8 @@ import React, { useState, useRef, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { IoIosMenu, IoIosSearch } from "react-icons/io";
 
-import menuOptions from "./categories.json";
-import "./index.css";
+import menuOptions from "@/components/header/categories.json";
+import "@/components/header/index.css";
 import "bootstrap/dist/js/bootstrap.bundle.min";
 
 export const Header = () => {

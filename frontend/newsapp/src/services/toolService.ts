@@ -1,4 +1,4 @@
-import { API_ENDPOINTS, buildApiUrl} from "../lib/api-config";
+import { API_ENDPOINTS, buildApiUrl} from "@/lib/api-config";
 
 export async function requestTextDefinition(text: string) { 
   const response = await fetch(buildApiUrl(API_ENDPOINTS.TEXT_DEFINITION), {

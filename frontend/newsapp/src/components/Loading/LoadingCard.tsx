@@ -1,4 +1,4 @@
-import CustomSkeleton from './Skeleton';
+import CustomSkeleton from '@/components/Loading/Skeleton';
 
 const LoadingCard = () => {
   return (

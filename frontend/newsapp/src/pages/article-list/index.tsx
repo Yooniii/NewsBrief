@@ -1,12 +1,12 @@
 import InfiniteScroll from "react-infinite-scroll-component";
-import LoadingCard from "../../components/loading/LoadingCard";
+import LoadingCard from "@/components/Loading/LoadingCard";
 
 import { useParams, useLocation } from "react-router-dom";
-import { Article } from "../../types";
-import { ArticleCard } from "../../components/card/Card";
-import { useFetchArticlesByCategory } from "../../hooks/useArticleService";
+import { Article } from "@/types";
+import { ArticleCard } from "@/components/Card/Card";
+import { useFetchArticlesByCategory } from "@/hooks/useArticleService";
 
-import "./index.css";
+import "@/pages/article-list/index.css";
 
 const ArticleList = () => {
   const location = useLocation();

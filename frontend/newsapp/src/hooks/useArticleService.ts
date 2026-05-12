@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback } from 'react';
-import { fetchArticles } from '../services/articleService';
-import { useFetchArticlesProps, Article } from '../types';
+import { fetchArticles } from '@/services/articleService';
+import { useFetchArticlesProps, Article } from '@/types';
 
 /**
  * Hook for fetching articles by a specific category. Wraps the fetchArticles service.

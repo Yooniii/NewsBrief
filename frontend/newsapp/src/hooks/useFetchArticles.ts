@@ -1,5 +1,5 @@
-import { useFetchArticlesByCategory } from "./useArticleService";
-import { ArticlesByCategory } from "../types";
+import { useFetchArticlesByCategory } from "@/hooks/useArticleService";
+import { ArticlesByCategory } from "@/types";
 
 // News categories and their slice limits 
 const CATEGORY_LIMITS: Record<string, number> = {

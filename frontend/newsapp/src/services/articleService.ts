@@ -1,5 +1,5 @@
-import { FetchArticlesParams, FetchArticlesResponse } from '../types'
-import { API_ENDPOINTS, buildApiUrlWithParams } from '../lib/api-config';
+import { FetchArticlesParams, FetchArticlesResponse } from '@/types'
+import { API_ENDPOINTS, buildApiUrlWithParams } from '@/lib/api-config';
 
 
 /**

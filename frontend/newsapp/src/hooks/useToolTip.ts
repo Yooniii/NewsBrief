@@ -3,7 +3,7 @@ import {
   requestAiSearch, 
   requestTextDefinition, 
   requestTextExplanation 
-} from "../services/toolService";
+} from "@/services/toolService";
 
 export function useToolTip() {
   const toolTipRef = useRef<HTMLDivElement>(null); // Ref to tooltip display

@@ -2,8 +2,8 @@ import { CiCircleQuestion } from "react-icons/ci";
 import { FaBook } from "react-icons/fa";
 import { PiSparkleFill } from "react-icons/pi";
 
-import { useToolTip } from '../../hooks/useToolTip';
-import "./ToolTip.css";
+import { useToolTip } from '@/hooks/useToolTip';
+import "@/components/tool-tip/ToolTip.css";
 
 
 /**

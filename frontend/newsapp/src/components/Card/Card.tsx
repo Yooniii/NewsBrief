@@ -4,10 +4,10 @@ import { GoLinkExternal } from "react-icons/go";
 import { IoShareSocialOutline } from "react-icons/io5";
 import TimeAgo from 'timeago-react';
 import ReactPlayer from 'react-player';
-import ModalComponent from '../modal/Modal';
+import ModalComponent from '../Modal/Modal';
 
-import { ArticleCardProps } from "../../types"
-import "./Card.css";
+import { ArticleCardProps } from "@/types"
+import "@/components/Card/Card.css";
 
 // Article card component
 export const ArticleCard = ({article} : ArticleCardProps) => {

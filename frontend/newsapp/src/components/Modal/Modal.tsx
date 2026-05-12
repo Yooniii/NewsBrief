@@ -1,7 +1,7 @@
 import { TwitterShare, FacebookShare } from 'react-share-kit';
 import { useEffect } from 'react'
 import { IoLinkSharp } from "react-icons/io5";
-import './Modal.css'
+import '@/components/Modal/Modal.css'
 
 
 // Social media share modal component 
