@@ -12,6 +12,8 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 
 from pathlib import Path
 import os
+
+from django.core.exceptions import ImproperlyConfigured
 from dotenv import load_dotenv
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -24,7 +26,11 @@ load_dotenv(os.path.join(BASE_DIR.parent, '.env'))
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-ykj0s&6(gi2h9uy@+aby3)*c=%(gl6dj)_ljmb#!7!ji+dy#4_'
+SECRET_KEY = os.environ.get('SECRET_KEY')
+if not SECRET_KEY:
+    raise ImproperlyConfigured(
+        'SECRET_KEY is not set in the environment or in backend/.env'
+    )
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -33,7 +39,11 @@ ALLOWED_HOSTS = []
 
 
 # API Keys
-GENAI_API_KEY = os.environ['GENAI_API_KEY']
+GENAI_API_KEY = os.environ.get('GENAI_API_KEY')
+if not GENAI_API_KEY:
+    raise ImproperlyConfigured(
+        'GENAI_API_KEY is not set in the environment or in backend/.env'
+    )
 
 
 # Application definition
