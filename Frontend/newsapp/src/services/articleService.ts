@@ -16,7 +16,7 @@ export const fetchArticles = async (params?: FetchArticlesParams): Promise<Fetch
     }
     
     if (params?.query) {
-      queryParams.append('search', params.query);
+      queryParams.append('query', params.query);
     }
     
     if (params?.page) {
@@ -28,9 +28,7 @@ export const fetchArticles = async (params?: FetchArticlesParams): Promise<Fetch
     }
 
     const url = buildApiUrlWithParams(API_ENDPOINTS.ARTICLES, queryParams.toString());
-    
-    console.log('Fetching articles from:', url);
-    
+
     const response = await fetch(url, {
       method: 'GET',
       headers: {

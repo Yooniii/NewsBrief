@@ -108,8 +108,11 @@ def request_definition(request):
     response_serializer = TextResponseSerializer({"response": response_text})
     return Response(response_serializer.data, status=status.HTTP_200_OK)
     
-  except Exception as e:
-    return Response({"error": "Internal server error"}, status=e.status_code)
+  except Exception:
+    return Response(
+      {"error": "Internal server error"},
+      status=status.HTTP_500_INTERNAL_SERVER_ERROR,
+    )
 
 @api_view(['POST'])
 def request_explanation(request):
@@ -137,9 +140,12 @@ def request_explanation(request):
     response_serializer = TextResponseSerializer({"response": response_text})
     return Response(response_serializer.data, status=status.HTTP_200_OK)
     
-  except Exception as e:
-    return Response({"error": "Internal server error"}, status=e.status_code)
-  
+  except Exception:
+    return Response(
+      {"error": "Internal server error"},
+      status=status.HTTP_500_INTERNAL_SERVER_ERROR,
+    )
+
 @api_view(['POST'])
 def custom_search(request):
   """
@@ -169,5 +175,8 @@ def custom_search(request):
     response_serializer = TextResponseSerializer({"response": response_text})
     return Response(response_serializer.data, status=status.HTTP_200_OK)
     
-  except Exception as e:
-    return Response({"error": "Internal server error"}, status=e.status_code)
+  except Exception:
+    return Response(
+      {"error": "Internal server error"},
+      status=status.HTTP_500_INTERNAL_SERVER_ERROR,
+    )

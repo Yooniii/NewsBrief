@@ -31,7 +31,7 @@ cd newsBrief
 ```
 python3 -m venv venv 
 source venv/bin/activate
-pip install -r requirements.txt # Install dependencies
+pip install -r backend/requirements.txt
 ```
 
 **3. Set up the database**
@@ -44,9 +44,10 @@ python manage.py createsuperuser
 ```
 
 **4. Configure environment variables**
-Create a `.env` file in the project root:
+Create a `.env` file in the `backend/` directory (see `backend/.env.example`). At minimum:
 ```
-GENAI_API_KEY='YOUR API KEY'
+SECRET_KEY='YOUR_SECRET_KEY'
+GENAI_API_KEY='YOUR_API_KEY'
 ```
 
 **5. Run the server**
@@ -64,9 +65,9 @@ npm install
 ```
 
 **2. Configure environment variables**
-Create a `.env` file in the frontend directory:
+Create a `.env` file in `frontend/newsapp/` (see `frontend/.env.example`). The app calls the Django API using `VITE_API_BASE_URL` (for example `http://127.0.0.1:8000`).
 ```
-VITE_GENAI_API_KEY='YOUR API KEY'
+VITE_API_BASE_URL=http://127.0.0.1:8000
 ```
 
 **3. Start the development server**
